@@ -1,11 +1,109 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Book Explorer</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    
+  <header>
+    <div class="logo">goodreads</div>
+    <nav>
+      <button class="user-btn">Entrar</button>
+      <button class="register-btn">Cadastrar</button>
+    </nav>
+  </header>
+  <div class="top-search">
+    <div class="explore">
+      <select id="genreFilter">
+        <option value="">Gênero</option>
+        <option value="Arte">Arte</option>
+        <option value="Ficção">Ficção</option>
+        <option value="Romance">Romance</option>
+        <option value="Biografia">Biografia</option>
+        <option value="Fantasia">Fantasia</option>
+      </select>
+      <select id="yearFilter">
+        <option value="">Ano</option>
+        <option value="2022">2022</option>
+        <option value="2023">2023</option>
+        <option value="2024">2024</option>
+      </select>
+      <input type="text" placeholder="Buscar livros, autores..." id="searchInput"/>
+      <button class="search-btn" id="searchBtn">🔍</button>
+    </div>
+  </div>
+  <main>
+    <aside>
+      <input type="text" placeholder="Pesquisar categoria"/>
+      <h3>Gêneros</h3>
+      <ul>
+        <li>Arte</li>
+        <li>Biografia</li>
+        <li>Negócios</li>
+        <li>Ficção</li>
+        <li>HQs</li>
+        <li>Romance</li>
+        <li>Mistério</li>
+        <li>Fantasia</li>
+        <li>Mais...</li>
+      </ul>
+      <div class="challenge">
+        <h4>Desafio de Leitura</h4>
+        <span class="challenge-year">2025</span>
+        <div class="challenge-books">Meta: 20 livros</div>
+        <button>Começar</button>
+      </div>
+    </aside>
+    <section class="books-section">
+      <div class="books-header">
+        <span id="bookCount">20 livros</span>
+        <span>• Ano • Mês</span>
+      </div>
+      <div class="book-grid" id="bookGrid">
+        <!-- Os livros serão renderizados aqui pelo JS -->
+      </div>
+      <div class="pagination">
+        <button class="pagination-btn">&lt; Anterior</button>
+        <button class="pagination-btn">Próximo &gt;</button>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <div class="footer-content">
+      <div>
+        <h4>Sobre</h4>
+        <ul>
+          <li>Quem somos</li>
+          <li>Blog</li>
+          <li>Contato</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Ajuda</h4>
+        <ul>
+          <li>Suporte</li>
+          <li>Termos de Uso</li>
+          <li>Privacidade</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Social</h4>
+        <div class="social-icons">
+          <a href="#"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/facebook/facebook-original.svg" alt="fb"/></a>
+          <a href="#"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/twitter/twitter-original.svg" alt="tw"/></a>
+          <a href="#"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" alt="in"/></a>
+        </div>
+      </div>
+    </div>
+    <div class="copyright">
+      &copy; 2025 Book Explorer. Todos os direitos reservados.
+    </div>
+  </footer>
+  <script src="script.js"></script>
 </body>
 </html>
