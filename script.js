@@ -11,11 +11,13 @@ function renderBooks() {
     const card = document.createElement('div');
     card.className = 'book-card';
     card.innerHTML = `
-      <img src="${book.cover}" alt="Capa de ${book.title}" class="book-cover"/>
+      <div class="book-img-wrap">
+        <img src="${book.cover}" alt="Capa de ${book.title}" class="book-cover"/>
+        <div class="book-stars book-stars-top">${'★'.repeat(book.stars)}${'☆'.repeat(5 - book.stars)}</div>
+      </div>
       <div class="book-title">${book.title}</div>
       <div class="book-author">${book.author}</div>
       <div class="book-price">R$ ${book.price.toFixed(2)}</div>
-      <div class="book-stars">${'★'.repeat(book.stars)}${'☆'.repeat(5 - book.stars)}</div>
       <button class="add-cart-btn">Adicionar ao carrinho</button>
     `;
     booksGrid.appendChild(card);

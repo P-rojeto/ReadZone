@@ -264,19 +264,47 @@ nav a:hover {
   border: 2.7px solid var(--orange);
   transform: translateY(-5px) scale(1.04);
 }
+/* Nova: wrap para imagem + estrelas */
+.book-img-wrap {
+  position: relative;
+  width: 120px;
+  height: 170px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
 .book-cover {
   width: 120px;
   height: 170px;
   object-fit: cover;
   border-radius: 9px;
-  margin-bottom: 10px;
   background: var(--medium-blue);
   border: 1.5px solid var(--gold);
   box-shadow: 0 2px 8px #0002;
   transition: transform 0.12s;
+  display: block;
 }
 .book-card:hover .book-cover {
   transform: scale(1.05) rotate(-2deg);
+}
+/* Estrelas no canto superior direito da imagem */
+.book-stars-top {
+  position: absolute;
+  top: 9px;
+  right: 10px;
+  background: rgba(255,255,255,0.80);
+  border-radius: 8px;
+  padding: 2px 7px 2px 7px;
+  font-size: 1.04em;
+  color: var(--gold);
+  filter: drop-shadow(1px 1px 1px #20252c22);
+  z-index: 2;
+  font-weight: bold;
+  letter-spacing: 1px;
+  box-shadow: 0 1px 4px #0001;
+  min-width: 60px;
+  text-align: right;
 }
 .book-title {
   font-weight: bold;
@@ -294,34 +322,34 @@ nav a:hover {
   opacity: 0.9;
 }
 .book-price {
+  display: block;
   color: var(--orange);
   font-weight: bold;
   font-size: 1.08em;
   margin: 7px 0 5px 0;
+  text-align: center;
 }
-.book-stars {
-  color: var(--gold);
-  font-size: 1.09em;
-  letter-spacing: 1px;
-  margin-bottom: 8px;
-  filter: drop-shadow(1px 1px 1px #20252c22);
-}
+/* DIMINUIR botão carrinho */
 .add-cart-btn {
   position: absolute;
-  bottom: 13px;
+  bottom: 11px;
   left: 50%;
   transform: translateX(-50%);
-  padding: 7px 18px;
+  padding: 4px 13px;
   background: var(--gold);
   color: var(--deep-blue);
   border: none;
-  border-radius: 8px;
-  font-size: 1.03em;
+  border-radius: 7px;
+  font-size: 0.97em;
   cursor: pointer;
   font-weight: 600;
   box-shadow: 0 2px 8px #0002;
   transition: background 0.18s, color 0.18s, transform 0.13s;
-  letter-spacing: 0.4px;
+  letter-spacing: 0.3px;
+  width: auto;
+  margin: 0 auto;
+  display: block;
+  text-align: center;
 }
 .add-cart-btn:hover {
   background: var(--orange);
@@ -392,4 +420,9 @@ nav a:hover {
   .books-grid {
     gap: 18px 9px;
   }
+}
+
+.book-stars {
+  /* Mantém o estilo para estrelas antigas, mas não aparece mais nos cards */
+  display: none;
 }
