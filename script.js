@@ -6,22 +6,24 @@ function renderBooks() {
   booksGrid.innerHTML = '';
   let priceLimit = parseFloat(priceRange.value);
 
-  window.booksData.forEach(book => {
-    if (book.price > priceLimit) return;
-    const card = document.createElement('div');
-    card.className = 'book-card';
-    card.innerHTML = `
-      <div class="book-img-wrap">
-        <img src="${book.cover}" alt="Capa de ${book.title}" class="book-cover"/>
-        <div class="book-stars book-stars-top">${'★'.repeat(book.stars)}${'☆'.repeat(5 - book.stars)}</div>
-      </div>
-      <div class="book-title">${book.title}</div>
-      <div class="book-author">${book.author}</div>
-      <div class="book-price">R$ ${book.price.toFixed(2)}</div>
-      <button class="add-cart-btn">Adicionar ao carrinho</button>
-    `;
-    booksGrid.appendChild(card);
-  });
+  if (Array.isArray(window.booksData)) {
+    window.booksData.forEach(book => {
+      if (book.price > priceLimit) return;
+      const card = document.createElement('div');
+      card.className = 'book-card';
+      card.innerHTML = `
+        <div class="book-img-wrap">
+          <img src="${book.cover}" alt="Capa de ${book.title}" class="book-cover"/>
+          <div class="book-stars book-stars-top">${'★'.repeat(book.stars)}${'☆'.repeat(5 - book.stars)}</div>
+        </div>
+        <div class="book-title">${book.title}</div>
+        <div class="book-author">${book.author}</div>
+        <div class="book-price">R$ ${book.price.toFixed(2)}</div>
+        <button class="add-cart-btn">Adicionar ao carrinho</button>
+      `;
+      booksGrid.appendChild(card);
+    });
+  }
 }
 
 priceRange.addEventListener('input', function() {
