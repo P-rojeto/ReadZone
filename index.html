@@ -4,8 +4,8 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>ReadZone - Loja de Livros</title>
-  <link rel="stylesheet" href="style.css"/>
   <link rel="icon" type="image/png" href="logo-readzone.png"/>
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
   <header class="site-header">
@@ -23,17 +23,17 @@
       <div class="header-actions">
         <input type="text" placeholder="Buscar..." class="header-search"/>
         <span class="icon">🔍</span>
-        <span class="icon">🛒</span>
+        <span class="icon cart-icon">🛒<span id="cart-count">0</span></span>
         <span class="icon">👤</span>
       </div>
     </div>
   </header>
+
   <section class="shop-intro">
     <h1><span class="highlight-gold">Página Elegante</span> de Livros</h1>
-    <p>
-      Descubra novos títulos, use filtros avançados e encontre sua próxima leitura favorita!
-    </p>
+    <p>Descubra novos títulos, use filtros avançados e encontre sua próxima leitura favorita!</p>
   </section>
+
   <main class="shop-main">
     <aside class="sidebar">
       <div class="filter-box">
@@ -59,13 +59,8 @@
         <input type="range" min="0" max="400" value="200" id="price-range"/>
         <div class="filter-range-label">R$0 - R$<span id="price-value">200</span></div>
       </div>
-      <div class="filter-box">
-        <h3>Avaliação</h3>
-        <div class="rating">
-          <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-        </div>
-      </div>
     </aside>
+
     <section class="shop-content">
       <div class="shop-toolbar">
         <div class="categories-bar">
@@ -86,12 +81,27 @@
           </select>
         </div>
       </div>
+
       <div class="books-grid" id="books-grid"></div>
     </section>
   </main>
+
   <footer class="main-footer">
-    <div>© 2025 <span class="footer-logo-wrap"><img src="logo-readzone.png" class="footer-logo" alt="Logo ReadZone"/></span> ReadZone. Todos os direitos reservados.</div>
+    <div>© 2025 <img src="logo-readzone.png" class="footer-logo" alt="Logo ReadZone"/> ReadZone. Todos os direitos reservados.</div>
   </footer>
+
+  <!-- Carrinho -->
+  <div class="cart-sidebar" id="cart-sidebar">
+    <div class="cart-header">
+      <h2>🛒 Meu Carrinho</h2>
+      <button id="close-cart">✖</button>
+    </div>
+    <div class="cart-items" id="cart-items">
+      <p class="empty-cart">Seu carrinho está vazio.</p>
+    </div>
+  </div>
+  <div class="cart-overlay" id="cart-overlay"></div>
+
   <script src="books.js"></script>
   <script src="script.js"></script>
 </body>
