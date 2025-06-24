@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ReadZone - Loja de Livros</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="icon" type="image/png" href="logo-readzone.png"/>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-content">
+      <img src="logo-readzone.png" alt="ReadZone Logo" class="logo-top"/>
+      <span class="site-title">ReadZone</span>
+      <nav>
+        <ul>
+          <li><a href="#" id="nav-inicio">Início</a></li>
+          <li><a href="#" id="nav-livros">Livros</a></li>
+          <li><a href="#">Contato</a></li>
+        </ul>
+      </nav>
+      <div class="header-actions">
+        <input type="text" placeholder="Buscar..." class="header-search" id="header-search"/>
+        <span class="icon" id="search-btn">🔍</span>
+        <span class="icon">🛒</span>
+        <span class="icon">👤</span>
+      </div>
+    </div>
+  </header>
+  <section class="shop-intro">
+    <h1><span class="highlight-gold">Página Elegante</span> de Livros</h1>
+    <p>
+      Descubra novos títulos, use filtros avançados e encontre sua próxima leitura favorita!
+    </p>
+  </section>
+  <main class="shop-main">
+    <aside class="sidebar">
+      <div class="filter-box">
+        <h3>Autor</h3>
+        <ul>
+          <li><label><input type="radio" name="author"> Al Titan</label></li>
+          <li><label><input type="radio" name="author"> Brookyn Simmons</label></li>
+          <li><label><input type="radio" name="author"> Courtney Henry</label></li>
+        </ul>
+      </div>
+      <div class="filter-box">
+        <h3>Avaliação</h3>
+        <div class="rating">
+          <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+        </div>
+      </div>
+    </aside>
+    <section class="shop-content">
+      <div class="shop-toolbar">
+        <!-- categorias-bar removida -->
+        <div class="sort-bar">
+          <span>Ordenar por:</span>
+          <select>
+            <option>Destaque</option>
+            <option>Preço: Menor para Maior</option>
+            <option>Preço: Maior para Menor</option>
+            <option>Avaliação</option>
+            <option>Mais Recentes</option>
+          </select>
+        </div>
+      </div>
+      <div class="books-grid" id="books-grid"></div>
+    </section>
+  </main>
+  <footer class="main-footer">
+    <div>© 2025 <span class="footer-logo-wrap"><img src="logo-readzone.png" class="footer-logo" alt="Logo ReadZone"/></span> ReadZone. Todos os direitos reservados.</div>
+  </footer>
+  <script src="books.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
