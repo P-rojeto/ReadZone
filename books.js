@@ -2,11 +2,11 @@ window.booksData = [
   // 40 livros fictícios, capas variadas, autores variados, categorias variadas!
   {
     id: 1,
-    cover: "https://covers.openlibrary.org/b/id/10594765-L.jpg",
-    title: "O Livro dos Sonhos",
-    author: "Al Titan",
-    category: "Romance",
-    stars: 5
+    cover: "https://carrefourbr.vtexassets.com/arquivos/ids/97103001/fdae3d8b4aab40d68744e9027b655cf5.jpg?v=638096993985070000",
+    title: "Vencendo o Passado",
+    author: "Zíbia Gasparetto",
+    category: "Autoajuda",
+    stars: 5,
   },
   {
     id: 2,
