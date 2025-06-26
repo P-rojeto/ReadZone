@@ -1,107 +1,241 @@
 <!DOCTYPE html>
+
 <html lang="pt-br">
+
 <head>
+
   <meta charset="UTF-8"/>
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>ReadZone - Loja de Livros</title>
-  <link rel="icon" type="image/png" href="logo-readzone.png"/>
+
+  <title>ReadZone</title>
+
   <link rel="stylesheet" href="style.css"/>
+
+  <link rel="icon" type="image/jpeg" href="/imagens/símbolo.png"/>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Merriweather:wght@700&display=swap" rel="stylesheet">
+
 </head>
+
 <body>
-  <header class="site-header">
-    <div class="header-content">
-      <img src="logo-readzone.png" alt="ReadZone Logo" class="logo-top"/>
-      <span class="site-title">ReadZone</span>
-      <nav>
-        <ul>
-          <li><a href="#">Início</a></li>
-          <li><a href="#">Livros</a></li>
-          <li><a href="#">Categorias</a></li>
-          <li><a href="#">Contato</a></li>
-        </ul>
-      </nav>
-      <div class="header-actions">
-        <input type="text" placeholder="Buscar..." class="header-search"/>
-        <span class="icon">🔍</span>
-        <span class="icon cart-icon">🛒<span id="cart-count">0</span></span>
-        <span class="icon">👤</span>
+
+  <div class="bg-overlay"></div>
+
+  <header class="main-header">
+
+    <div class="header-container">
+
+      <div class="logo-area">
+
+        <img src="/imagens/símbolo.png" class="mini-logo" alt="ReadZone Logo">
+
+        <span class="brand-title">ReadZone</span>
+
       </div>
+
+      <nav class="main-nav">
+
+        <a href="#" class="nav-link active" id="nav-inicio">Início</a>
+
+        <a href="#" class="nav-link" id="nav-livros">Livros</a>
+
+        <a href="#" class="nav-link" id="nav-autores">Autores</a>
+
+        <a href="#" class="nav-link" id="nav-contato">Contato</a>
+
+      </nav>
+
+      <div class="header-actions">
+
+        <button class="icon-btn" id="fav-btn" title="Favoritos"><span id="fav-count">❤️</span></button>
+
+        <button class="icon-btn" title="Perfil">👤</button>
+
+      </div>
+
     </div>
+
+    <div class="search-bar-wrap">
+
+      <input type="text" class="search-bar" id="header-search" placeholder="Buscar por título, autor ou categoria..." autocomplete="off"/>
+
+      <button class="search-btn" id="search-btn" aria-label="Buscar">🔍</button>
+
+    </div>
+
   </header>
 
-  <section class="shop-intro">
-    <h1><span class="highlight-gold">Página Elegante</span> de Livros</h1>
-    <p>Descubra novos títulos, use filtros avançados e encontre sua próxima leitura favorita!</p>
-  </section>
+  <div class="authors-slideout" id="authors-slideout">
 
-  <main class="shop-main">
+    <div class="slideout-header">
+
+      <span>Autores</span>
+
+      <button class="close-slideout" id="close-authors-slideout">&times;</button>
+
+    </div>
+
+    <div id="author-list"></div>
+
+  </div>
+
+  <main class="main-content">
+
     <aside class="sidebar">
+
       <div class="filter-box">
-        <h3>Categorias</h3>
-        <ul>
-          <li><label><input type="checkbox" checked> Romance</label></li>
-          <li><label><input type="checkbox"> Fantasia</label></li>
-          <li><label><input type="checkbox"> História</label></li>
-          <li><label><input type="checkbox"> Literatura</label></li>
-          <li><label><input type="checkbox"> Biografia</label></li>
-        </ul>
+
+        <h3>Gêneros</h3>
+
+        <ul id="category-list"></ul>
+
       </div>
+
       <div class="filter-box">
-        <h3>Autor</h3>
-        <ul>
-          <li><label><input type="radio" name="author"> Al Titan</label></li>
-          <li><label><input type="radio" name="author"> Brookyn Simmons</label></li>
-          <li><label><input type="radio" name="author"> Courtney Henry</label></li>
-        </ul>
+
+        <h3>Avaliação</h3>
+
+        <div class="rating" id="rating-filter">
+
+          <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+
+        </div>
+
+        <div class="clear-rating" id="clear-rating" title="Limpar filtro de avaliação">Limpar avaliação ✕</div>
+
       </div>
-      <div class="filter-box">
-        <h3>Filtrar por Preço</h3>
-        <input type="range" min="0" max="400" value="200" id="price-range"/>
-        <div class="filter-range-label">R$0 - R$<span id="price-value">200</span></div>
-      </div>
+
     </aside>
 
-    <section class="shop-content">
-      <div class="shop-toolbar">
-        <div class="categories-bar">
-          <button>Romance</button>
-          <button>Fantasia</button>
-          <button>História</button>
-          <button>Literatura</button>
-          <button>Biografia</button>
-        </div>
+    <section class="book-section">
+
+      <div class="section-header">
+
+        <h2 id="section-title">Livros em Destaque</h2>
+
         <div class="sort-bar">
+
           <span>Ordenar por:</span>
+<<<<<<< HEAD
           <select>
             <option>Destaque</option>
 
             <option>Avaliação</option>
             <option>Mais Recentes</option>
+=======
+
+          <select id="sort-select">
+
+            <option value="featured">Destaque</option>
+
+            <option value="title-asc">Título (A-Z)</option>
+
+            <option value="title-desc">Título (Z-A)</option>
+
+            <option value="author-asc">Autor (A-Z)</option>
+
+            <option value="author-desc">Autor (Z-A)</option>
+
+            <option value="stars-desc">Avaliação (Maior)</option>
+
+            <option value="stars-asc">Avaliação (Menor)</option>
+
+>>>>>>> 0b09294ba09873e9cc58c9605ac4c3b4cca81deb
           </select>
+
         </div>
+
       </div>
 
       <div class="books-grid" id="books-grid"></div>
+
+      <div class="pagination" id="pagination"></div>
+
+      <div id="fav-modal" class="fav-modal">
+
+        <div class="fav-modal-content">
+
+          <span class="close-modal" id="close-fav-modal">&times;</span>
+
+          <h2>Meus Favoritos</h2>
+
+          <div id="fav-books-list"></div>
+
+        </div>
+
+      </div>
+
     </section>
+
   </main>
 
-  <footer class="main-footer">
-    <div>© 2025 <img src="logo-readzone.png" class="footer-logo" alt="Logo ReadZone"/> ReadZone. Todos os direitos reservados.</div>
+  <footer class="main-footer" id="contato">
+
+    <div class="footer-content">
+
+      <div class="footer-col">
+
+        <img src="/imagens/símbolo.png" class="footer-logo" alt="Logo ReadZone"/>
+
+        <span class="footer-brand">ReadZone</span>
+
+      </div>
+
+      <div class="footer-col">
+
+        <h4>Sobre</h4>
+
+        <ul>
+
+          <li><a href="/separação/sobreoprojeto.html">O projeto</a></li>
+
+          <li><a href="/separação/equipe.html">Equipe</a></li>
+
+          <li><a href="/separação/contato.html">Contato</a></li>
+
+        </ul>
+
+      </div>
+
+      <div class="footer-col">
+
+        <h4>Links Úteis</h4>
+
+        <ul>
+
+          <li><a href="">Termos de uso</a></li>
+
+          <li><a href="#">Política de privacidade</a></li>
+
+        </ul>
+
+      </div>
+
+      <div class="footer-col">
+
+        <h4>Contato</h4>
+
+        <span>Email: <a href="projetoreadzone@gmail.com">projetoreadzone@gmail.com</a></span>
+
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+
+      <span>ReadZone &copy; 2025 • Todos os direitos reservados</span>
+
+    </div>
+
   </footer>
 
-  <!-- Carrinho -->
-  <div class="cart-sidebar" id="cart-sidebar">
-    <div class="cart-header">
-      <h2>🛒 Meus favoritos</h2>
-      <button id="close-cart">✖</button>
-    </div>
-    <div class="cart-items" id="cart-items">
-      <p class="empty-cart">Sua lista de favoritos está vazia.</p>
-    </div>
-  </div>
-  <div class="cart-overlay" id="cart-overlay"></div>
+  <script src="https://unpkg.com/scrollreveal"></script>
 
   <script src="books.js"></script>
+
   <script src="script.js"></script>
+
 </body>
+
 </html>
