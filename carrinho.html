@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ReadZone - Carrinho</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="icon" type="image/png" href="logo-readzone.png"/>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-content">
+      <img src="logo-readzone.png" alt="ReadZone Logo" class="logo-top"/>
+      <span class="site-title">ReadZone</span>
+      <nav>
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="livros.html">Livros</a></li>
+          <li><a href="equipe.html">Equipe</a></li>
+          <li><a href="contato.html">Contato</a></li>
+          <li><a href="carrinho.html" class="active">Carrinho</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <section class="carrinho-section">
+      <h1>Seu Carrinho</h1>
+      <div id="cart-items"></div>
+      <div id="cart-total"></div>
+      <button class="cta-btn" id="finalizar-compra">Finalizar Compra</button>
+    </section>
+  </main>
+  <footer class="main-footer">
+    <div>© 2025 <span class="footer-logo-wrap"><img src="logo-readzone.png" class="footer-logo" alt="Logo ReadZone"/></span> ReadZone. Todos os direitos reservados.</div>
+  </footer>
+  <script src="books.js"></script>
+  <script>
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const cartDiv = document.getElementById('cart-items');
+    const cartTotalDiv = document.getElementById('cart-total');
+    let total = 0;
+    if(cart.length === 0) {
+      cartDiv.innerHTML = "<p>Seu carrinho está vazio.</p>";
+      cartTotalDiv.innerHTML = "";
+    } else {
+      cartDiv.innerHTML = "";
+      cart.forEach(item => {
+        const book = window.booksData.find(b => b.id === item);
+        if(book) {
+          total += book.price;
+          cartDiv.innerHTML += `
+            <div class="book-card" style="display:flex;flex-direction:row;align-items:center;gap:10px;max-width:360px;">
+              <img src="${book.cover}" class="book-cover" style="width:70px;height:100px;"/>
+              <div>
+                <div class="book-title">${book.title}</div>
+                <div class="book-author">${book.author}</div>
+                <div class="book-price">R$ ${book.price.toFixed(2)}</div>
+                <button onclick="removeFromCart(${book.id})" class="add-cart-btn" style="padding:2px 10px;font-size:0.95em;">Remover</button>
+              </div>
+            </div>
+          `;
+        }
+      });
+      cartTotalDiv.innerHTML = `<h3>Total: R$ ${total.toFixed(2)}</h3>`;
+    }
+    function removeFromCart(id) {
+      const idx = cart.indexOf(id);
+      if(idx > -1) {
+        cart.splice(idx,1);
+        localStorage.setItem('cart', JSON.stringify(cart));
+        location.reload();
+      }
+    }
+    document.getElementById("finalizar-compra").onclick = () => {
+      alert("Compra finalizada! Obrigado por escolher a ReadZone.");
+      localStorage.setItem('cart', '[]');
+      location.reload();
+    }
+  </script>
+</body>
+</html>
