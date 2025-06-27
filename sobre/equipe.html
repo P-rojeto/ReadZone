@@ -2,96 +2,71 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sobre - ReadZone</title>
+  <title>Equipe ReadZone</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background-color: #f9f9f9;
-      color: #333;
       margin: 0;
-      padding: 0;
+      min-height: 100vh;
+      background-color: #fafbfc;
+      font-family: 'Segoe UI', 'Arial', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
-    header {
-      background-color: #0066cc;
-      color: white;
-      padding: 1em;
+    .container {
+      background: #fff;
+      box-shadow: 0 2px 8px #0001;
+      border-radius: 18px;
+      padding: 48px 40px 40px 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    h1 {
+      color: #1a1a1a;
+      font-size: 2.2rem;
+      margin-bottom: 30px;
+      letter-spacing: 1px;
+      font-weight: 700;
       text-align: center;
     }
-    section {
-      padding: 2em;
-      max-width: 800px;
-      margin: auto;
+    .team-list {
+      display: flex;
+      flex-direction: row;
+      gap: 32px;
+      align-items: center;
+      justify-content: center;
     }
-    h2 {
-      color: #0066cc;
-    }
-    ul {
-      padding-left: 1.5em;
-    }
-    .membros {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1em;
-      margin-top: 1em;
-    }
-    .membro {
-      background-color: white;
-      border-radius: 10px;
-      padding: 1em;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    }
-    footer {
-      background-color: #eee;
+    .team-link {
+      display: block;
+      padding: 14px 44px;
+      background: #fff;
+      color: #23272f;
+      border: 2px solid #ffd94c;
+      border-radius: 12px;
+      font-size: 1.25rem;
+      text-decoration: none;
+      font-weight: 500;
+      box-shadow: 0 2px 6px #0001;
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s;
       text-align: center;
-      padding: 1em;
-      margin-top: 2em;
+      letter-spacing: 0.5px;
+    }
+    .team-link:hover, .team-link:focus {
+      background: #ffd94c;
+      color: #23272f;
+      box-shadow: 0 4px 14px #0002;
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>ReadZone - Sobre o Projeto</h1>
-  </header>
-
-  <section id="projeto">
-    <h2>Sobre o Projeto</h2>
-    <p>O <strong>ReadZone</strong> é uma plataforma online dedicada à <strong>venda de livros digitais e físicos</strong>. Nosso principal objetivo é oferecer uma experiência de compra acessível, prática e segura para todos os leitores. Com uma navegação intuitiva, buscamos conectar leitores a obras incríveis de forma moderna e eficiente.</p>
-  </section>
-
-  <section id="objetivos">
-    <h2>Objetivos</h2>
-    <ul>
-      <li>Oferecer uma ampla variedade de livros digitais e físicos</li>
-      <li>Garantir uma navegação segura e intuitiva</li>
-      <li>Proporcionar uma plataforma de compra acessível e confiável</li>
-      <li>Incentivar a leitura por meio de promoções e sugestões personalizadas</li>
-    </ul>
-  </section>
-
-  <section id="equipe">
-    <h2>Conheça a Equipe</h2>
-    <p>Nosso time é formado por estudantes comprometidos com a inovação e a educação digital. Cada membro contribui com suas habilidades para tornar o ReadZone uma realidade acessível a todos.</p>
-
-    <div class="membros">
-      <div class="membro">
-        <h3>Matheus Santiago</h3>
-        <p>Desenvolvedor Web responsável pela criação do site e das páginas de apresentação do projeto.</p>
-      </div>
-      <div class="membro">
-        <h3>Nome do colega 2</h3>
-        <p>Responsável pelo conteúdo e curadoria dos livros à venda.</p>
-      </div>
-      <div class="membro">
-        <h3>Nome do colega 3</h3>
-        <p>Designer da interface e experiência do usuário.</p>
-      </div>
+  <div class="container">
+    <h1>Equipe ReadZone</h1>
+    <div class="team-list">
+      <a class="team-link" href="#">Matheus Santiago</a>
+      <a class="team-link" href="#">Nicollas Anderson</a>
+      <a class="team-link" href="#">José Pedro</a>
     </div>
-  </section>
-
-  <footer>
-    <p>ReadZone © 2025 - Projeto Acadêmico</p>
-    <p>Contato: contato@readzone.com</p>
-  </footer>
+  </div>
 </body>
 </html>
