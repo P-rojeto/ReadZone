@@ -1,234 +1,124 @@
-
 <!DOCTYPE html>
-
 <html lang="pt-br">
 
 <head>
-
   <meta charset="UTF-8"/>
-
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
   <title>ReadZone</title>
-
   <link rel="stylesheet" href="style.css"/>
-
   <link rel="icon" type="image/jpeg" href="/imagens/símbolo.png"/>
-
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Merriweather:wght@700&display=swap" rel="stylesheet">
-
 </head>
 
 <body>
-
   <div class="bg-overlay"></div>
-
   <header class="main-header">
-
     <div class="header-container">
-
       <div class="logo-area">
-
         <img src="/imagens/símbolo.png" class="mini-logo" alt="ReadZone Logo">
-
         <span class="brand-title">ReadZone</span>
-
       </div>
-
       <nav class="main-nav">
-
         <a href="#" class="nav-link active" id="nav-inicio">Início</a>
-
         <a href="#" class="nav-link" id="nav-livros">Livros</a>
-
         <a href="#" class="nav-link" id="nav-autores">Autores</a>
-
         <a href="#" class="nav-link" id="nav-contato">Contato</a>
-
+        <a href="separação/equipe.html" class="nav-link" id="nav-equipe">Equipe</a>
       </nav>
-
       <div class="header-actions">
-
         <button class="icon-btn" id="fav-btn" title="Favoritos"><span id="fav-count">❤️</span></button>
-
         <button class="icon-btn" title="Perfil">👤</button>
-
       </div>
-
     </div>
-
     <div class="search-bar-wrap">
-
       <input type="text" class="search-bar" id="header-search" placeholder="Buscar por título, autor ou categoria..." autocomplete="off"/>
-
       <button class="search-btn" id="search-btn" aria-label="Buscar">🔍</button>
-
     </div>
-
   </header>
 
   <div class="authors-slideout" id="authors-slideout">
-
     <div class="slideout-header">
-
       <span>Autores</span>
-
       <button class="close-slideout" id="close-authors-slideout">&times;</button>
-
     </div>
-
     <div id="author-list"></div>
-
   </div>
 
   <main class="main-content">
-
     <aside class="sidebar">
-
       <div class="filter-box">
-
         <h3>Gêneros</h3>
-
         <ul id="category-list"></ul>
-
       </div>
-
       <div class="filter-box">
-
         <h3>Avaliação</h3>
-
         <div class="rating" id="rating-filter">
-
           <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-
         </div>
-
         <div class="clear-rating" id="clear-rating" title="Limpar filtro de avaliação">Limpar avaliação ✕</div>
-
       </div>
-
     </aside>
-
     <section class="book-section">
-
       <div class="section-header">
-
         <h2 id="section-title">Livros em Destaque</h2>
-
         <div class="sort-bar">
-
           <span>Ordenar por:</span>
-
           <select id="sort-select">
-
             <option value="featured">Destaque</option>
-
             <option value="title-asc">Título (A-Z)</option>
-
             <option value="title-desc">Título (Z-A)</option>
-
             <option value="author-asc">Autor (A-Z)</option>
-
             <option value="author-desc">Autor (Z-A)</option>
-
             <option value="stars-desc">Avaliação (Maior)</option>
-
             <option value="stars-asc">Avaliação (Menor)</option>
-
           </select>
-
         </div>
-
       </div>
-
       <div class="books-grid" id="books-grid"></div>
-
       <div class="pagination" id="pagination"></div>
-
       <div id="fav-modal" class="fav-modal">
-
         <div class="fav-modal-content">
-
           <span class="close-modal" id="close-fav-modal">&times;</span>
-
           <h2>Meus Favoritos</h2>
-
           <div id="fav-books-list"></div>
-
         </div>
-
       </div>
-
     </section>
-
   </main>
 
   <footer class="main-footer" id="contato">
-
     <div class="footer-content">
-
       <div class="footer-col">
-
         <img src="/imagens/símbolo.png" class="footer-logo" alt="Logo ReadZone"/>
-
         <span class="footer-brand">ReadZone</span>
-
       </div>
-
       <div class="footer-col">
-
         <h4>Sobre</h4>
-
         <ul>
-
           <li><a href="/separação/sobreoprojeto.html">O projeto</a></li>
-
-          <li><a href="/separação/equipe.html">Equipe</a></li>
-
+          <li><a href="/ReadZone/sobre/equipe.html">Equipe</a></li>
           <li><a href="/separação/contato.html">Contato</a></li>
-
         </ul>
-
       </div>
-
       <div class="footer-col">
-
         <h4>Links Úteis</h4>
-
         <ul>
-
           <li><a href="/links uteis/termosdeuso.html">Termos de uso</a></li>
-
           <li><a href="/links uteis/politicaprivacidade.html">Política de privacidade</a></li>
-
         </ul>
-
       </div>
-
       <div class="footer-col">
-
         <h4>Contato</h4>
-
         <span>Email: <a href="projetoreadzone@gmail.com">projetoreadzone@gmail.com</a></span>
-
       </div>
-
     </div>
-
     <div class="footer-bottom">
-
       <span>ReadZone &copy; 2025 • Todos os direitos reservados</span>
-
     </div>
-
   </footer>
 
   <script src="https://unpkg.com/scrollreveal"></script>
-
   <script src="books.js"></script>
-
   <script src="script.js"></script>
-
 </body>
-
 </html>
