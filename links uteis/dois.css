@@ -1,0 +1,17 @@
+body { font-family: 'Inter', Arial, sans-serif; background: #fafbfc; margin: 0; }
+.site-header { background: #fff; border-bottom: 1px solid #e2e2e2; padding: 20px 0; }
+.header-content { display: flex; align-items: center; justify-content: space-between; max-width: 900px; margin: 0 auto; }
+.logo-top { width: 36px; height: 36px; border-radius: 50%; }
+.site-title { font-weight: bold; font-size: 1.4em; margin-left: 10px; }
+nav ul { list-style: none; padding: 0; margin: 0; display: flex; gap: 24px; }
+nav ul li a { text-decoration: none; color: #23272f; font-weight: 500; }
+nav ul li a.active { color: #ffb300; border-bottom: 2px solid #ffd94c; }
+.contato-section { max-width: 420px; margin: 48px auto; background: #fff; border-radius: 14px; box-shadow: 0 2px 12px #0001; padding: 36px 24px; }
+.contato-form label { display: block; margin-bottom: 18px; font-weight: 500; }
+.contato-form input, .contato-form textarea { width: 100%; padding: 9px; border: 1px solid #e0e0e0; border-radius: 6px; margin-top: 4px; font-size: 1em; }
+.cta-btn { padding: 11px 28px; background: #ffd94c; border: none; border-radius: 6px; font-weight: bold; color: #23272f; cursor: pointer; }
+.cta-btn:hover { background: #ffb300; }
+.contato-info { margin-top: 24px; font-size: 0.97em; color: #23272f; }
+.main-footer { background: #23262e; color: #f1f2f6; text-align: center; padding: 28px 0 12px 0; margin-top: 40px; }
+.footer-logo-wrap { vertical-align: middle; }
+.footer-logo { width: 32px; height: 32px; border-radius: 50%; border: 2px solid #ffd94c; background: #f4f5f8; object-fit: cover; margin-bottom: -8px; margin-right: 5px; }
