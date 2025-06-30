@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Termos de Uso - ReadZone</title>
+  
+  <!-- Link FontAwesome -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-papbZTXFq2W/27qjNkN5ZTzPDr2yewFvMdlAe7eSzoqMwXOOBLCaEG1zW8o2Pzh39H7wIlBk3kqU63fK0E6Ctw=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+
+  <style>
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background-color: #f9f9f9;
+      color: #444;
+      line-height: 1.7;
+      margin: 0;
+      padding: 0;
+    }
+    header,
+    footer {
+      background-color: #0052cc;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+    }
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+    nav a {
+      color: white;
+      margin: 0.5rem;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1.1rem;
+      transition: color 0.3s ease;
+    }
+    nav a:hover {
+      color: #ffd54f;
+      text-decoration: underline;
+    }
+    main {
+      max-width: 960px;
+      margin: 2rem auto;
+      padding: 0 1.5rem 2rem;
+      background-color: white;
+      border-radius: 12px;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.05);
+      transition: background-color 0.3s ease;
+    }
+    h2, h3 {
+      color: #0052cc;
+      margin-top: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 700;
+      opacity: 0;
+      transform: translateY(15px);
+      animation-fill-mode: forwards;
+    }
+    h2 {
+      animation: fadeInUp 0.6s ease forwards;
+    }
+    h3 {
+      animation: fadeInUp 0.6s ease forwards;
+      animation-delay: 0.2s;
+    }
+    p, li {
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      opacity: 0;
+      transform: translateY(10px);
+      animation: fadeInUp 0.6s ease forwards;
+      animation-delay: 0.3s;
+    }
+    ol, ul {
+      padding-left: 1.5rem;
+    }
+    a {
+      color: #0052cc;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    a:hover {
+      color: #0077ff;
+      text-decoration: underline;
+    }
+    button {
+      padding: 0.5rem 1.25rem;
+      border: 2px solid white;
+      border-radius: 25px;
+      background-color: transparent;
+      color: white;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    button:hover {
+      background-color: white;
+      color: #0052cc;
+    }
+    /* Responsividade */
+    @media (max-width: 600px) {
+      nav {
+        flex-direction: column;
+        gap: 0.8rem;
+      }
+      button {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+    /* Animação */
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <div>
+        <a href="index.html"><i class="fas fa-home"></i> Início</a>
+      </div>
+      <div>
+        <button id="toggleLangBtn" onclick="toggleLang()" aria-label="Alternar idioma">
+          <i class="fas fa-globe"></i> PT / EN
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="termos" lang="pt">
+    <h2><i class="fas fa-file-contract"></i> 1. Termos</h2>
+    <p>
+      Ao acessar ao site ReadZone, você concorda em cumprir estes termos de serviço,
+      todas as leis e regulamentos aplicáveis, e declara ser responsável pelo cumprimento
+      das leis locais. Caso discorde de qualquer termo, está proibido de utilizar ou acessar este site.
+      Os materiais contidos no site são protegidos pelas leis de direitos autorais e marcas comerciais.
+    </p>
+
+    <h2><i class="fas fa-file-alt"></i> 2. Uso de Licença</h2>
+    <p>
+      É concedida permissão para baixar temporariamente uma cópia dos materiais do site ReadZone apenas para visualização pessoal e não comercial.
+      Esta é uma licença e não uma transferência de propriedade. Sob esta licença, você não pode:
+    </p>
+    <ul>
+      <li>Modificar ou copiar os materiais;</li>
+      <li>Utilizar os materiais para qualquer finalidade comercial ou pública;</li>
+      <li>Tentar descompilar ou fazer engenharia reversa de qualquer software;</li>
+      <li>Remover quaisquer direitos autorais ou marcas;</li>
+      <li>Transferir os materiais para outra pessoa ou espelhá-los em outro servidor.</li>
+    </ul>
+    <p>
+      Essa licença será rescindida automaticamente em caso de violação e poderá ser encerrada a qualquer momento por ReadZone.
+      Após encerramento, todos os materiais devem ser apagados.
+    </p>
+
+    <h2><i class="fas fa-exclamation-triangle"></i> 3. Isenção de Responsabilidade</h2>
+    <p>
+      Os materiais no site ReadZone são fornecidos “como estão”. ReadZone não oferece garantias expressas ou implícitas,
+      incluindo garantias de comercialização, adequação a um fim específico ou não violação.
+      ReadZone não assegura a precisão, confiabilidade ou resultados esperados pelo uso dos materiais.
+    </p>
+
+    <h2><i class="fas fa-ban"></i> 4. Limitações de Responsabilidade</h2>
+    <p>
+      Em nenhuma hipótese o ReadZone será responsável por quaisquer danos diretos, indiretos, incidentais ou consequenciais
+      (incluindo perda de dados ou lucros), decorrentes do uso ou da incapacidade de usar os materiais, mesmo se tiver sido avisado da possibilidade desses danos.
+    </p>
+
+    <h2><i class="fas fa-check-circle"></i> 5. Precisão das Informações</h2>
+    <p>
+      As informações apresentadas no site podem conter erros técnicos, tipográficos ou fotográficos.
+      ReadZone pode fazer alterações sem aviso prévio e não garante que os conteúdos estejam sempre atualizados ou corretos.
+    </p>
+
+    <h2><i class="fas fa-link"></i> 6. Links para Terceiros</h2>
+    <p>
+      O site pode conter links para sites externos que não são operados por nós. ReadZone não se responsabiliza pelo conteúdo ou políticas desses sites.
+      O uso é por sua conta e risco.
+    </p>
+
+    <h2><i class="fas fa-user"></i> 7. Conta do Usuário</h2>
+    <p>
+      Ao criar uma conta no ReadZone, o usuário se compromete a fornecer informações verdadeiras,
+      manter suas credenciais seguras e notificar qualquer uso não autorizado.
+      A conta poderá ser suspensa ou encerrada em caso de violação dos termos.
+    </p>
+
+    <h2><i class="fas fa-comments"></i> 8. Conteúdo do Usuário</h2>
+    <p>
+      Qualquer conteúdo publicado por usuários (comentários, avaliações, etc.) é de responsabilidade exclusiva de quem o enviou.
+      O ReadZone se reserva o direito de remover ou editar conteúdos que violem estes termos ou as leis vigentes.
+    </p>
+
+    <h2><i class="fas fa-copyright"></i> 9. Direitos Autorais e Propriedade Intelectual</h2>
+    <p>
+      Todo o conteúdo disponibilizado (textos, imagens, logos, softwares, design etc.) é de propriedade do ReadZone ou de seus licenciadores.
+      O uso indevido desses materiais é proibido.
+    </p>
+
+    <h2><i class="fas fa-user-slash"></i> 10. Suspensão ou Encerramento de Acesso</h2>
+    <p>
+      O ReadZone pode suspender ou encerrar o acesso ao site, total ou parcialmente, sem aviso prévio,
+      se considerar que o usuário violou os termos ou a legislação.
+    </p>
+
+    <h2><i class="fas fa-edit"></i> 11. Modificações dos Termos</h2>
+    <p>
+      O ReadZone pode revisar estes termos a qualquer momento, sendo sua responsabilidade consultá-los periodicamente.
+      O uso contínuo do site será interpretado como aceitação das alterações.
+    </p>
+
+    <h2><i class="fas fa-gavel"></i> 12. Lei Aplicável e Foro</h2>
+    <p>
+      Estes termos serão regidos pelas leis brasileiras. Fica eleito o foro da comarca de São Paulo - SP,
+      com exclusão de qualquer outro, por mais privilegiado que seja, para resolver conflitos relacionados ao uso deste site.
+    </p>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 ReadZone. Todos os direitos reservados.</p>
+  </footer>
+
+  <script>
+    function toggleLang() {
+      const termos = document.getElementById('termos');
+      if (termos.lang === 'en') {
+        location.reload();
+        return;
+      }
+      termos.lang = 'en';
+      termos.innerHTML = `
+        <h2><i class="fas fa-file-contract"></i> 1. Terms</h2>
+        <p>
+          By accessing the ReadZone website, you agree to comply with these terms of service, all applicable laws and regulations,
+          and declare that you are responsible for compliance with local laws. If you disagree with any term, you are prohibited
+          from using or accessing this site. The materials contained on this site are protected by copyright and trademark laws.
+        </p>
+
+        <h2><i class="fas fa-file-alt"></i> 2. License Use</h2>
+        <p>
+          Permission is granted to temporarily download one copy of the materials on the ReadZone site for personal, non-commercial viewing only.
+          This is a license, not a transfer of title. Under this license, you may not:
+        </p>
+        <ul>
+          <li>Modify or copy the materials;</li>
+          <li>Use the materials for any commercial or public purpose;</li>
+          <li>Attempt to decompile or reverse engineer any software;</li>
+          <li>Remove any copyright or trademarks;</li>
+          <li>Transfer the materials to another person or mirror them on another server.</li>
+        </ul>
+        <p>
+          This license will be automatically terminated if you violate any of these restrictions and may be terminated at any time by ReadZone.
+          Upon termination, you must destroy any downloaded materials in your possession whether in electronic or printed format.
+        </p>
+
+        <h2><i class="fas fa-exclamation-triangle"></i> 3. Disclaimer</h2>
+        <p>
+          The materials on the ReadZone site are provided "as is". ReadZone makes no warranties, express or implied,
+          and hereby disclaims and negates all other warranties including, without limitation, implied warranties or conditions of merchantability,
+          fitness for a particular purpose, or non-infringement of intellectual property or other violation of rights.
+          Furthermore, ReadZone does not guarantee or make any representations regarding the accuracy, likely results,
+          or reliability of the use of the materials on its website or otherwise relating to such materials or on any sites linked to this site.
+        </p>
+
+        <h2><i class="fas fa-ban"></i> 4. Limitations of Liability</h2>
+        <p>
+          In no event shall ReadZone or its suppliers be liable for any damages (including, without limitation,
+          damages for loss of data or profit, or due to business interruption) arising out of the use or inability to use the materials
+          on ReadZone's website, even if ReadZone or an authorized representative has been notified orally or in writing of the possibility of such damage.
+          Some jurisdictions do not allow limitations on implied warranties or liability for consequential or incidental damages,
+          so these limitations may not apply to you.
+        </p>
+
+        <h2><i class="fas fa-check-circle"></i> 5. Accuracy of Information</h2>
+        <p>
+          The information presented on the site may contain technical, typographical, or photographic errors.
+          ReadZone may make changes without prior notice and does not guarantee that content is always up to date or accurate.
+        </p>
+
+        <h2><i class="fas fa-link"></i> 6. Third-Party Links</h2>
+        <p>
+          The site may contain links to external sites not operated by us. ReadZone is not responsible for the content or policies of these sites.
+          Use is at your own risk.
+        </p>
+
+        <h2><i class="fas fa-user"></i> 7. User Account</h2>
+        <p>
+          By creating an account on ReadZone, the user agrees to provide truthful information,
+          keep their credentials secure, and notify any unauthorized use.
+          The account may be suspended or terminated if terms are violated.
+        </p>
+
+        <h2><i class="fas fa-comments"></i> 8. User Content</h2>
+        <p>
+          Any content posted by users (comments, reviews, etc.) is the sole responsibility of the submitter.
+          ReadZone reserves the right to remove or edit content that violates these terms or applicable laws.
+        </p>
+
+        <h2><i class="fas fa-copyright"></i> 9. Copyright and Intellectual Property</h2>
+        <p>
+          All content made available (texts, images, logos, software, design, etc.) is owned by ReadZone or its licensors.
+          Unauthorized use of such materials is prohibited.
+        </p>
+
+        <h2><i class="fas fa-user-slash"></i> 10. Suspension or Termination of Access</h2>
+        <p>
+          ReadZone may suspend or terminate access to the site, in whole or in part, without prior notice,
+          if it deems the user has violated the terms or laws.
+        </p>
+
+        <h2><i class="fas fa-edit"></i> 11. Changes to Terms</h2>
+        <p>
+          ReadZone may revise these terms at any time, and it is your responsibility to review them periodically.
+          Continued use of the site constitutes acceptance of the changes.
+        </p>
+
+        <h2><i class="fas fa-gavel"></i> 12. Governing Law and Jurisdiction</h2>
+        <p>
+          These terms shall be governed by the laws of Brazil. The courts of São Paulo - SP are hereby chosen,
+          excluding any other, no matter how privileged, to resolve disputes related to the use of this site.
+        </p>
+      `;
+    }
+  </script>
+</body>
+</html>
