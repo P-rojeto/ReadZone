@@ -25,6 +25,7 @@ body {
     color: white;
     padding: 30px 40px;
     box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+    backdrop-filter: blur(60px);
 }
 
 .container h1 {
@@ -97,12 +98,50 @@ body {
     font-size: 16px;
     font-weight: bold;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s ease;
+    transition: background-color 0.5s;
+    margin-top: 20px;
 }
 
-.login:houver {
+.login:hover {
     background-color: #f0f0f0;
     border: 2px 0 0 10px rgba(0, 0, 0, 0.1);;
     color: #fff;
-    transition: 0.2s;
+    transition: 0.5s;
+}
+
+.register-link {
+    font-size: 14px;
+    text-align: center;
+    margin: 20px 0 15px;
+}
+
+.register-link a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.register-link a:hover {
+    text-decoration: underline;
+}
+
+.register {
+    width: 100%;
+    height: 50px;
+    background-color: #fff;
+    border: none;
+    border-radius: 40px;
+    cursor: pointer;
+    color: #333;
+    font-size: 16px;
+    font-weight: bold;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.5s;
+    margin-top: 20px;
+}
+
+.register:hover {
+    background-color: #f0f0f0;
+    color: #fff;
+    transition: 0.5s;
 }

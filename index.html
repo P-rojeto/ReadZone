@@ -24,11 +24,10 @@
         <a href="#" class="nav-link" id="nav-livros">Livros</a>
         <a href="#" class="nav-link" id="nav-autores">Autores</a>
         <a href="#" class="nav-link" id="nav-contato">Contato</a>
-        <a href="/sobre/equipe.html" class="nav-link" id="nav-equipe">Equipe</a>
-      </nav>
+       </nav>
       <div class="header-actions">
         <button class="icon-btn" id="fav-btn" title="Favoritos"><span id="fav-count">❤️</span></button>
-        <button class="icon-btn" title="Perfil">👤</button>
+        <button class="icon-btn" id="profile-btn" title="Login">👤</button>
       </div>
     </div>
     <div class="search-bar-wrap">
@@ -82,8 +81,18 @@
           <span class="close-modal" id="close-fav-modal">&times;</span>
           <h2>Meus Favoritos</h2>
           <div id="fav-books-list"></div>
-        </div>
+        </div> 
       </div>
+      <div id="profile-modal" class="fav-modal">
+  <div class="fav-modal-content">
+    <span class="close-modal" id="close-profile-modal">&times;</span>
+    <h2>Perfil</h2>
+    <div id="profile-content">
+      <p>Bem-vindo! Faça login para acessar seu perfil.</p>
+      <!-- Aqui você pode colocar um formulário de login futuramente -->
+    </div>
+  </div>
+</div>
     </section>
   </main>
 

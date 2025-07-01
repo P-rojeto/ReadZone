@@ -622,3 +622,11 @@ body {
   .main-footer { font-size: 0.97em;}
   .footer-col { min-width: 120px; }
 }
+.login-form {
+  max-width: 20px;
+  margin: 0 auto;
+  padding: 20px;
+  background: #f6f7fa;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+}
