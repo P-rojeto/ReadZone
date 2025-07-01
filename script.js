@@ -20,7 +20,28 @@ const favModal = document.getElementById('fav-modal');
 const favBooksList = document.getElementById('fav-books-list');
 const closeFavModal = document.getElementById('close-fav-modal');
 const sectionTitle = document.getElementById('section-title');
+const profileBtn = document.getElementById('profile-btn');
+const profileModal = document.getElementById('profile-modal');
+const closeProfileModal = document.getElementById('close-profile-modal');
 
+profileBtn.addEventListener('click', () => {
+  profileModal.classList.add('open');
+  document.body.style.overflow = 'hidden';
+});
+closeProfileModal.addEventListener('click', () => {
+  profileModal.classList.remove('open');
+  document.body.style.overflow = '';
+});
+
+profileBtn.addEventListener('click', () => {
+  window.location.href = '/registro e login/login.html';
+});
+profileModal.addEventListener('click', (e) => {
+  if (e.target === profileModal) {
+    profileModal.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+});
 let selectedAuthor = null;
 let selectedCategory = null;
 let selectedRating = null;
