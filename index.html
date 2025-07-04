@@ -29,6 +29,28 @@
         <button class="icon-btn" id="fav-btn" title="Favoritos"><span id="fav-count">❤️</span></button>
         <button class="icon-btn" id="profile-btn" title="Login">👤</button>
       </div>
+      <script>
+        window.addEventListener('DOMContentLoaded', function() {
+          const logged = localStorage.getItem('readzone_logged');
+          const user = localStorage.getItem('readzone_logged_user');
+          const profileBtn = document.getElementById('profile-btn');
+          if (profileBtn) {
+        if (logged && user) {
+          profileBtn.innerText = user[0].toUpperCase(); // Mostra a inicial do usuário
+          profileBtn.title = 'Perfil de ' + user;
+          profileBtn.onclick = function() {
+            alert('Você já está logado como ' + user);
+          };
+        } else {
+          profileBtn.innerText = '👤';
+          profileBtn.title = 'Login';
+          profileBtn.onclick = function() {
+            window.location.href = '/registro e login/login.html';
+          };
+        }
+          }
+        });
+      </script>
     </div>
     <div class="search-bar-wrap">
       <input type="text" class="search-bar" id="header-search" placeholder="Buscar por título, autor ou categoria..." autocomplete="off"/>

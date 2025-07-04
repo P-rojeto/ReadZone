@@ -13,6 +13,25 @@
     <main class="container">
         <form>
             <h1>Registro ReadZone</h1>
+            <script>
+            document.querySelector('form').addEventListener('submit', function(e) {
+              e.preventDefault();
+              const usuario = document.querySelector('input[placeholder="Usuário"]').value;
+              const email = document.querySelector('input[placeholder="E-mail"]').value;
+              const senha = document.querySelector('input[placeholder="Senha"]').value;
+              const confirmar = document.querySelector('input[placeholder="Confirmar senha"]').value;
+
+              if (senha !== confirmar) {
+                alert('As senhas não coincidem!');
+                return;
+              }
+
+              // Salva usuário no localStorage (simples, sem criptografia)
+              localStorage.setItem('readzone_user', JSON.stringify({ usuario, email, senha }));
+              alert('Conta criada! Faça login.');
+              window.location.href = 'login.html';
+            });
+            </script>
             <div class="input-box">
                 <input placeholder="Usuário" type="text">
                 <i class="bx bxs-user"></i>
