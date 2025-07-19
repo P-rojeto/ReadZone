@@ -4,7 +4,7 @@
   --navy: #243146;
   --light: #fafaf8;
   --beige: #f4f5f8;
-  --gold: #ffe066;
+  --gold: #dfb923;
   --orange: #fca311;
   --red: #ff758f;
   --shadow: 0 8px 32px #0002;
@@ -621,4 +621,12 @@ body {
   .books-grid { gap: 13px 6px; }
   .main-footer { font-size: 0.97em;}
   .footer-col { min-width: 120px; }
+}
+.login-form {
+  max-width: 20px;
+  margin: 0 auto;
+  padding: 20px;
+  background: #f6f7fa;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
 }

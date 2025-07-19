@@ -60,12 +60,16 @@ closeProfileModal.addEventListener('click', () => {
 });
 
 profileBtn.addEventListener('click', () => {
+<<<<<<< HEAD
   window.location.href = '/registroelogin/login.html';
 
   const category = 'algumaCategoria';
   const fileName = 'algumArquivo.html';
   console.log(`/pastas de categorias/${category}/${fileName}`);
   window.location.href = `/pastasdecategorias/${category}/${fileName}`;
+=======
+  window.location.href = '/registro e login/login.html';
+>>>>>>> 7e6b386055791343137e85fbb505727f36034cbd
 });
 profileModal.addEventListener('click', (e) => {
   if (e.target === profileModal) {
