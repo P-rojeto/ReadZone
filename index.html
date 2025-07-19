@@ -1,234 +1,511 @@
-
 <!DOCTYPE html>
-
 <html lang="pt-br">
 
 <head>
-
   <meta charset="UTF-8"/>
-
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
   <title>ReadZone</title>
-
   <link rel="stylesheet" href="style.css"/>
-
   <link rel="icon" type="image/jpeg" href="/imagens/símbolo.png"/>
-
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Merriweather:wght@700&display=swap" rel="stylesheet">
-
 </head>
 
 <body>
-
+  
   <div class="bg-overlay"></div>
-
   <header class="main-header">
-
     <div class="header-container">
-
       <div class="logo-area">
-
         <img src="/imagens/símbolo.png" class="mini-logo" alt="ReadZone Logo">
-
         <span class="brand-title">ReadZone</span>
-
       </div>
-
       <nav class="main-nav">
-
         <a href="#" class="nav-link active" id="nav-inicio">Início</a>
-
         <a href="#" class="nav-link" id="nav-livros">Livros</a>
-
         <a href="#" class="nav-link" id="nav-autores">Autores</a>
-
         <a href="#" class="nav-link" id="nav-contato">Contato</a>
-
-      </nav>
-
+       </nav>
       <div class="header-actions">
-
         <button class="icon-btn" id="fav-btn" title="Favoritos"><span id="fav-count">❤️</span></button>
-
-        <button class="icon-btn" title="Perfil">👤</button>
-
+        <button class="icon-btn" id="profile-btn" title="Login">👤</button>
       </div>
-
+      <script>
+        window.addEventListener('DOMContentLoaded', function() {
+          const logged = localStorage.getItem('readzone_logged');
+          const user = localStorage.getItem('readzone_logged_user');
+          const profileBtn = document.getElementById('profile-btn');
+          if (profileBtn) {
+        if (logged && user) {
+          profileBtn.innerText = user[0].toUpperCase(); // Mostra a inicial do usuário
+          profileBtn.title = 'Perfil de ' + user;
+          profileBtn.onclick = function() {
+            alert('Você já está logado como ' + user);
+          };
+        } else {
+          profileBtn.innerText = '👤';
+          profileBtn.title = 'Login';
+          profileBtn.onclick = function() {
+            window.location.href = '/registro e login/login.html';
+          };
+        }
+          }
+        });
+      </script>
     </div>
-
     <div class="search-bar-wrap">
-
       <input type="text" class="search-bar" id="header-search" placeholder="Buscar por título, autor ou categoria..." autocomplete="off"/>
-
       <button class="search-btn" id="search-btn" aria-label="Buscar">🔍</button>
-
     </div>
-
   </header>
 
   <div class="authors-slideout" id="authors-slideout">
-
     <div class="slideout-header">
-
       <span>Autores</span>
-
       <button class="close-slideout" id="close-authors-slideout">&times;</button>
-
     </div>
-
     <div id="author-list"></div>
-
   </div>
 
   <main class="main-content">
-
     <aside class="sidebar">
-
       <div class="filter-box">
-
         <h3>Gêneros</h3>
-
         <ul id="category-list"></ul>
-
       </div>
-
       <div class="filter-box">
-
         <h3>Avaliação</h3>
-
         <div class="rating" id="rating-filter">
-
           <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-
         </div>
-
         <div class="clear-rating" id="clear-rating" title="Limpar filtro de avaliação">Limpar avaliação ✕</div>
-
       </div>
-
     </aside>
-
     <section class="book-section">
-
       <div class="section-header">
-
         <h2 id="section-title">Livros em Destaque</h2>
-
         <div class="sort-bar">
-
           <span>Ordenar por:</span>
-
           <select id="sort-select">
-
             <option value="featured">Destaque</option>
-
             <option value="title-asc">Título (A-Z)</option>
-
             <option value="title-desc">Título (Z-A)</option>
-
             <option value="author-asc">Autor (A-Z)</option>
-
             <option value="author-desc">Autor (Z-A)</option>
-
             <option value="stars-desc">Avaliação (Maior)</option>
-
             <option value="stars-asc">Avaliação (Menor)</option>
-
           </select>
-
         </div>
-
       </div>
-
       <div class="books-grid" id="books-grid"></div>
-
       <div class="pagination" id="pagination"></div>
-
       <div id="fav-modal" class="fav-modal">
-
         <div class="fav-modal-content">
-
           <span class="close-modal" id="close-fav-modal">&times;</span>
-
           <h2>Meus Favoritos</h2>
-
           <div id="fav-books-list"></div>
-
-        </div>
-
+        </div> 
       </div>
-
+      <div id="profile-modal" class="fav-modal">
+  <div class="fav-modal-content">
+    <span class="close-modal" id="close-profile-modal">&times;</span>
+    <h2>Perfil</h2>
+    <div id="profile-content">
+      <p>Bem-vindo! Faça login para acessar seu perfil.</p>
+      <!-- Aqui você pode colocar um formulário de login futuramente -->
+    </div>
+  </div>
+</div>
     </section>
-
   </main>
 
   <footer class="main-footer" id="contato">
-
     <div class="footer-content">
-
       <div class="footer-col">
-
         <img src="/imagens/símbolo.png" class="footer-logo" alt="Logo ReadZone"/>
-
         <span class="footer-brand">ReadZone</span>
-
       </div>
-
       <div class="footer-col">
-
         <h4>Sobre</h4>
-
         <ul>
-
-          <li><a href="/separação/sobreoprojeto.html">O projeto</a></li>
-
-          <li><a href="/separação/equipe.html">Equipe</a></li>
-
-          <li><a href="/separação/contato.html">Contato</a></li>
-
+          <li><a href="/sobre/sobreoprojeto.html">O projeto</a></li>
+          <li><a href="/sobre/equipe.html">Equipe</a></li>
+          <li><a href="/sobre/contato.html">Contato</a></li>
         </ul>
-
       </div>
-
       <div class="footer-col">
-
         <h4>Links Úteis</h4>
-
         <ul>
-
-          <li><a href="">Termos de uso</a></li>
-
-          <li><a href="#">Política de privacidade</a></li>
-
+          <li><a href="/termosdeuso.html">Termos de uso</a></li>
+          <li><a href="/politicaprivacidade.html">Política de privacidade</a></li>
         </ul>
-
       </div>
-
       <div class="footer-col">
-
         <h4>Contato</h4>
-
         <span>Email: <a href="projetoreadzone@gmail.com">projetoreadzone@gmail.com</a></span>
-
       </div>
-
     </div>
-
     <div class="footer-bottom">
-
       <span>ReadZone &copy; 2025 • Todos os direitos reservados</span>
-
     </div>
-
   </footer>
 
   <script src="https://unpkg.com/scrollreveal"></script>
-
   <script src="books.js"></script>
-
   <script src="script.js"></script>
-
 </body>
+</html>
 
+
+
+
+TERMOSDEUSO.HTML:
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Termos de Uso - ReadZone</title>
+  
+  <!-- Link FontAwesome -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-papbZTXFq2W/27qjNkN5ZTzPDr2yewFvMdlAe7eSzoqMwXOOBLCaEG1zW8o2Pzh39H7wIlBk3kqU63fK0E6Ctw=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+
+  <style>
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background-color: #ffffff;
+      color: #444;
+      line-height: 1.7;
+      margin: 0;
+      padding: 0;
+    }
+    header,
+    footer {
+      background-color: #d6b138;
+      color: rgb(255, 255, 255);
+      text-align: center;
+      padding: 1rem;
+    }
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+    nav a {
+      color: rgb(255, 255, 255);
+      margin: 0.5rem;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1.1rem;
+      transition: color 0.3s ease;
+    }
+    nav a:hover {
+      color: #ffd54f;
+      text-decoration: underline;
+    }
+    main {
+      max-width: 960px;
+      margin: 2rem auto;
+      padding: 0 1.5rem 2rem;
+      background-color: rgb(255, 255, 255);
+      border-radius: 12px;
+      box-shadow: 0 6px 12px rgba(233, 7, 7, 0.05);
+      transition: background-color 0.3s ease;
+    }
+    h2, h3 {
+      color: hsl(46, 69%, 55%);
+      margin-top: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 700;
+      opacity: 0;
+      transform: translateY(15px);
+      animation-fill-mode: forwards;
+    }
+    h2 {
+      animation: fadeInUp 0.6s ease forwards;
+    }
+    h3 {
+      animation: fadeInUp 0.6s ease forwards;
+      animation-delay: 0.2s;
+    }
+    p, li {
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      opacity: 0;
+      transform: translateY(10px);
+      animation: fadeInUp 0.6s ease forwards;
+      animation-delay: 0.3s;
+    }
+    ol, ul {
+      padding-left: 1.5rem;
+    }
+    a {
+      color: #d6b138;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    a:hover {
+      color: #ffffff;
+      text-decoration: underline;
+    }
+    button {
+      padding: 0.5rem 1.25rem;
+      border: 2px solid rgb(255, 255, 255);
+      border-radius: 25px;
+      background-color: transparent;
+      color: rgb(255, 255, 255);
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    button:hover {
+      background-color: rgb(197, 159, 32);
+      color: #f9f9fa;
+    }
+    /* Responsividade */
+    @media (max-width: 600px) {
+      nav {
+        flex-direction: column;
+        gap: 0.8rem;
+      }
+      button {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+    /* Animação */
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <div>
+        <a href="index.html"><i class="fas fa-home"></i> Início</a>
+      </div>
+      <div>
+        <button id="toggleLangBtn" onclick="toggleLang()" aria-label="Alternar idioma">
+          <i class="fas fa-globe"></i> PT / EN
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="termos" lang="pt">
+    <h2><i class="fas fa-file-contract"></i> 1. Termos</h2>
+    <p>
+      Ao acessar ao site ReadZone, você concorda em cumprir estes termos de serviço,
+      todas as leis e regulamentos aplicáveis, e declara ser responsável pelo cumprimento
+      das leis locais. Caso discorde de qualquer termo, está proibido de utilizar ou acessar este site.
+      Os materiais contidos no site são protegidos pelas leis de direitos autorais e marcas comerciais.
+    </p>
+
+    <h2><i class="fas fa-file-alt"></i> 2. Uso de Licença</h2>
+    <p>
+      É concedida permissão para baixar temporariamente uma cópia dos materiais do site ReadZone apenas para visualização pessoal e não comercial.
+      Esta é uma licença e não uma transferência de propriedade. Sob esta licença, você não pode:
+    </p>
+    <ul>
+      <li>Modificar ou copiar os materiais;</li>
+      <li>Utilizar os materiais para qualquer finalidade comercial ou pública;</li>
+      <li>Tentar descompilar ou fazer engenharia reversa de qualquer software;</li>
+      <li>Remover quaisquer direitos autorais ou marcas;</li>
+      <li>Transferir os materiais para outra pessoa ou espelhá-los em outro servidor.</li>
+    </ul>
+    <p>
+      Essa licença será rescindida automaticamente em caso de violação e poderá ser encerrada a qualquer momento por ReadZone.
+      Após encerramento, todos os materiais devem ser apagados.
+    </p>
+
+    <h2><i class="fas fa-exclamation-triangle"></i> 3. Isenção de Responsabilidade</h2>
+    <p>
+      Os materiais no site ReadZone são fornecidos “como estão”. ReadZone não oferece garantias expressas ou implícitas,
+      incluindo garantias de comercialização, adequação a um fim específico ou não violação.
+      ReadZone não assegura a precisão, confiabilidade ou resultados esperados pelo uso dos materiais.
+    </p>
+
+    <h2><i class="fas fa-ban"></i> 4. Limitações de Responsabilidade</h2>
+    <p>
+      Em nenhuma hipótese o ReadZone será responsável por quaisquer danos diretos, indiretos, incidentais ou consequenciais
+      (incluindo perda de dados ou lucros), decorrentes do uso ou da incapacidade de usar os materiais, mesmo se tiver sido avisado da possibilidade desses danos.
+    </p>
+
+    <h2><i class="fas fa-check-circle"></i> 5. Precisão das Informações</h2>
+    <p>
+      As informações apresentadas no site podem conter erros técnicos, tipográficos ou fotográficos.
+      ReadZone pode fazer alterações sem aviso prévio e não garante que os conteúdos estejam sempre atualizados ou corretos.
+    </p>
+
+    <h2><i class="fas fa-link"></i> 6. Links para Terceiros</h2>
+    <p>
+      O site pode conter links para sites externos que não são operados por nós. ReadZone não se responsabiliza pelo conteúdo ou políticas desses sites.
+      O uso é por sua conta e risco.
+    </p>
+
+    <h2><i class="fas fa-user"></i> 7. Conta do Usuário</h2>
+    <p>
+      Ao criar uma conta no ReadZone, o usuário se compromete a fornecer informações verdadeiras,
+      manter suas credenciais seguras e notificar qualquer uso não autorizado.
+      A conta poderá ser suspensa ou encerrada em caso de violação dos termos.
+    </p>
+
+    <h2><i class="fas fa-comments"></i> 8. Conteúdo do Usuário</h2>
+    <p>
+      Qualquer conteúdo publicado por usuários (comentários, avaliações, etc.) é de responsabilidade exclusiva de quem o enviou.
+      O ReadZone se reserva o direito de remover ou editar conteúdos que violem estes termos ou as leis vigentes.
+    </p>
+
+    <h2><i class="fas fa-copyright"></i> 9. Direitos Autorais e Propriedade Intelectual</h2>
+    <p>
+      Todo o conteúdo disponibilizado (textos, imagens, logos, softwares, design etc.) é de propriedade do ReadZone ou de seus licenciadores.
+      O uso indevido desses materiais é proibido.
+    </p>
+
+    <h2><i class="fas fa-user-slash"></i> 10. Suspensão ou Encerramento de Acesso</h2>
+    <p>
+      O ReadZone pode suspender ou encerrar o acesso ao site, total ou parcialmente, sem aviso prévio,
+      se considerar que o usuário violou os termos ou a legislação.
+    </p>
+
+    <h2><i class="fas fa-edit"></i> 11. Modificações dos Termos</h2>
+    <p>
+      O ReadZone pode revisar estes termos a qualquer momento, sendo sua responsabilidade consultá-los periodicamente.
+      O uso contínuo do site será interpretado como aceitação das alterações.
+    </p>
+
+    <h2><i class="fas fa-gavel"></i> 12. Lei Aplicável e Foro</h2>
+    <p>
+      Estes termos serão regidos pelas leis brasileiras. Fica eleito o foro da comarca de São Paulo - SP,
+      com exclusão de qualquer outro, por mais privilegiado que seja, para resolver conflitos relacionados ao uso deste site.
+    </p>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 ReadZone. Todos os direitos reservados.</p>
+  </footer>
+
+  <script>
+    function toggleLang() {
+      const termos = document.getElementById('termos');
+      if (termos.lang === 'en') {
+        location.reload();
+        return;
+      }
+      termos.lang = 'en';
+      termos.innerHTML = `
+        <h2><i class="fas fa-file-contract"></i> 1. Terms</h2>
+        <p>
+          By accessing the ReadZone website, you agree to comply with these terms of service, all applicable laws and regulations,
+          and declare that you are responsible for compliance with local laws. If you disagree with any term, you are prohibited
+          from using or accessing this site. The materials contained on this site are protected by copyright and trademark laws.
+        </p>
+
+        <h2><i class="fas fa-file-alt"></i> 2. License Use</h2>
+        <p>
+          Permission is granted to temporarily download one copy of the materials on the ReadZone site for personal, non-commercial viewing only.
+          This is a license, not a transfer of title. Under this license, you may not:
+        </p>
+        <ul>
+          <li>Modify or copy the materials;</li>
+          <li>Use the materials for any commercial or public purpose;</li>
+          <li>Attempt to decompile or reverse engineer any software;</li>
+          <li>Remove any copyright or trademarks;</li>
+          <li>Transfer the materials to another person or mirror them on another server.</li>
+        </ul>
+        <p>
+          This license will be automatically terminated if you violate any of these restrictions and may be terminated at any time by ReadZone.
+          Upon termination, you must destroy any downloaded materials in your possession whether in electronic or printed format.
+        </p>
+
+        <h2><i class="fas fa-exclamation-triangle"></i> 3. Disclaimer</h2>
+        <p>
+          The materials on the ReadZone site are provided "as is". ReadZone makes no warranties, express or implied,
+          and hereby disclaims and negates all other warranties including, without limitation, implied warranties or conditions of merchantability,
+          fitness for a particular purpose, or non-infringement of intellectual property or other violation of rights.
+          Furthermore, ReadZone does not guarantee or make any representations regarding the accuracy, likely results,
+          or reliability of the use of the materials on its website or otherwise relating to such materials or on any sites linked to this site.
+        </p>
+
+        <h2><i class="fas fa-ban"></i> 4. Limitations of Liability</h2>
+        <p>
+          In no event shall ReadZone or its suppliers be liable for any damages (including, without limitation,
+          damages for loss of data or profit, or due to business interruption) arising out of the use or inability to use the materials
+          on ReadZone's website, even if ReadZone or an authorized representative has been notified orally or in writing of the possibility of such damage.
+          Some jurisdictions do not allow limitations on implied warranties or liability for consequential or incidental damages,
+          so these limitations may not apply to you.
+        </p>
+
+        <h2><i class="fas fa-check-circle"></i> 5. Accuracy of Information</h2>
+        <p>
+          The information presented on the site may contain technical, typographical, or photographic errors.
+          ReadZone may make changes without prior notice and does not guarantee that content is always up to date or accurate.
+        </p>
+
+        <h2><i class="fas fa-link"></i> 6. Third-Party Links</h2>
+        <p>
+          The site may contain links to external sites not operated by us. ReadZone is not responsible for the content or policies of these sites.
+          Use is at your own risk.
+        </p>
+
+        <h2><i class="fas fa-user"></i> 7. User Account</h2>
+        <p>
+          By creating an account on ReadZone, the user agrees to provide truthful information,
+          keep their credentials secure, and notify any unauthorized use.
+          The account may be suspended or terminated if terms are violated.
+        </p>
+
+        <h2><i class="fas fa-comments"></i> 8. User Content</h2>
+        <p>
+          Any content posted by users (comments, reviews, etc.) is the sole responsibility of the submitter.
+          ReadZone reserves the right to remove or edit content that violates these terms or applicable laws.
+        </p>
+
+        <h2><i class="fas fa-copyright"></i> 9. Copyright and Intellectual Property</h2>
+        <p>
+          All content made available (texts, images, logos, software, design, etc.) is owned by ReadZone or its licensors.
+          Unauthorized use of such materials is prohibited.
+        </p>
+
+        <h2><i class="fas fa-user-slash"></i> 10. Suspension or Termination of Access</h2>
+        <p>
+          ReadZone may suspend or terminate access to the site, in whole or in part, without prior notice,
+          if it deems the user has violated the terms or laws.
+        </p>
+
+        <h2><i class="fas fa-edit"></i> 11. Changes to Terms</h2>
+        <p>
+          ReadZone may revise these terms at any time, and it is your responsibility to review them periodically.
+          Continued use of the site constitutes acceptance of the changes.
+        </p>
+
+        <h2><i class="fas fa-gavel"></i> 12. Governing Law and Jurisdiction</h2>
+        <p>
+          These terms shall be governed by the laws of Brazil. The courts of São Paulo - SP are hereby chosen,
+          excluding any other, no matter how privileged, to resolve disputes related to the use of this site.
+        </p>
+      `;
+    }
+  </script>
+</body>
 </html>
