@@ -1,5 +1,5 @@
 window.booksData = [
-  // 40 livros fictícios, capas variadas, autores variados, categorias variadas!
+  // Autoajuda
   {
     id: 1,
     cover: "https://carrefourbr.vtexassets.com/arquivos/ids/97103001/fdae3d8b4aab40d68744e9027b655cf5.jpg?v=638096993985070000",
@@ -40,6 +40,7 @@ window.booksData = [
     category: "Autoajuda",
     stars: 3
   },
+  // Aventura
   {
     id: 6,
     cover: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRS8XNSPZjCytOyNxUI5YaNiXgmwIsQkTrmcQ&s",
@@ -80,244 +81,168 @@ window.booksData = [
     category: "Aventura",
     stars: 3
   },
+  // Biografia
   {
     id: 11,
-    cover: "https://covers.openlibrary.org/b/id/10958349-L.jpg",
-    title: "Uma Boa Escolha!",
-    author: "Floyd Miles",
-    category: "Autoajuda",
-    stars: 5
-  },
-  {
-    id: 12,
-    cover: "https://covers.openlibrary.org/b/id/10958351-L.jpg",
-    title: "Pacto Estelar",
-    author: "Al Titan",
-    category: "Ficção Científica",
-    stars: 4
-  },
-  {
-    id: 13,
-    cover: "https://covers.openlibrary.org/b/id/10958373-L.jpg",
-    title: "Diários de Viagem",
-    author: "Courtney Henry",
-    category: "História",
-    stars: 3
-  },
-  {
-    id: 14,
-    cover: "https://covers.openlibrary.org/b/id/10958353-L.jpg",
-    title: "Grazie",
-    author: "Brookyn Simmons",
-    category: "Fantasia",
-    stars: 4
-  },
-  {
-    id: 15,
-    cover: "https://covers.openlibrary.org/b/id/10958375-L.jpg",
-    title: "Avris",
-    author: "Floyd Miles",
+    cover: "https://m.media-amazon.com/images/I/71ElBpqB2PL.jpg",
+    title: "Scar Tissue",
+    author: "Anthony Kiedis",
     category: "Biografia",
     stars: 5
   },
   {
+    id: 12,
+    cover: "https://cdl-static.s3-sa-east-1.amazonaws.com/covers/gg/9788547000974/minha-historia.jpg",
+    title: "Minha História",
+    author: "Michelle Obama",
+    category: "Biografia",
+    stars: 4
+  },
+  {
+    id: 13,
+    cover: "https://m.media-amazon.com/images/I/71ZCGlZewLL.jpg",
+    title: "Uma terra prometida",
+    author: "Barack Obama",
+    category: "Biografia",
+    stars: 3
+  },
+  {
+    id: 14,
+    cover: "https://m.media-amazon.com/images/I/81SCJLTWDgL.jpg",
+    title: "Adoro Problemas",
+    author: "Michael Moore",
+    category: "Biografia",
+    stars: 4
+  },
+  {
+    id: 15,
+    cover: "https://m.media-amazon.com/images/I/81Fkshbv4GL._UF1000,1000_QL80_.jpg",
+    title: "Vivendo a mil, enganando a morte e batera, batera, batera",
+    author: "Travis Barker",
+    category: "Biografia",
+    stars: 5
+  },
+  // Contos
+  {
     id: 16,
-    cover: "https://covers.openlibrary.org/b/id/10958357-L.jpg",
-    title: "Só os Amantes Sobrevivem",
-    author: "Ronald Richards",
-    category: "Literatura",
+    cover: "https://tionitroblog.wordpress.com/wp-content/uploads/2016/08/todos-os-contos-clarice-lispector-livro.jpg",
+    title: "Todos os Contos",
+    author: "Clarice Lispector",
+    category: "Contos",
     stars: 3
   },
   {
     id: 17,
-    cover: "https://covers.openlibrary.org/b/id/10958359-L.jpg",
-    title: "A Coisa Certa",
-    author: "Al Titan",
-    category: "Romance",
-    stars: 4
-  },
-  {
-    id: 18,
-    cover: "https://covers.openlibrary.org/b/id/10441532-L.jpg",
-    title: "Poemas ao Vento",
-    author: "Helena Souza",
-    category: "Poesia",
-    stars: 5
-  },
-  {
-    id: 19,
-    cover: "https://covers.openlibrary.org/b/id/10594766-L.jpg",
-    title: "O Outro Lado",
-    author: "Miguel Pereira",
-    category: "Mistério",
-    stars: 3
-  },
-  {
-    id: 20,
-    cover: "https://covers.openlibrary.org/b/id/10594767-L.jpg",
-    title: "O Segredo do Lago",
-    author: "Alice Muniz",
-    category: "Aventura",
-    stars: 4
-  },
-  {
-    id: 21,
-    cover: "https://covers.openlibrary.org/b/id/10958361-L.jpg",
-    title: "Sobre Estrelas",
-    author: "João Campos",
-    category: "Ficção Científica",
-    stars: 5
-  },
-  {
-    id: 22,
-    cover: "https://covers.openlibrary.org/b/id/10441528-L.jpg",
-    title: "Fragmentos",
-    author: "Alana Reis",
-    category: "Poesia",
-    stars: 4
-  },
-  {
-    id: 23,
-    cover: "https://covers.openlibrary.org/b/id/10958365-L.jpg",
-    title: "O Despertar",
-    author: "Lucas Martins",
-    category: "Autoajuda",
-    stars: 2
-  },
-  {
-    id: 24,
-    cover: "https://covers.openlibrary.org/b/id/10958377-L.jpg",
-    title: "Caminhos Cruzados",
-    author: "Patrícia Lima",
-    category: "Romance",
-    stars: 3
-  },
-  {
-    id: 25,
-    cover: "https://covers.openlibrary.org/b/id/10958371-L.jpg",
-    title: "Noite Silenciosa",
-    author: "Ana Paula",
-    category: "Suspense",
-    stars: 4
-  },
-  {
-    id: 26,
-    cover: "https://covers.openlibrary.org/b/id/10843098-L.jpg",
-    title: "A Última Estação",
-    author: "Carlos Silva",
-    category: "Drama",
-    stars: 5
-  },
-  {
-    id: 27,
-    cover: "https://covers.openlibrary.org/b/id/10594761-L.jpg",
-    title: "O Enigma da Ilha",
-    author: "Fernanda Costa",
-    category: "Aventura",
-    stars: 3
-  },
-  {
-    id: 28,
-    cover: "https://covers.openlibrary.org/b/id/10441529-L.jpg",
-    title: "Contos Urbanos",
-    author: "Roberto Dias",
+    cover: "https://m.media-amazon.com/images/I/81ZRLMlwSuL._UF1000,1000_QL80_.jpg",
+    title: "Os cem melhores contos brasileiros do século",
+    author: "Ítalo Moriconi",
     category: "Contos",
     stars: 4
   },
   {
+    id: 18,
+    cover: "https://m.media-amazon.com/images/I/71rYa+Q9jCL._UF1000,1000_QL80_.jpg",
+    title: "Contos clássicos de terror",
+    author: "Julia Jeha",
+    category: "Contos",
+    stars: 5
+  },
+  {
+    id: 19,
+    cover: "https://m.media-amazon.com/images/I/51RjYjNVpRL.jpg",
+    title: "Olhos d'água",
+    author: "Conceição Evaristo",
+    category: "Contos",
+    stars: 3
+  },
+  {
+    id: 20,
+    cover: "https://m.media-amazon.com/images/I/81aVPLJSGSL.jpg",
+    title: "12 contos peregrinos",
+    author: "Gabriel García Márquez",
+    category: "Contos",
+    stars: 4
+  },
+  // Drama
+  {
+    id: 21,
+    cover: "https://m.media-amazon.com/images/I/71lqmkoeosL.jpg",
+    title: "O morro dos ventos uivantes",
+    author: "Emily Brontë",
+    category: "Drama",
+    stars: 5
+  },
+  {
+    id: 22,
+    cover: "https://m.media-amazon.com/images/I/81NItE0JseL.jpg",
+    title: "O Jardim Secreto ",
+    author: "Frances Hodgson Burnett",
+    category: "Drama",
+    stars: 4
+  }, 
+  {
+    id: 23,
+    cover: "https://m.media-amazon.com/images/I/81p79w-ownL._UF1000,1000_QL80_.jpg",
+    title: "Para sempre Alice",
+    author: "Lisa Genova",
+    category: "Drama",
+    stars: 2
+  },
+  {
+    id: 24,
+    cover: "https://m.media-amazon.com/images/I/810ru7lFZcS._UF894,1000_QL80_.jpg",
+    title: "Uma vida pequena",
+    author: "Hanya Yanagihara",
+    category: "Drama",
+    stars: 3
+  },
+  {
+    id: 25,
+    cover: "https://m.media-amazon.com/images/I/81mPXoLOOXL._UF1000,1000_QL80_.jpg",
+    title: "Antes que o café esfrie: 1",
+    author: "Toshikazu Kawaguchi",
+    category: "Drama",
+    stars: 4
+  },
+  // Romance
+  {
+    id: 26,
+    cover: "https://m.media-amazon.com/images/I/81LTEfXYgcL.jpg",
+    title: "A Hipótese do Amor",
+    author: "Ali Hazelwood",
+    category: "Romance",
+    stars: 5
+  },
+  {
+    id: 27,
+    cover: "https://m.media-amazon.com/images/I/51XRiJqHJVL._UF1000,1000_QL80_.jpg",
+    title: "Um Quarto com Vista",
+    author: "E.M. Forster",
+    category: "Romance",
+    stars: 3
+  },
+  {
+    id: 28,
+    cover: "https://m.media-amazon.com/images/I/81IB63g5V2L._UF894,1000_QL80_.jpg",
+    title: "Me Chame pelo Seu Nome",
+    author: "André Aciman",
+    category: "Romance",
+    stars: 4
+  },
+  {
     id: 29,
-    cover: "https://covers.openlibrary.org/b/id/10958379-L.jpg",
-    title: "Além das Palavras",
-    author: "Juliana Rocha",
+    cover: "https://m.media-amazon.com/images/I/91r5G8RxqfL.jpg",
+    title: "É Assim que Acaba",
+    author: "Collen Hoover",
     category: "Romance",
     stars: 5
   },
   {
     id: 30,
-    cover: "https://covers.openlibrary.org/b/id/10958381-L.jpg",
-    title: "Sombras do Passado",
-    author: "Marcelo Vieira",
-    category: "Suspense",
-    stars: 4
-  },
-  {
-    id: 31,
-    cover: "https://covers.openlibrary.org/b/id/10958383-L.jpg",
-    title: "Vidas Entrelaçadas",
-    author: "Gabriela Torres",
-    category: "Drama",
-    stars: 3
-  },
-  {
-    id: 32,
-    cover: "https://covers.openlibrary.org/b/id/10958385-L.jpg",
-    title: "Horizonte Perdido",
-    author: "Ricardo Lima",
-    category: "Aventura",
-    stars: 5
-  },
-  {
-    id: 33,
-    cover: "https://covers.openlibrary.org/b/id/10958387-L.jpg",
-    title: "Histórias para Contar",
-    author: "Simone Freitas",
-    category: "Contos",
-    stars: 4
-  },
-  {
-    id: 34,
-    cover: "https://covers.openlibrary.org/b/id/10958389-L.jpg",
-    title: "O Último Adeus",
-    author: "Thiago Barbosa",
-    category: "Drama",
-    stars: 2
-  },
-  {
-    id: 35,
-    cover: "https://covers.openlibrary.org/b/id/10958391-L.jpg",
-    title: "Sob o Céu Azul",
-    author: "Viviane Moura",
+    cover: "https://images.tcdn.com.br/img/img_prod/1042630/o_visconde_que_me_amava_os_bridgertons_vol_2_177385_1_4c0c710d98776e81d9c65e9568513362.jpg",
+    title: "O Visconde que me Amava",
+    author: "Julia Quinn",
     category: "Romance",
     stars: 4
   },
-  {
-    id: 36,
-    cover: "https://covers.openlibrary.org/b/id/10958393-L.jpg",
-    title: "A Promessa",
-    author: "Eduardo Alves",
-    category: "História",
-    stars: 5
-  },
-  {
-    id: 37,
-    cover: "https://covers.openlibrary.org/b/id/10958395-L.jpg",
-    title: "Luz e Sombra",
-    author: "Marina Gonçalves",
-    category: "Mistério",
-    stars: 3
-  },
-  {
-    id: 38,
-    cover: "https://covers.openlibrary.org/b/id/10958397-L.jpg",
-    title: "O Fim da Inocência",
-    author: "Gustavo Ramos",
-    category: "Drama",
-    stars: 5
-  },
-  {
-    id: 39,
-    cover: "https://covers.openlibrary.org/b/id/10958399-L.jpg",
-    title: "Entre Dois Mundos",
-    author: "Renata Figueiredo",
-    category: "Ficção Científica",
-    stars: 4
-  },
-  {
-    id: 40,
-    cover: "https://covers.openlibrary.org/b/id/10958401-L.jpg",
-    title: "Memórias do Futuro",
-    author: "Bruno Castro",
-    category: "Ficção Científica",
-    stars: 5
-  }
-];
+]
