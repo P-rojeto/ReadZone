@@ -61,11 +61,6 @@ closeProfileModal.addEventListener('click', () => {
 
 profileBtn.addEventListener('click', () => {
   window.location.href = '/registroelogin/login.html';
-
-  const category = 'algumaCategoria';
-  const fileName = 'algumArquivo.html';
-  console.log(`/pastas de categorias/${category}/${fileName}`);
-  window.location.href = `/pastasdecategorias/${category}/${fileName}`;
 });
 profileModal.addEventListener('click', (e) => {
   if (e.target === profileModal) {

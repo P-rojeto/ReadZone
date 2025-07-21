@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Olhos d'água• ReadZone</title>
+  <link rel="icon" type="image/jpeg" href="/imagens/símbolo.png"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Merriweather:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/paginadelivros/paginas.css"/>''>
+</head>
+<body>
+  <header class="vp-header">
+    <div class="vp-logo-title">
+      <img src="/imagens/símbolo.png" class="vp-logo" alt="ReadZone Logo">
+      <span class="vp-title">ReadZone</span>
+    </div>
+    <nav class="vp-nav">
+      <a href="/index.html">Início</a>
+      <a href="/livros.html">Livros</a></nav>
+  </header>
+  <main class="vp-main">
+    <section class="vp-book-info">
+      <div class="vp-book-cover">
+        <img src="https://m.media-amazon.com/images/I/51RjYjNVpRL.jpg" alt="Capa Olhos d'água">
+      </div>
+      <div class="vp-book-details">
+        <h1>Olhos d'água</h1>
+        <h2>Conceiçãao Evaristo</h2>
+        <span class="vp-category">Contos</span>
+        <div class="vp-rating">
+          <span class="vp-star">&#9733;</span>
+          <span class="vp-star">&#9733;</span>
+          <span class="vp-star">&#9733;</span>
+          <span class="vp-star">&#9733;</span>
+          <span class="vp-star">&#9733;</span>
+          <span class="vp-rating-val">5.0</span>
+        </div>
+        <div class="vp-book-sinopse">
+          <h3>Sinopse</h3>
+            <p>"Olhos d'Água é uma obra da renomada escritora Conceição Evaristo, que se destaca por sua profunda abordagem sobre as experiências e vivências de mulheres negras, com uma escrita sensível e carregada de realismo social. O livro é uma coletânea de contos que exploram, de forma intimista, a luta e a resistência de personagens periféricas, muitas delas mulheres, enfrentando as adversidades da vida no Brasil. A autora utiliza uma linguagem rica e poética para dar voz às suas personagens, que são representações de mulheres marginalizadas, fortes e resilientes. O título Olhos d'Água faz referência a esse olhar profundo e atento sobre as experiências e as lutas cotidianas dessas mulheres, que vão desde as dificuldades da vida familiar e social até o enfrentamento das desigualdades raciais e de gênero.Os contos presentes no livro abordam temas como a identidade, a ancestralidade, o racismo e as relações familiares, muitas vezes dentro de contextos urbanos, mas também remetendo às tradições e à cultura africana. A escrita de Evaristo é um convite a refletir sobre as questões sociais do Brasil, mas também sobre o papel da mulher negra na sociedade e na literatura."</p>
+        </div>
+        <div class="vp-book-extra">
+          <ul>
+            <li><strong>Editora:</strong>Cepe Editora.</li>
+            <li><strong>Páginas:</strong> 168</li>
+            <li><strong>Ano:</strong>2019</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <section class="vp-comments-wrap">
+      <h3>Comentários</h3>
+      <form class="vp-comment-form" id="comment-form">
+        <input type="text" id="comment-name" placeholder="Seu nome" required>
+        <textarea id="comment-text" placeholder="Escreva seu comentário..." required></textarea>
+        <button type="submit">Enviar</button>
+      </form>
+      <div class="vp-comments-list" id="comments-list">
+        <!-- comentários aparecem aqui -->
+      </div>
+    </section>
+  </main>
+  <footer class="vp-footer">
+    <span>ReadZone &copy; 2025 • Todos os direitos reservados</span>
+  </footer>
+  <script>
+    // Comentários em localStorage por livro
+    const bookKey = "comments_vencendoopassado";
+    function renderComments() {
+      const comments = JSON.parse(localStorage.getItem(bookKey) || "[]");
+      const list = document.getElementById("comments-list");
+      list.innerHTML = comments.length
+        ? comments.map(c => `<div class="vp-comment"><strong>${c.name}:</strong> <span>${c.text}</span></div>`).join("")
+        : "<div class='vp-comment-empty'>Nenhum comentário ainda.</div>";
+    }
+    document.getElementById("comment-form").addEventListener("submit", function(e){
+      e.preventDefault();
+      const name = document.getElementById("comment-name").value.trim();
+      const text = document.getElementById("comment-text").value.trim();
+      if(name && text){
+        const prev = JSON.parse(localStorage.getItem(bookKey) || "[]");
+        prev.push({name, text});
+        localStorage.setItem(bookKey, JSON.stringify(prev));
+        this.reset();
+        renderComments();
+      }
+    });
+    renderComments();
+  </script>
+</body>
+</html>

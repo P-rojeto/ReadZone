@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Minha História• ReadZone</title>
+  <link rel="icon" type="image/jpeg" href="/imagens/símbolo.png"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Merriweather:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/paginadelivros/paginas.css"/>''>
+</head>
+<body>
+  <header class="vp-header">
+    <div class="vp-logo-title">
+      <img src="/imagens/símbolo.png" class="vp-logo" alt="ReadZone Logo">
+      <span class="vp-title">ReadZone</span>
+    </div>
+    <nav class="vp-nav">
+      <a href="/index.html">Início</a>
+      <a href="/livros.html">Livros</a></nav>
+  </header>
+  <main class="vp-main">
+    <section class="vp-book-info">
+      <div class="vp-book-cover">
+        <img src="https://cdl-static.s3-sa-east-1.amazonaws.com/covers/gg/9788547000974/minha-historia.jpg" alt="Capa de Minha História">
+      </div>
+      <div class="vp-book-details">
+        <h1>Minha História</h1>
+        <h2>Michelle Obama.</h2>
+        <span class="vp-category">Biografia</span>
+        <div class="vp-rating">
+          <span class="vp-star">&#9733;</span>
+          <span class="vp-star">&#9733;</span>
+          <span class="vp-star">&#9733;</span>
+          <span class="vp-star">&#9733;</span>
+          <span class="vp-star">&#9733;</span>
+          <span class="vp-rating-val">5.0</span>
+        </div>
+        <div class="vp-book-sinopse">
+          <h3>Sinopse</h3>
+            <p>"Minha História é o emocionante e inspirador livro de memórias de Michelle Obama, ex-primeira-dama dos Estados Unidos, que compartilha com o mundo sua trajetória pessoal, política e familiar. A obra vai além dos eventos públicos e oferece um olhar intimista sobre sua vida, desde a infância em Chicago até sua experiência na Casa Branca. Michelle narra como foi crescer em um bairro modesto, superando desafios com a família e se esforçando para alcançar seus sonhos em um mundo marcado por barreiras raciais e sociais. Ela descreve sua experiência na Universidade de Princeton e na Harvard Law School, onde teve que lutar para encontrar seu lugar em ambientes predominantemente brancos e elitistas. Ao longo do livro, Michelle reflete sobre o casamento com Barack Obama, sua jornada como mãe, suas inseguranças e suas conquistas. Além de abordar os bastidores da vida política, a autora também revela os momentos emocionais e pessoais que moldaram sua identidade. Minha História é um relato de resistência, empoderamento e esperança, encorajando todos a seguirem suas paixões, independentemente das dificuldades. A obra é, acima de tudo, um testamento de como a perseverança e a autoconfiança podem transformar vidas e inspirar gerações futuras."</p>
+        </div>
+        <div class="vp-book-extra">
+          <ul>
+            <li><strong>Editora:</strong>Editora Objetiva.</li>
+            <li><strong>Páginas:</strong> 448</li>
+            <li><strong>Ano:</strong>2018</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <section class="vp-comments-wrap">
+      <h3>Comentários</h3>
+      <form class="vp-comment-form" id="comment-form">
+        <input type="text" id="comment-name" placeholder="Seu nome" required>
+        <textarea id="comment-text" placeholder="Escreva seu comentário..." required></textarea>
+        <button type="submit">Enviar</button>
+      </form>
+      <div class="vp-comments-list" id="comments-list">
+        <!-- comentários aparecem aqui -->
+      </div>
+    </section>
+  </main>
+  <footer class="vp-footer">
+    <span>ReadZone &copy; 2025 • Todos os direitos reservados</span>
+  </footer>
+  <script>
+    // Comentários em localStorage por livro
+    const bookKey = "comments_vencendoopassado";
+    function renderComments() {
+      const comments = JSON.parse(localStorage.getItem(bookKey) || "[]");
+      const list = document.getElementById("comments-list");
+      list.innerHTML = comments.length
+        ? comments.map(c => `<div class="vp-comment"><strong>${c.name}:</strong> <span>${c.text}</span></div>`).join("")
+        : "<div class='vp-comment-empty'>Nenhum comentário ainda.</div>";
+    }
+    document.getElementById("comment-form").addEventListener("submit", function(e){
+      e.preventDefault();
+      const name = document.getElementById("comment-name").value.trim();
+      const text = document.getElementById("comment-text").value.trim();
+      if(name && text){
+        const prev = JSON.parse(localStorage.getItem(bookKey) || "[]");
+        prev.push({name, text});
+        localStorage.setItem(bookKey, JSON.stringify(prev));
+        this.reset();
+        renderComments();
+      }
+    });
+    renderComments();
+  </script>
+</body>
+</html>
