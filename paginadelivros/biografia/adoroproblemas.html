@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Adoro Problemas• ReadZone</title>
+  <link rel="icon" type="image/jpeg" href="/imagens/símbolo.png"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Merriweather:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/paginadelivros/paginas.css"/>''>
+</head>
+<body>
+  <header class="vp-header">
+    <div class="vp-logo-title">
+      <img src="/imagens/símbolo.png" class="vp-logo" alt="ReadZone Logo">
+      <span class="vp-title">ReadZone</span>
+    </div>
+    <nav class="vp-nav">
+      <a href="/index.html">Início</a>
+      <a href="/livros.html">Livros</a></nav>
+  </header>
+  <main class="vp-main">
+    <section class="vp-book-info">
+      <div class="vp-book-cover">
+        <img src="https://m.media-amazon.com/images/I/81SCJLTWDgL.jpg" alt="Capa de Addoro Problemas">
+      </div>
+      <div class="vp-book-details">
+        <h1>Adoro Problemas</h1>
+        <h2>Michael Moore.</h2>
+        <span class="vp-category">Biografia</span>
+        <div class="vp-rating">
+          <span class="vp-star">&#9733;</span>
+          <span class="vp-star">&#9733;</span>
+          <span class="vp-star">&#9733;</span>
+          <span class="vp-star">&#9733;</span>
+          <span class="vp-star">&#9733;</span>
+          <span class="vp-rating-val">5.0</span>
+        </div>
+        <div class="vp-book-sinopse">
+          <h3>Sinopse</h3>
+            <p>"Em Adoro Problemas, Michael Moore combina seu estilo irreverente e provocador para abordar questões sociais, políticas e econômicas com uma perspectiva única. O autor, conhecido por seus documentários incisivos e críticos, mistura humor ácido com uma análise profunda dos problemas que afligem os Estados Unidos e, por extensão, o mundo. A obra é uma reflexão sobre como os poderosos manipulam o sistema em benefício próprio, deixando as massas à mercê de problemas estruturais e sociais. Moore usa uma linguagem direta e acessível para fazer seus leitores confrontarem realidades desconfortáveis e encorajá-los a questionar o status quo. O livro, que mistura memórias pessoais e observações astutas sobre a cultura americana, se coloca como um grito de alerta para a necessidade de mudança. Ao longo da obra, Michael Moore revela seu amor por problemas, em especial aqueles que desafiam o sistema e convidam à reflexão. Ele utiliza de suas experiências e da sua perspectiva irreverente para ilustrar as falhas do governo, da indústria e das grandes corporações, propondo alternativas para um mundo mais justo. Com sarcasmo, mas também com sinceridade, Moore oferece uma visão crítica e ao mesmo tempo cheia de humor sobre a sociedade contemporânea."</p>
+        </div>
+        <div class="vp-book-extra">
+          <ul>
+            <li><strong>Editora:</strong>Editora Record.</li>
+            <li><strong>Páginas:</strong> 448</li>
+            <li><strong>Ano:</strong>2002</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <section class="vp-comments-wrap">
+      <h3>Comentários</h3>
+      <form class="vp-comment-form" id="comment-form">
+        <input type="text" id="comment-name" placeholder="Seu nome" required>
+        <textarea id="comment-text" placeholder="Escreva seu comentário..." required></textarea>
+        <button type="submit">Enviar</button>
+      </form>
+      <div class="vp-comments-list" id="comments-list">
+        <!-- comentários aparecem aqui -->
+      </div>
+    </section>
+  </main>
+  <footer class="vp-footer">
+    <span>ReadZone &copy; 2025 • Todos os direitos reservados</span>
+  </footer>
+  <script>
+    // Comentários em localStorage por livro
+    const bookKey = "comments_vencendoopassado";
+    function renderComments() {
+      const comments = JSON.parse(localStorage.getItem(bookKey) || "[]");
+      const list = document.getElementById("comments-list");
+      list.innerHTML = comments.length
+        ? comments.map(c => `<div class="vp-comment"><strong>${c.name}:</strong> <span>${c.text}</span></div>`).join("")
+        : "<div class='vp-comment-empty'>Nenhum comentário ainda.</div>";
+    }
+    document.getElementById("comment-form").addEventListener("submit", function(e){
+      e.preventDefault();
+      const name = document.getElementById("comment-name").value.trim();
+      const text = document.getElementById("comment-text").value.trim();
+      if(name && text){
+        const prev = JSON.parse(localStorage.getItem(bookKey) || "[]");
+        prev.push({name, text});
+        localStorage.setItem(bookKey, JSON.stringify(prev));
+        this.reset();
+        renderComments();
+      }
+    });
+    renderComments();
+  </script>
+</body>
+</html>

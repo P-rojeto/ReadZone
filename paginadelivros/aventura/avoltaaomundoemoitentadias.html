@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>A Volta ao Mundo em 80 DIas• ReadZone</title>
+  <link rel="icon" type="image/jpeg" href="/imagens/símbolo.png"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Merriweather:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/paginadelivros/paginas.css"/>''>
+</head>
+<body>
+  <header class="vp-header">
+    <div class="vp-logo-title">
+      <img src="/imagens/símbolo.png" class="vp-logo" alt="ReadZone Logo">
+      <span class="vp-title">ReadZone</span>
+    </div>
+    <nav class="vp-nav">
+      <a href="/index.html">Início</a>
+      <a href="/livros.html">Livros</a></nav>
+  </header>
+  <main class="vp-main">
+    <section class="vp-book-info">
+      <div class="vp-book-cover">
+        <img src="https://m.media-amazon.com/images/I/71UKvlLXALL._UF1000,1000_QL80_.jpg" alt="Capa de A Volta ao Mundo em 80 DIas">
+      </div>
+      <div class="vp-book-details">
+        <h1>A Volta ao Mundo em 80 DIas</h1>
+        <h2>Júlio Verne</h2>
+        <span class="vp-category">Aventura</span>
+        <div class="vp-rating">
+          <span class="vp-star">&#9733;</span>
+          <span class="vp-star">&#9733;</span>
+          <span class="vp-star">&#9733;</span>
+          <span class="vp-star">&#9733;</span>
+          <span class="vp-star">&#9733;</span>
+          <span class="vp-rating-val">5.0</span>
+        </div>
+        <div class="vp-book-sinopse">
+          <h3>Sinopse</h3>
+          <p>"Neste emocionante romance de aventura, A Volta ao Mundo em 80 Dias, o excêntrico e impetuoso Phileas Fogg, um inglês meticuloso e cheio de certezas, faz uma aposta audaciosa: ele afirma ser capaz de dar a volta ao mundo em apenas 80 dias. Com seu fiel criado Passepartout, ele parte em uma jornada repleta de desafios e imprevistos, atravessando continentes e enfrentando perigos inesperados, como tempestades, perseguições e até mesmo um sequestro. Durante sua jornada, Fogg encontra personagens fascinantes e experimenta as maravilhas e dificuldades de diversos lugares do planeta. A obra de Júlio Verne é uma corrida contra o tempo, repleta de tensão, suspense e reflexão sobre a resistência humana e a exploração do desconhecido."</p>
+        </div>
+        <div class="vp-book-extra">
+          <ul>
+            <li><strong>Editora:</strong> Diversas edições (no Brasil, algumas edições populares são pela Editora Globo e Editora Martins Fontes)</li>
+            <li><strong>Páginas:</strong> Apmx 200/250</li>
+            <li><strong>Ano:</strong>1873</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <section class="vp-comments-wrap">
+      <h3>Comentários</h3>
+      <form class="vp-comment-form" id="comment-form">
+        <input type="text" id="comment-name" placeholder="Seu nome" required>
+        <textarea id="comment-text" placeholder="Escreva seu comentário..." required></textarea>
+        <button type="submit">Enviar</button>
+      </form>
+      <div class="vp-comments-list" id="comments-list">
+        <!-- comentários aparecem aqui -->
+      </div>
+    </section>
+  </main>
+  <footer class="vp-footer">
+    <span>ReadZone &copy; 2025 • Todos os direitos reservados</span>
+  </footer>
+  <script>
+    // Comentários em localStorage por livro
+    const bookKey = "comments_vencendoopassado";
+    function renderComments() {
+      const comments = JSON.parse(localStorage.getItem(bookKey) || "[]");
+      const list = document.getElementById("comments-list");
+      list.innerHTML = comments.length
+        ? comments.map(c => `<div class="vp-comment"><strong>${c.name}:</strong> <span>${c.text}</span></div>`).join("")
+        : "<div class='vp-comment-empty'>Nenhum comentário ainda.</div>";
+    }
+    document.getElementById("comment-form").addEventListener("submit", function(e){
+      e.preventDefault();
+      const name = document.getElementById("comment-name").value.trim();
+      const text = document.getElementById("comment-text").value.trim();
+      if(name && text){
+        const prev = JSON.parse(localStorage.getItem(bookKey) || "[]");
+        prev.push({name, text});
+        localStorage.setItem(bookKey, JSON.stringify(prev));
+        this.reset();
+        renderComments();
+      }
+    });
+    renderComments();
+  </script>
+</body>
+</html>

@@ -116,9 +116,9 @@ window.booksData = [
   },
   {
     id: 15,
-    cover: "https://m.media-amazon.com/images/I/81Fkshbv4GL._UF1000,1000_QL80_.jpg",
-    title: "Vivendo a mil, enganando a morte e batera, batera, batera",
-    author: "Travis Barker",
+    cover: "https://m.media-amazon.com/images/I/81qfEU0WapL._UF1000,1000_QL80_.jpg",
+    title: "Os Sapatos de Orfeu Biografia de Carlos Drummond de Andrade",
+    author: "Gilda de Mello",
     category: "Biografia",
     stars: 5
   },

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contos Cláasicos de Terror• ReadZone</title>
+  <link rel="icon" type="image/jpeg" href="/imagens/símbolo.png"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Merriweather:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/paginadelivros/paginas.css"/>''>
+</head>
+<body>
+  <header class="vp-header">
+    <div class="vp-logo-title">
+      <img src="/imagens/símbolo.png" class="vp-logo" alt="ReadZone Logo">
+      <span class="vp-title">ReadZone</span>
+    </div>
+    <nav class="vp-nav">
+      <a href="/index.html">Início</a>
+      <a href="/livros.html">Livros</a></nav>
+  </header>
+  <main class="vp-main">
+    <section class="vp-book-info">
+      <div class="vp-book-cover">
+        <img src="https://m.media-amazon.com/images/I/71rYa+Q9jCL._UF1000,1000_QL80_.jpg" alt="Capa de Contos Clássicos de Terror">
+      </div>
+      <div class="vp-book-details">
+        <h1>Contos Cláasicos de Terror</h1>
+        <h2>Julia Jeha</h2>
+        <span class="vp-category">Contos</span>
+        <div class="vp-rating">
+          <span class="vp-star">&#9733;</span>
+          <span class="vp-star">&#9733;</span>
+          <span class="vp-star">&#9733;</span>
+          <span class="vp-star">&#9733;</span>
+          <span class="vp-star">&#9733;</span>
+          <span class="vp-rating-val">5.0</span>
+        </div>
+        <div class="vp-book-sinopse">
+          <h3>Sinopse</h3>
+            <p>"Contos Clássicos de Terror, organizado por Júlia Jeha, é uma coletânea que reúne algumas das histórias mais emblemáticas do gênero de terror, trazendo aos leitores contos que marcaram a literatura mundial. A obra inclui clássicos de autores como Edgar Allan Poe, H.P. Lovecraft, Mary Shelley e Bram Stoker, entre outros, que são os mestres do suspense e do horror psicológico. A coletânea oferece uma viagem ao medo profundo, ao desconhecido e ao sobrenatural. Cada conto é uma obra-prima do medo, seja explorando as profundezas da loucura humana, os mistérios da morte, os monstros interiores ou os horrores cósmicos. A seleção inclui histórias como O Corvo, de Poe, Frankenstein, de Mary Shelley, e Drácula, de Bram Stoker, entre outros. Com uma introdução cuidadosa de Júlia Jeha, a coletânea oferece uma contextualização sobre os autores e a importância de suas obras dentro da literatura de terror. O livro não apenas apresenta os contos, mas também os situa em seu contexto histórico, cultural e literário, proporcionando uma experiência enriquecedora para quem aprecia o gênero.
+
+Contos Clássicos de Terror é uma obra essencial para os amantes do horror, tanto os fãs do gênero quanto aqueles que buscam se aprofundar na história do terror literário."</p>
+        </div>
+        <div class="vp-book-extra">
+          <ul>
+            <li><strong>Editora:</strong>Editora L&PM.</li>
+            <li><strong>Páginas:</strong> 432</li>
+            <li><strong>Ano:</strong>2009</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <section class="vp-comments-wrap">
+      <h3>Comentários</h3>
+      <form class="vp-comment-form" id="comment-form">
+        <input type="text" id="comment-name" placeholder="Seu nome" required>
+        <textarea id="comment-text" placeholder="Escreva seu comentário..." required></textarea>
+        <button type="submit">Enviar</button>
+      </form>
+      <div class="vp-comments-list" id="comments-list">
+        <!-- comentários aparecem aqui -->
+      </div>
+    </section>
+  </main>
+  <footer class="vp-footer">
+    <span>ReadZone &copy; 2025 • Todos os direitos reservados</span>
+  </footer>
+  <script>
+    // Comentários em localStorage por livro
+    const bookKey = "comments_vencendoopassado";
+    function renderComments() {
+      const comments = JSON.parse(localStorage.getItem(bookKey) || "[]");
+      const list = document.getElementById("comments-list");
+      list.innerHTML = comments.length
+        ? comments.map(c => `<div class="vp-comment"><strong>${c.name}:</strong> <span>${c.text}</span></div>`).join("")
+        : "<div class='vp-comment-empty'>Nenhum comentário ainda.</div>";
+    }
+    document.getElementById("comment-form").addEventListener("submit", function(e){
+      e.preventDefault();
+      const name = document.getElementById("comment-name").value.trim();
+      const text = document.getElementById("comment-text").value.trim();
+      if(name && text){
+        const prev = JSON.parse(localStorage.getItem(bookKey) || "[]");
+        prev.push({name, text});
+        localStorage.setItem(bookKey, JSON.stringify(prev));
+        this.reset();
+        renderComments();
+      }
+    });
+    renderComments();
+  </script>
+</body>
+</html>

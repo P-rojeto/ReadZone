@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Scar Tissue• ReadZone</title>
+  <link rel="icon" type="image/jpeg" href="/imagens/símbolo.png"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Merriweather:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/paginadelivros/paginas.css"/>''>
+</head>
+<body>
+  <header class="vp-header">
+    <div class="vp-logo-title">
+      <img src="/imagens/símbolo.png" class="vp-logo" alt="ReadZone Logo">
+      <span class="vp-title">ReadZone</span>
+    </div>
+    <nav class="vp-nav">
+      <a href="/index.html">Início</a>
+      <a href="/livros.html">Livros</a></nav>
+  </header>
+  <main class="vp-main">
+    <section class="vp-book-info">
+      <div class="vp-book-cover">
+        <img src="https://m.media-amazon.com/images/I/71ElBpqB2PL.jpg" alt="Capa de Scar Tissue">
+      </div>
+      <div class="vp-book-details">
+        <h1>Scar Tissue</h1>
+        <h2>Anthony Kiedis</h2>
+        <span class="vp-category">Biografia</span>
+        <div class="vp-rating">
+          <span class="vp-star">&#9733;</span>
+          <span class="vp-star">&#9733;</span>
+          <span class="vp-star">&#9733;</span>
+          <span class="vp-star">&#9733;</span>
+          <span class="vp-star">&#9733;</span>
+          <span class="vp-rating-val">5.0</span>
+        </div>
+        <div class="vp-book-sinopse">
+          <h3>Sinopse</h3>
+            <p>"Scar Tissue é a autobiografia de Anthony Kiedis, vocalista da icônica banda Red Hot Chili Peppers. Com uma escrita sincera e crua, Kiedis narra sua vida turbulenta, marcada por excessos, desafios pessoais e a busca incessante pela arte. O livro mergulha na história de sua infância, marcada por um relacionamento complicado com o pai, e segue por sua adolescência e vida adulta, repleta de vícios, superações e sucessos com a banda. Através de suas memórias, Kiedis revela os bastidores do nascimento do Red Hot Chili Peppers e o impacto que a música teve em sua vida, ao mesmo tempo em que compartilha os momentos sombrios e as dificuldades que enfrentou devido ao abuso de substâncias. Ele fala sobre suas batalhas com o vício, a dor da perda e como a música foi, ao mesmo tempo, sua salvação e sua maior luta. Scar Tissue não é apenas uma biografia de um músico famoso, mas também um relato de autoconhecimento, redenção e resiliência. A narrativa é brutalmente honesta, mas também cheia de momentos de lucidez e reflexão sobre a vida, a fama e os próprios demônios internos. O livro, por vezes sombrio e outras emocionantes, é uma jornada pelas cicatrizes físicas e emocionais que Kiedis carrega, mas também uma celebração da música e da amizade que o mantiveram vivo."</p>
+        </div>
+        <div class="vp-book-extra">
+          <ul>
+            <li><strong>Editora:</strong>Editora Objetiva.</li>
+            <li><strong>Páginas:</strong> 448</li>
+            <li><strong>Ano:</strong>2005</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <section class="vp-comments-wrap">
+      <h3>Comentários</h3>
+      <form class="vp-comment-form" id="comment-form">
+        <input type="text" id="comment-name" placeholder="Seu nome" required>
+        <textarea id="comment-text" placeholder="Escreva seu comentário..." required></textarea>
+        <button type="submit">Enviar</button>
+      </form>
+      <div class="vp-comments-list" id="comments-list">
+        <!-- comentários aparecem aqui -->
+      </div>
+    </section>
+  </main>
+  <footer class="vp-footer">
+    <span>ReadZone &copy; 2025 • Todos os direitos reservados</span>
+  </footer>
+  <script>
+    // Comentários em localStorage por livro
+    const bookKey = "comments_vencendoopassado";
+    function renderComments() {
+      const comments = JSON.parse(localStorage.getItem(bookKey) || "[]");
+      const list = document.getElementById("comments-list");
+      list.innerHTML = comments.length
+        ? comments.map(c => `<div class="vp-comment"><strong>${c.name}:</strong> <span>${c.text}</span></div>`).join("")
+        : "<div class='vp-comment-empty'>Nenhum comentário ainda.</div>";
+    }
+    document.getElementById("comment-form").addEventListener("submit", function(e){
+      e.preventDefault();
+      const name = document.getElementById("comment-name").value.trim();
+      const text = document.getElementById("comment-text").value.trim();
+      if(name && text){
+        const prev = JSON.parse(localStorage.getItem(bookKey) || "[]");
+        prev.push({name, text});
+        localStorage.setItem(bookKey, JSON.stringify(prev));
+        this.reset();
+        renderComments();
+      }
+    });
+    renderComments();
+  </script>
+</body>
+</html>
