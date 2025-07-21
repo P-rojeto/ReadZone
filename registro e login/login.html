@@ -13,7 +13,11 @@
         <form>
             <h1>Login ReadZone</h1>
             <div class="input-box">
-                <input placeholder="Usuário" type="email">
+                <input placeholder="E-mail" type="email"> 
+                <i class="bx bxs-user"></i>
+            </div>
+            <div class="input-box">
+                <input placeholder="Usuário" type="text">
                 <i class="bx bxs-user"></i>
             </div>
             <div class="input-box">
@@ -37,7 +41,7 @@
     </main>
     <script>
     document.querySelector('form').addEventListener('submit', function(e) {
-      e.preventDefault();
+    e.preventDefault();
       const usuario = document.querySelector('input[placeholder="Usuário"]').value;
       const senha = document.querySelector('input[placeholder="Senha"]').value;
 

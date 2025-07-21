@@ -15,6 +15,32 @@ const closeAuthorsSlideout = document.getElementById('close-authors-slideout');
 const categoryList = document.getElementById('category-list');
 const ratingStars = document.querySelectorAll('#rating-filter span');
 const clearRating = document.getElementById('clear-rating');
+
+// Exemplo de como alterar o localStorage para salvar o usuário
+function salvarUsuario(usuario, email, senha) {
+  localStorage.setItem('readzone_user', JSON.stringify({ usuario, email, senha }));
+}
+
+const logged = localStorage.getItem('readzone_logged');
+const user = localStorage.getItem('readzone_logged_user');
+
+function loginUsuario() {
+  const email = document.querySelector('input[placeholder="E-mail"]').value;
+  const senha = document.querySelector('input[placeholder="Senha"]').value;
+  const userData = JSON.parse(localStorage.getItem('readzone_user'));
+  if (userData && userData.email === email && userData.senha === senha) {
+    localStorage.setItem('readzone_logged', 'true');
+    localStorage.setItem('readzone_logged_user', userData.usuario);
+    window.location.href = '../index.html';
+  } else {
+    alert('Usuário ou senha inválidos!');
+  }
+}
+
+function logoutUsuario() {
+  localStorage.removeItem('readzone_logged');
+  localStorage.removeItem('readzone_logged_user');
+}
 const pagination = document.getElementById('pagination');
 const favModal = document.getElementById('fav-modal');
 const favBooksList = document.getElementById('fav-books-list');
@@ -34,7 +60,12 @@ closeProfileModal.addEventListener('click', () => {
 });
 
 profileBtn.addEventListener('click', () => {
-  window.location.href = '/registro e login/login.html';
+  window.location.href = '/registroelogin/login.html';
+
+  const category = 'algumaCategoria';
+  const fileName = 'algumArquivo.html';
+  console.log(`/pastas de categorias/${category}/${fileName}`);
+  window.location.href = `/pastasdecategorias/${category}/${fileName}`;
 });
 profileModal.addEventListener('click', (e) => {
   if (e.target === profileModal) {
@@ -184,7 +215,7 @@ function renderBooks() {
     const card = document.createElement('div');
     card.className = 'book-card';
     card.innerHTML = `
-      <img src="${book.cover}" alt="Capa de ${book.title}" class="book-cover"/>
+      <img src="${book.cover}" alt="Capa de ${book.title}" class="book-cover" data-book-id="${book.id}"/>
       <div class="book-title">${book.title}</div>
       <div class="book-author">${book.author}</div>
       <div class="book-category">${book.category}</div>
@@ -194,6 +225,21 @@ function renderBooks() {
       </button>
     `;
     booksGrid.appendChild(card);
+  });
+
+  // Evento de clique na capa do livro, com tratamento de acentos e sem espaços:
+  booksGrid.querySelectorAll('.book-cover').forEach(img => {
+    img.addEventListener('click', function() {
+      const id = Number(this.getAttribute('data-book-id'));
+      let targetBook = window.booksData.find(b => b.id === id);
+      if (!targetBook) return;
+      let category = targetBook.category.toLowerCase().replace(/\s+/g, '');
+      let fileName = targetBook.title
+        .normalize('NFD').replace(/[\u0300-\u036f]/g, '') // remove acentos
+        .toLowerCase().replace(/\s+/g, '') + '.html';
+      console.log(`/pastasdecategorias/`);
+      window.location.href = `/pastasdecategorias/${category}/${fileName}`;
+    });
   });
 
   booksGrid.querySelectorAll('.add-cart-btn').forEach(btn => {
