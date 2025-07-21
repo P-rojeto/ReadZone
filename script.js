@@ -16,7 +16,7 @@ const categoryList = document.getElementById('category-list');
 const ratingStars = document.querySelectorAll('#rating-filter span');
 const clearRating = document.getElementById('clear-rating');
 
-// Exemplo de como alterar o localStorage para salvar o usuário
+
 function salvarUsuario(usuario, email, senha) {
   localStorage.setItem('readzone_user', JSON.stringify({ usuario, email, senha }));
 }
@@ -40,7 +40,9 @@ function loginUsuario() {
 function logoutUsuario() {
   localStorage.removeItem('readzone_logged');
   localStorage.removeItem('readzone_logged_user');
+  window.location.href = '/registroelogin/login.html'; 
 }
+
 const pagination = document.getElementById('pagination');
 const favModal = document.getElementById('fav-modal');
 const favBooksList = document.getElementById('fav-books-list');
@@ -61,11 +63,6 @@ closeProfileModal.addEventListener('click', () => {
 
 profileBtn.addEventListener('click', () => {
   window.location.href = '/registroelogin/login.html';
-
-  const category = 'algumaCategoria';
-  const fileName = 'algumArquivo.html';
-  console.log(`/pastas de categorias/${category}/${fileName}`);
-  window.location.href = `/pastasdecategorias/${category}/${fileName}`;
 });
 profileModal.addEventListener('click', (e) => {
   if (e.target === profileModal) {
