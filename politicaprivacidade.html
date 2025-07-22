@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Política de Privacidade - ReadZone</title>
-  <!-- FontAwesome CDN -->
   <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
@@ -58,7 +57,7 @@
       box-shadow: 0 6px 12px rgba(255, 0, 0, 0.05);
       opacity: 1;
       transition: opacity 0.4s ease;
-      min-height: 500px; /* evita salto de layout */
+      min-height: 500px; 
     }
 
     main.fade-out {
@@ -199,7 +198,7 @@
     function toggleLang() {
       const privacy = document.getElementById('privacy');
 
-      // efeito fade out
+     
       privacy.classList.add('fade-out');
 
       setTimeout(() => {
@@ -328,7 +327,7 @@ A
           `;
           privacy.lang = 'pt';
         }
-        // efeito fade in
+
         privacy.classList.remove('fade-out');
       }, 400);
     }
