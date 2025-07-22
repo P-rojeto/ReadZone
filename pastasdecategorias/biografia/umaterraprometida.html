@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Uma Terra Prometida• ReadZone</title>
+  <link rel="icon" type="image/jpeg" href="/imagens/símbolo.png"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Merriweather:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/pastasdecategorias/paginas.css"/>''>
+</head>
+<body>
+  <header class="vp-header">
+    <div class="vp-logo-title">
+      <img src="/imagens/símbolo.png" class="vp-logo" alt="ReadZone Logo">
+      <span class="vp-title">ReadZone</span>
+    </div>
+    <nav class="vp-nav">
+      <a href="/index.html">Início</a>
+      <a href="/livros.html">Livros</a></nav>
+  </header>
+  <main class="vp-main">
+    <section class="vp-book-info">
+      <div class="vp-book-cover">
+        <img src="https://m.media-amazon.com/images/I/71ZCGlZewLL.jpg" alt="Capa de Uma Terra Prometida">
+      </div>
+      <div class="vp-book-details">
+        <h1>Uma Terra Prometida</h1>
+        <h2>Barack Obama</h2>
+        <span class="vp-category">Biografia</span>
+        <div class="vp-rating">
+          <span class="vp-star">&#9733;</span>
+          <span class="vp-star">&#9733;</span>
+          <span class="vp-star">&#9733;</span>
+          <span class="vp-star">&#9733;</span>
+          <span class="vp-star">&#9733;</span>
+          <span class="vp-rating-val">5.0</span>
+        </div>
+        <div class="vp-book-sinopse">
+          <h3>Sinopse</h3>
+            <p>"Uma Terra Prometida é o primeiro volume das memórias presidenciais de Barack Obama, em que ele narra sua trajetória desde os primeiros anos de vida até o final do seu primeiro mandato como presidente dos Estados Unidos. Com uma narrativa envolvente e reflexiva, Obama compartilha os desafios, as vitórias e as lições aprendidas ao longo de sua jornada política, desde sua infância em Hawaii até o cenário mundial que enfrentou ao se tornar o 44º presidente dos EUA. O livro oferece uma visão detalhada sobre os bastidores da política americana, incluindo os momentos decisivos que marcaram seu governo, como a crise econômica de 2008, a aprovação da reforma da saúde (Obamacare), e as complexas relações internacionais que definiram sua presidência. Além disso, Obama reflete sobre as dificuldades de se manter fiel a seus valores enquanto lidava com as pressões do poder, as críticas da oposição e as divisões internas do país.Ao longo das páginas, Obama também compartilha momentos pessoais, como seu relacionamento com Michelle, suas lutas internas sobre o que significa ser um líder e os dilemas enfrentados enquanto conciliava sua vida familiar com os compromissos presidenciais. Uma Terra Prometida é uma obra que não só descreve a história política recente, mas também oferece um olhar humano sobre o peso da liderança, da responsabilidade e das escolhas que definem uma presidência."</p>
+        </div>
+        <div class="vp-book-extra">
+          <ul>
+            <li><strong>Editora:</strong>Editora Objetiva.</li>
+            <li><strong>Páginas:</strong> 624</li>
+            <li><strong>Ano:</strong>2020</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <section class="vp-comments-wrap">
+      <h3>Comentários</h3>
+      <form class="vp-comment-form" id="comment-form">
+        <input type="text" id="comment-name" placeholder="Seu nome" required>
+        <textarea id="comment-text" placeholder="Escreva seu comentário..." required></textarea>
+        <button type="submit">Enviar</button>
+      </form>
+      <div class="vp-comments-list" id="comments-list">
+        <!-- comentários aparecem aqui -->
+      </div>
+    </section>
+  </main>
+  <footer class="vp-footer">
+    <span>ReadZone &copy; 2025 • Todos os direitos reservados</span>
+  </footer>
+  <script>
+    // Comentários em localStorage por livro
+    const bookKey = "comments_vencendoopassado";
+    function renderComments() {
+      const comments = JSON.parse(localStorage.getItem(bookKey) || "[]");
+      const list = document.getElementById("comments-list");
+      list.innerHTML = comments.length
+        ? comments.map(c => `<div class="vp-comment"><strong>${c.name}:</strong> <span>${c.text}</span></div>`).join("")
+        : "<div class='vp-comment-empty'>Nenhum comentário ainda.</div>";
+    }
+    document.getElementById("comment-form").addEventListener("submit", function(e){
+      e.preventDefault();
+      const name = document.getElementById("comment-name").value.trim();
+      const text = document.getElementById("comment-text").value.trim();
+      if(name && text){
+        const prev = JSON.parse(localStorage.getItem(bookKey) || "[]");
+        prev.push({name, text});
+        localStorage.setItem(bookKey, JSON.stringify(prev));
+        this.reset();
+        renderComments();
+      }
+    });
+    renderComments();
+  </script>
+</body>
+</html>

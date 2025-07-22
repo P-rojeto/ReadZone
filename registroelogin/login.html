@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="login.css">
+  <title>ReadZone Login</title>
+</head>
+<body>
+  <main class="container">
+    <form>
+      <h1>Login ReadZone</h1>
+      <div class="input-box">
+        <input placeholder="E-mail" type="email" required>
+        <i class="bx bxs-user"></i>
+      </div>
+      <div class="input-box">
+        <input placeholder="Senha" type="password" required>
+        <i class="bx bxs-lock-alt"></i>
+      </div>
+      <div class="remember-forgot">
+        <label>
+          <input type="checkbox"> Lembrar minha senha
+        </label>
+        <a href="#">Esqueci minha senha</a>
+      </div>
+      <button type="submit" class="login">Login</button>
+      <div class="register-link">
+        <p>Não tem uma conta? <a href="registro.html">Cadastre-se</a></p>
+      </div>
+    </form>
+  </main>
+  <script>
+    document.querySelector('form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const email = document.querySelector('input[placeholder="E-mail"]').value;
+      const senha = document.querySelector('input[placeholder="Senha"]').value;
+
+      const userData = JSON.parse(localStorage.getItem('readzone_user'));
+      if (userData && userData.email === email && userData.senha === senha) {
+        localStorage.setItem('readzone_logged', 'true');
+        localStorage.setItem('readzone_logged_user', userData.usuario);
+        window.location.href = '../index.html';
+      } else {
+        alert('E-mail ou senha inválidos!');
+      }
+    });
+  </script>
+</body>
+</html>

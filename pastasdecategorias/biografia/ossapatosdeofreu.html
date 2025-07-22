@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Os Sapatos de Orfeu – Biografia de Carlos Drummond de Andrade • ReadZone</title>
+  <link rel="icon" type="image/jpeg" href="/imagens/símbolo.png"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Merriweather:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/pastasdecategorias/paginas.css"/>''>
+</head>
+<body>
+  <header class="vp-header">
+    <div class="vp-logo-title">
+      <img src="/imagens/símbolo.png" class="vp-logo" alt="ReadZone Logo">
+      <span class="vp-title">ReadZone</span>
+    </div>
+    <nav class="vp-nav">
+      <a href="/index.html">Início</a>
+      <a href="/livros.html">Livros</a></nav>
+  </header>
+  <main class="vp-main">
+    <section class="vp-book-info">
+      <div class="vp-book-cover">
+        <img src="https://m.media-amazon.com/images/I/81qfEU0WapL._UF1000,1000_QL80_.jpg" alt="Capa de Os Sapatos de Orfeu">
+      </div>
+      <div class="vp-book-details">
+        <h1>Os Sapatos de Orfeu Biografia de Carlos Drummond de Andrade </h1>
+        <h2>Gilda de Melo</h2>
+        <span class="vp-category">Biografia</span>
+        <div class="vp-rating">
+          <span class="vp-star">&#9733;</span>
+          <span class="vp-star">&#9733;</span>
+          <span class="vp-star">&#9733;</span>
+          <span class="vp-star">&#9733;</span>
+          <span class="vp-star">&#9733;</span>
+          <span class="vp-rating-val">5.0</span>
+        </div>
+        <div class="vp-book-sinopse">
+          <h3>Sinopse</h3>
+            <p>"Os Sapatos de Orfeu é uma biografia de Carlos Drummond de Andrade, um dos maiores poetas brasileiros do século XX, escrita por Gilda de Mello e Souza. A obra oferece um retrato profundo e sensível da vida e da obra de Drummond, explorando suas experiências, influências e a formação de sua poesia única. Gilda traça a trajetória do poeta desde sua infância em Itabira, Minas Gerais, até sua ascensão como figura central na literatura brasileira, e revela detalhes íntimos de sua vida pessoal e artística. O título, inspirado por um dos mais famosos poemas de Drummond, faz referência à imagem do poeta como uma figura que, embora imortalizada na literatura, é ao mesmo tempo humana, com todas as suas fragilidades e dilemas. A biografia é recheada de momentos de reflexão sobre a complexidade de ser um poeta em um país e uma época tão desafiadores, além de explorar o impacto da política, da literatura e da cultura brasileira na obra do autor. Os Sapatos de Orfeu é uma análise detalhada de como o universo íntimo e pessoal de Drummond se reflete em seus poemas, além de destacar sua evolução ao longo do tempo. Gilda de Mello e Souza combina pesquisa cuidadosa e sensibilidade literária para criar um livro que é, ao mesmo tempo, um estudo profundo da obra de Drummond e uma homenagem a sua grandeza como poeta e ser humano."</p>
+        </div>
+        <div class="vp-book-extra">
+          <ul>
+            <li><strong>Editora:</strong>Editora Cia das Letras.</li>
+            <li><strong>Páginas:</strong> 624</li>
+            <li><strong>Ano:</strong>1993</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <section class="vp-comments-wrap">
+      <h3>Comentários</h3>
+      <form class="vp-comment-form" id="comment-form">
+        <input type="text" id="comment-name" placeholder="Seu nome" required>
+        <textarea id="comment-text" placeholder="Escreva seu comentário..." required></textarea>
+        <button type="submit">Enviar</button>
+      </form>
+      <div class="vp-comments-list" id="comments-list">
+        <!-- comentários aparecem aqui -->
+      </div>
+    </section>
+  </main>
+  <footer class="vp-footer">
+    <span>ReadZone &copy; 2025 • Todos os direitos reservados</span>
+  </footer>
+  <script>
+    // Comentários em localStorage por livro
+    const bookKey = "comments_vencendoopassado";
+    function renderComments() {
+      const comments = JSON.parse(localStorage.getItem(bookKey) || "[]");
+      const list = document.getElementById("comments-list");
+      list.innerHTML = comments.length
+        ? comments.map(c => `<div class="vp-comment"><strong>${c.name}:</strong> <span>${c.text}</span></div>`).join("")
+        : "<div class='vp-comment-empty'>Nenhum comentário ainda.</div>";
+    }
+    document.getElementById("comment-form").addEventListener("submit", function(e){
+      e.preventDefault();
+      const name = document.getElementById("comment-name").value.trim();
+      const text = document.getElementById("comment-text").value.trim();
+      if(name && text){
+        const prev = JSON.parse(localStorage.getItem(bookKey) || "[]");
+        prev.push({name, text});
+        localStorage.setItem(bookKey, JSON.stringify(prev));
+        this.reset();
+        renderComments();
+      }
+    });
+    renderComments();
+  </script>
+</body>
+</html>
