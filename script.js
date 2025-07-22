@@ -16,7 +16,7 @@ const categoryList = document.getElementById('category-list');
 const ratingStars = document.querySelectorAll('#rating-filter span');
 const clearRating = document.getElementById('clear-rating');
 
-// Exemplo de como alterar o localStorage para salvar o usuário
+
 function salvarUsuario(usuario, email, senha) {
   localStorage.setItem('readzone_user', JSON.stringify({ usuario, email, senha }));
 }
@@ -25,9 +25,10 @@ const logged = localStorage.getItem('readzone_logged');
 const user = localStorage.getItem('readzone_logged_user');
 
 function loginUsuario() {
-  const email = document.querySelector('input[placeholder="E-mail"]').value;
-  const senha = document.querySelector('input[placeholder="Senha"]').value;
+  const email = document.getElementById('login-email').value;
+  const senha = document.getElementById('login-senha').value;
   const userData = JSON.parse(localStorage.getItem('readzone_user'));
+
   if (userData && userData.email === email && userData.senha === senha) {
     localStorage.setItem('readzone_logged', 'true');
     localStorage.setItem('readzone_logged_user', userData.usuario);
@@ -40,7 +41,9 @@ function loginUsuario() {
 function logoutUsuario() {
   localStorage.removeItem('readzone_logged');
   localStorage.removeItem('readzone_logged_user');
+  window.location.href = '/registroelogin/login.html';
 }
+
 const pagination = document.getElementById('pagination');
 const favModal = document.getElementById('fav-modal');
 const favBooksList = document.getElementById('fav-books-list');
