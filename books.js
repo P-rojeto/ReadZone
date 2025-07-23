@@ -158,7 +158,7 @@ window.booksData = [
   {
     id: 20,
     cover: "https://m.media-amazon.com/images/I/81aVPLJSGSL.jpg",
-    title: "12 contos peregrinos",
+    title: "Doze Contos Peregrinos",
     author: "Gabriel García Márquez",
     category: "Contos",
     stars: 4
@@ -199,7 +199,7 @@ window.booksData = [
   {
     id: 25,
     cover: "https://m.media-amazon.com/images/I/81mPXoLOOXL._UF1000,1000_QL80_.jpg",
-    title: "Antes que o café esfrie: 1",
+    title: "Antes que o café esfrie",
     author: "Toshikazu Kawaguchi",
     category: "Drama",
     stars: 4
@@ -224,7 +224,7 @@ window.booksData = [
   {
     id: 28,
     cover: "https://m.media-amazon.com/images/I/81IB63g5V2L._UF894,1000_QL80_.jpg",
-    title: "Me Chame pelo Seu Nome",
+    title: "Me Chame Pelo Seu Nome",
     author: "André Aciman",
     category: "Romance",
     stars: 4
@@ -239,7 +239,7 @@ window.booksData = [
   },
   {
     id: 30,
-    cover: "https://images.tcdn.com.br/img/img_prod/1042630/o_visconde_que_me_amava_os_bridgertons_vol_2_177385_1_4c0c710d98776e81d9c65e9568513362.jpg",
+    cover: "'https://images.tcdn.com.br/img/img_prod/1042630/o_visconde_que_me_amava_os_bridgertons_vol_2_177385_1_4c0c710d98776e81d9c65e9568513362.jpg'",
     title: "O Visconde que me Amava",
     author: "Julia Quinn",
     category: "Romance",
