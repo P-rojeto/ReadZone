@@ -11,7 +11,7 @@ window.booksData = [
   {
     id: 2,
     cover: "https://m.media-amazon.com/images/I/819ERrDHRcL._UF1000,1000_QL80_.jpg",
-    title: "Mais esperto que o Diabo",
+    title: "Mais Esperto que o Diabo",
     author: "Napoleon Hill",
     category: "Autoajuda",
     stars: 4
@@ -19,7 +19,7 @@ window.booksData = [
   {
     id: 3,
     cover: "https://m.media-amazon.com/images/I/81eT2pjx4jL._UF350,350_QL50_.jpg",
-    title: "hábitos Atômicos",
+    title: "Hábitos Atômicos",
     author: "James Clear",
     category: "Autoajuda",
     stars: 5
@@ -44,7 +44,7 @@ window.booksData = [
   {
     id: 6,
     cover: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRS8XNSPZjCytOyNxUI5YaNiXgmwIsQkTrmcQ&s",
-    title: "Ailha do Tesouro",
+    title: "A ilha do Tesouro",
     author: "Robert Louis Stevenson",
     category: "Aventura",
     stars: 4
@@ -52,7 +52,7 @@ window.booksData = [
   {
     id: 7,
     cover: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR542Ok-mQvfjp8CRrQkzN_xvRld-lW0f_exg&s",
-    title: "Prisioneiros na biblioteca",
+    title: "Prisioneiros na Biblioteca",
     author: "Manuel Filho",
     category: "Aventura",
     stars: 2
@@ -101,7 +101,7 @@ window.booksData = [
   {
     id: 13,
     cover: "https://m.media-amazon.com/images/I/71ZCGlZewLL.jpg",
-    title: "Uma terra prometida",
+    title: "Uma Terra Prometida",
     author: "Barack Obama",
     category: "Biografia",
     stars: 3
@@ -134,7 +134,7 @@ window.booksData = [
   {
     id: 17,
     cover: "https://m.media-amazon.com/images/I/81ZRLMlwSuL._UF1000,1000_QL80_.jpg",
-    title: "Os cem melhores contos brasileiros do século",
+    title: "Os Cem Melhores ContosBrasileiros do Século",
     author: "Ítalo Moriconi",
     category: "Contos",
     stars: 4
@@ -142,7 +142,7 @@ window.booksData = [
   {
     id: 18,
     cover: "https://m.media-amazon.com/images/I/71rYa+Q9jCL._UF1000,1000_QL80_.jpg",
-    title: "Contos clássicos de terror",
+    title: "Contos clássicos de Terror",
     author: "Julia Jeha",
     category: "Contos",
     stars: 5
@@ -150,7 +150,7 @@ window.booksData = [
   {
     id: 19,
     cover: "https://m.media-amazon.com/images/I/51RjYjNVpRL.jpg",
-    title: "Olhos d'água",
+    title: "Olhos D'água",
     author: "Conceição Evaristo",
     category: "Contos",
     stars: 3
@@ -167,7 +167,7 @@ window.booksData = [
   {
     id: 21,
     cover: "https://m.media-amazon.com/images/I/71lqmkoeosL.jpg",
-    title: "O morro dos ventos uivantes",
+    title: "OMorro dos Ventos Uivantes",
     author: "Emily Brontë",
     category: "Drama",
     stars: 5
