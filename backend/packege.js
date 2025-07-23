@@ -1,0 +1,17 @@
+{
+  "name"; "readzone-backend",
+  "version"; "1.0.0",
+  "description"; "Backend para site ReadZone",
+  "main"; "server.js",
+  "scripts"; {
+    "start"; "node server.js"
+  }
+  "dependencies"; {
+    "bcrypt"; "^5.1.0",
+    "body-parser"; "^1.20.2",
+    "cors"; "^2.8.5",
+    "dotenv"; "^16.3.1",
+    "express"; "^4.18.2",
+    "mysql2"; "^3.3.3"
+  }
+}

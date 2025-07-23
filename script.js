@@ -185,7 +185,15 @@ function getFilteredBooks() {
       filteredBooks = filteredBooks.sort((a, b) => a.id - b.id);
   }
   return filteredBooks;
-}
+}const categoryFolderMap = {
+  autoajuda: 'autoajuda',
+  aventura: 'aventura',
+  biografia: 'biografia',
+  contos: 'contos',
+  drama: 'drama',
+  romance: 'romance'
+};
+
 function renderBooks() {
   booksGrid.innerHTML = '';
   let filteredBooks = getFilteredBooks();
@@ -232,11 +240,16 @@ function renderBooks() {
       let targetBook = window.booksData.find(b => b.id === id);
       if (!targetBook) return;
       let category = targetBook.category.toLowerCase().replace(/\s+/g, '');
-      let fileName = targetBook.title
-        .normalize('NFD').replace(/[\u0300-\u036f]/g, '') // remove acentos
-        .toLowerCase().replace(/\s+/g, '') + '.html';
-      console.log(`/pastasdecategorias/`);
-      window.location.href = `/pastasdecategorias/${category}/${fileName}`;
+let folder = categoryFolderMap[category];
+let fileName = targetBook.title
+  .normalize('NFD').replace(/[\u0300-\u036f]/g, '') // remove acentos
+  .toLowerCase().replace(/\s+/g, '') + '.html';
+
+if (folder) {
+  window.location.href = `/pastasdecategorias/${folder}/${fileName}`;
+} else {
+  console.error('Categoria não encontrada no mapa:', category);
+}
     });
   });
 

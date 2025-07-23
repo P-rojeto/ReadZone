@@ -1,97 +1,163 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sobre - ReadZone</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f9f9f9;
-      color: #333;
-      margin: 0;
-      padding: 0;
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Projeto ReadZone - Leitura para Todos</title>
+
+<style>
+  /* Reset básico */
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    background-color: #f9fafc;
+    color: #1a1a1a;
+  }
+
+  header {
+    background-color: #f6f8fa;
+    border-bottom: 1px solid #ddd;
+    padding: 12px 24px;
+    display: flex;
+    align-items: center;
+  }
+
+  header img.logo {
+    height: 40px;
+    margin-right: 12px;
+  }
+
+  header h1 {
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: #0b2240;
+  }
+
+  main {
+    max-width: 1024px;
+    margin: 24px auto;
+    padding: 0 16px 48px;
+  }
+
+  main h2 {
+    color: #0b2240;
+    font-weight: 700;
+    font-size: 1.75rem;
+    margin-bottom: 20px;
+  }
+
+  section {
+    background-color: #fff;
+    padding: 20px 28px;
+    border-radius: 10px;
+    box-shadow: 0 1px 5px rgb(11 34 64 / 10%);
+    margin-bottom: 28px;
+  }
+
+  section h3 {
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: #0b2240;
+    margin-bottom: 14px;
+    border-bottom: 2px solid #edb934;
+    display: inline-block;
+    padding-bottom: 4px;
+  }
+
+  p {
+    line-height: 1.6;
+    font-size: 1rem;
+    color: #3a3a3a;
+    margin-top: 6px;
+  }
+
+  /* Destaques para algumas palavras (cor dourada) */
+  .highlight {
+    color: #d2a528;
+    font-weight: 600;
+  }
+
+  /* Lista sem marcadores */
+  ul {
+    padding-left: 1.2rem;
+    color: #3a3a3a;
+  }
+
+  ul li {
+    margin-bottom: 8px;
+    font-size: 1rem;
+  }
+
+  /* Footer simples */
+  footer {
+    text-align: center;
+    padding: 16px 0;
+    color: #777;
+    font-size: 0.9rem;
+    background: #f6f8fa;
+    border-top: 1px solid #ddd;
+    margin-top: 40px;
+  }
+
+  /* Responsividade simples */
+  @media (max-width: 600px) {
+    main {
+      margin: 12px;
+      padding: 0 12px 36px;
     }
-    header {
-      background-color: #0066cc;
-      color: white;
-      padding: 1em;
-      text-align: center;
+    header h1 {
+      font-size: 1.2rem;
     }
     section {
-      padding: 2em;
-      max-width: 800px;
-      margin: auto;
+      padding: 16px 20px;
     }
-    h2 {
-      color: #0066cc;
-    }
-    ul {
-      padding-left: 1.5em;
-    }
-    .membros {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1em;
-      margin-top: 1em;
-    }
-    .membro {
-      background-color: white;
-      border-radius: 10px;
-      padding: 1em;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    }
-    footer {
-      background-color: #eee;
-      text-align: center;
-      padding: 1em;
-      margin-top: 2em;
-    }
-  </style>
+  }
+</style>
+<a href="/index.html" class="nav-link active" id="nav-inicio">Início</a>
 </head>
 <body>
-  <header>
-    <h1>ReadZone - Sobre o Projeto</h1>
-  </header>
 
-  <section id="projeto">
-    <h2>Sobre o Projeto</h2>
-    <p>O <strong>ReadZone</strong> é uma plataforma online dedicada à <strong>venda de livros digitais e físicos</strong>. Nosso principal objetivo é oferecer uma experiência de compra acessível, prática e segura para todos os leitores. Com uma navegação intuitiva, buscamos conectar leitores a obras incríveis de forma moderna e eficiente.</p>
+<header>
+  <img class="logo" src="/imagens/símbolo.png" alt="Logo ReadZone" />
+  <h1>ReadZone</h1>
+</header>
+
+<main>
+  <h2>Leitura para Todos – Website de Livros com Acesso Fácil e Organizado</h2>
+
+  <section>
+    <h3>Nome do Projeto</h3>
+    <p><span class="highlight">ReadZone</span></p>
   </section>
 
-  <section id="objetivos">
-    <h2>Objetivos</h2>
-    <ul>
-      <li>Oferecer uma ampla variedade de livros digitais e físicos</li>
-      <li>Garantir uma navegação segura e intuitiva</li>
-      <li>Proporcionar uma plataforma de compra acessível e confiável</li>
-      <li>Incentivar a leitura por meio de promoções e sugestões personalizadas</li>
-    </ul>
+  <section>
+    <h3>Integrantes da Equipe</h3>
+    <p>Nicollas Anderson, Matheus Santiago e José Pedro</p>
   </section>
 
-  <section id="equipe">
-    <h2>Conheça a Equipe</h2>
-    <p>Nosso time é formado por estudantes comprometidos com a inovação e a educação digital. Cada membro contribui com suas habilidades para tornar o ReadZone uma realidade acessível a todos.</p>
-
-    <div class="membros">
-      <div class="membro">
-        <h3>Matheus Santiago</h3>
-        <p>Desenvolvedor Web responsável pela criação do site e das páginas de apresentação do projeto.</p>
-      </div>
-      <div class="membro">
-        <h3>Nome do colega 2</h3>
-        <p>Responsável pelo conteúdo e curadoria dos livros à venda.</p>
-      </div>
-      <div class="membro">
-        <h3>Nome do colega 3</h3>
-        <p>Designer da interface e experiência do usuário.</p>
-      </div>
-    </div>
+  <section>
+    <h3>Necessidade que Queremos Atender</h3>
+    <p>Queremos que as pessoas tenham acesso fácil e gratuito a e-books, para estudantes e leitores interessados em leituras.</p>
   </section>
 
-  <footer>
-    <p>ReadZone © 2025 - Projeto Acadêmico</p>
-    <p>Contato: contato@gmail.com</p>
-  </footer>
+  <section>
+    <h3>Por quê?</h3>
+    <p>Muitas pessoas querem ler mas não sabem onde encontrar livros gratuitamente e legalmente, na ReadZone os livros são organizados por ordem alfabética, gênero, autor e tipo que o faz ser um site leve e fácil de navegar.</p>
+  </section>
+
+  <section>
+    <h3>Problema que Queremos Resolver</h3>
+    <p>A dificuldade em acessar livros digitais de forma organizada e intuitiva, especialmente para estudantes que precisam de conteúdo acadêmico, livros de literatura e materiais extras, mas encontram plataformas confusas, com publicidade exagerada ou sem um bom sistema de busca e filtro.</p>
+  </section>
+</main>
+
+<footer>
+  &copy; 2025 ReadZone - Todos os direitos reservados
+</footer>
+
 </body>
 </html>
