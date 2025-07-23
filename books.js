@@ -134,7 +134,7 @@ window.booksData = [
   {
     id: 17,
     cover: "https://m.media-amazon.com/images/I/81ZRLMlwSuL._UF1000,1000_QL80_.jpg",
-    title: "Os Cem Melhores ContosBrasileiros do Século",
+    title: "Os Cem Melhores Contos Brasileiros do Século",
     author: "Ítalo Moriconi",
     category: "Contos",
     stars: 4
@@ -142,7 +142,7 @@ window.booksData = [
   {
     id: 18,
     cover: "https://m.media-amazon.com/images/I/71rYa+Q9jCL._UF1000,1000_QL80_.jpg",
-    title: "Contos clássicos de Terror",
+    title: "Contos Clássicos de Terror",
     author: "Julia Jeha",
     category: "Contos",
     stars: 5
@@ -158,7 +158,7 @@ window.booksData = [
   {
     id: 20,
     cover: "https://m.media-amazon.com/images/I/81aVPLJSGSL.jpg",
-    title: "12 contos peregrinos",
+    title: "Doze Contos Peregrinos",
     author: "Gabriel García Márquez",
     category: "Contos",
     stars: 4
@@ -167,7 +167,7 @@ window.booksData = [
   {
     id: 21,
     cover: "https://m.media-amazon.com/images/I/71lqmkoeosL.jpg",
-    title: "OMorro dos Ventos Uivantes",
+    title: "O Morro dos Ventos Uivantes",
     author: "Emily Brontë",
     category: "Drama",
     stars: 5
@@ -183,7 +183,7 @@ window.booksData = [
   {
     id: 23,
     cover: "https://m.media-amazon.com/images/I/81p79w-ownL._UF1000,1000_QL80_.jpg",
-    title: "Para sempre Alice",
+    title: "Para Sempre Alice",
     author: "Lisa Genova",
     category: "Drama",
     stars: 2
@@ -191,7 +191,7 @@ window.booksData = [
   {
     id: 24,
     cover: "https://m.media-amazon.com/images/I/810ru7lFZcS._UF894,1000_QL80_.jpg",
-    title: "Uma vida pequena",
+    title: "Uma Vida Pequena",
     author: "Hanya Yanagihara",
     category: "Drama",
     stars: 3
@@ -199,7 +199,7 @@ window.booksData = [
   {
     id: 25,
     cover: "https://m.media-amazon.com/images/I/81mPXoLOOXL._UF1000,1000_QL80_.jpg",
-    title: "Antes que o café esfrie: 1",
+    title: "Antes Que o Café Esfrie",
     author: "Toshikazu Kawaguchi",
     category: "Drama",
     stars: 4
@@ -224,7 +224,7 @@ window.booksData = [
   {
     id: 28,
     cover: "https://m.media-amazon.com/images/I/81IB63g5V2L._UF894,1000_QL80_.jpg",
-    title: "Me Chame pelo Seu Nome",
+    title: "Me Chame Pelo Seu Nome",
     author: "André Aciman",
     category: "Romance",
     stars: 4
