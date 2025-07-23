@@ -11,7 +11,6 @@
   --radius: 12px;
 }
 
-/* Body básico */
 body {
   font-family: 'Segoe UI', sans-serif;
   background: var(--light);
@@ -20,7 +19,6 @@ body {
   padding: 0;
 }
 
-/* Header */
 .vp-header {
   background: linear-gradient(90deg, var(--deep-blue) 70%, var(--navy) 100%);
   border-bottom: 2px solid var(--gold);
@@ -31,7 +29,6 @@ body {
   z-index: 10;
 }
 
-/* Logo reduzida */
 .vp-logo-title {
   display: flex;
   align-items: center;
@@ -57,7 +54,6 @@ body {
   text-shadow: 0 2px 8px #0002;
 }
 
-/* Navegação */
 .vp-nav {
   display: flex;
   gap: 22px;
@@ -80,7 +76,6 @@ body {
   background: #faf3dc44;
 }
 
-/* Main container */
 .vp-main {
   max-width: 980px;
   margin: 0 auto 34px auto;
@@ -88,7 +83,6 @@ body {
   z-index: 1;
 }
 
-/* Book Info */
 .vp-book-info {
   display: flex;
   gap: 48px;
@@ -188,7 +182,6 @@ body {
   font-weight: 600;
 }
 
-/* Comentários */
 .vp-comments-wrap {
   background: #fff;
   border-radius: 13px;

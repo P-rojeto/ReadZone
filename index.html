@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>ReadZone</title>
   <link rel="stylesheet" href="style.css"/>
-  <link rel="icon" type="image/jpeg" href="/imagens/símbolo.png"/>
+  <img src="/imagens/símbolo.png" class="mini-logo" alt="ReadZone Logo">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Merriweather:wght@700&display=swap" rel="stylesheet">
 </head>
 
@@ -30,26 +30,41 @@
         <button class="icon-btn" id="profile-btn" title="Login">👤</button>
       </div>
       <script>
-        window.addEventListener('DOMContentLoaded', function() {
-          const logged = localStorage.getItem('readzone_logged');
-          const user = localStorage.getItem('readzone_logged_user');
-          const profileBtn = document.getElementById('profile-btn');
-          if (profileBtn) {
-        if (logged && user) {
-          profileBtn.innerText = user[0].toUpperCase(); // Mostra a inicial do usuário
-          profileBtn.title = 'Perfil de ' + user;
-          profileBtn.onclick = function() {
-            alert('Você já está logado como ' + user);
-          };
-        } else {
-          profileBtn.innerText = '👤';
-          profileBtn.title = 'Login';
-          profileBtn.onclick = function() {
-            window.location.href = '/registro e login/login.html';
-          };
+       window.addEventListener('DOMContentLoaded', function() {
+  const logged = localStorage.getItem('readzone_logged');
+  const user = localStorage.getItem('readzone_logged_user');
+  const profileBtn = document.getElementById('profile-btn');
+  
+  if (profileBtn) {
+    if (logged && user) {
+      profileBtn.innerText = user[0].toUpperCase();
+      profileBtn.title = 'Perfil de ' + user;
+      profileBtn.onclick = function(e) {
+        e.stopPropagation();
+        document.getElementById('profile-dropdown').classList.toggle('show');
+      };
+    } else {
+      profileBtn.innerText = '👤';
+      profileBtn.title = 'Login';
+      profileBtn.onclick = function() {
+        window.location.href = '/registro e login/login.html';
+      };
+    }
+  }
+
+  // Fechar dropdown ao clicar fora
+  window.onclick = function(event) {
+    if (!event.target.matches('.icon-btn')) {
+      const dropdowns = document.getElementsByClassName("dropdown-menu");
+      for (let i = 0; i < dropdowns.length; i++) {
+        const openDropdown = dropdowns[i];
+        if (openDropdown.classList.contains('show')) {
+          openDropdown.classList.remove('show');
         }
-          }
-        });
+      }
+    }
+  };
+});
       </script>
     </div>
     <div class="search-bar-wrap">
@@ -111,7 +126,6 @@
     <h2>Perfil</h2>
     <div id="profile-content">
       <p>Bem-vindo! Faça login para acessar seu perfil.</p>
-      <!-- Aqui você pode colocar um formulário de login futuramente -->
     </div>
   </div>
 </div>

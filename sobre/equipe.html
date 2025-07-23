@@ -1,78 +1,172 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Equipe ReadZone</title>
-  <a href="/index.html">Início</a>
+  <link rel="stylesheet" href="/links uteis/dois.css" />
   <style>
     body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #ffffff;
       margin: 0;
-      min-height: 100vh;
-      background-color: #fafbfc;
-      font-family: 'Segoe UI', 'Arial', sans-serif;
+      padding: 0;
+    }
+
+    .site-header {
+      background: #222;
+      color: #ffffff;
+      padding: 16px 0;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+
+    .header-content {
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: space-between;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
     }
-    .container {
+
+    .logo-top {
+      height: 48px;
+      margin-right: 16px;
+    }
+
+    .site-title {
+      font-size: 2rem;
+      font-weight: bold;
+      margin-right: auto;
+      margin-left: 8px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      padding: 6px 12px;
+      border-radius: 4px;
+      transition: background 0.2s;
+    }
+
+    nav a.active, nav a:hover {
+      background: #ff9800;
+      color: #222;
+    }
+
+    main {
+      max-width: 700px;
+      margin: 40px auto;
+      padding: 32px 24px;
       background: #fff;
-      box-shadow: 0 2px 8px #0001;
-      border-radius: 18px;
-      padding: 48px 40px 40px 40px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    h1 {
-      color: #1a1a1a;
-      font-size: 2.2rem;
-      margin-bottom: 30px;
-      letter-spacing: 1px;
-      font-weight: 700;
+      border-radius: 10px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.07);
       text-align: center;
     }
+
+    h1 {
+      font-size: 2rem;
+      color: #222;
+      margin-bottom: 30px;
+      font-weight: 700;
+    }
+
     .team-list {
       display: flex;
-      flex-direction: row;
-      gap: 32px;
-      align-items: center;
+      flex-wrap: wrap;
+      gap: 24px;
       justify-content: center;
     }
+
     .team-link {
       display: block;
-      padding: 14px 44px;
+      padding: 14px 32px;
       background: #fff;
       color: #23272f;
-      border: 2px solid #ffd94c;
+      border: 2px solid #ff9800;
       border-radius: 12px;
-      font-size: 1.25rem;
+      font-size: 1.2rem;
       text-decoration: none;
       font-weight: 500;
       box-shadow: 0 2px 6px #0001;
       transition: background 0.2s, color 0.2s, box-shadow 0.2s;
-      text-align: center;
-      letter-spacing: 0.5px;
     }
-    .team-link:hover, .team-link:focus {
-      background: #ffd94c;
-      color: #23272f;
+
+    .team-link:hover {
+      background: #ff9800;
+      color: #fff;
       box-shadow: 0 4px 14px #0002;
     }
-    a href {
-      text-decoration: none;
-      color: inherit;
+
+    .main-footer {
+      background: #222;
+      color: #fff;
       text-align: center;
+      padding: 18px 0;
+      margin-top: 40px;
+    }
+
+    .footer-logo-wrap {
+      vertical-align: middle;
+    }
+
+    .footer-logo {
+      height: 22px;
+      vertical-align: middle;
+      margin: 0 4px;
+    }
+
+    @media (max-width: 700px) {
+      .header-content, main {
+        flex-direction: column;
+        max-width: 98vw;
+        padding: 10px;
+      }
+
+      .site-title {
+        font-size: 1.3rem;
+      }
+
+      .team-link {
+        width: 100%;
+        text-align: center;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Equipe ReadZone</h1>
+  <header class="site-header">
+    <div class="header-content">
+      <img src="/imagens/símbolo.png" alt="ReadZone Logo" class="logo-top"/>
+      <span class="site-title">ReadZone</span>
+      <nav>
+        <ul>
+          <li><a href="/index.html">Início</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <h1>Nossa Equipe</h1>
     <div class="team-list">
       <a class="team-link" href="#">Matheus Santiago</a>
       <a class="team-link" href="#">Nicollas Anderson</a>
       <a class="team-link" href="#">José Pedro</a>
     </div>
-  </div>
+  </main>
+
+  <footer class="main-footer">
+    <div>© 2025 <span class="footer-logo-wrap"><img src="/imagens/símbolo.png" class="footer-logo" alt="Logo ReadZone"/></span> ReadZone. Todos os direitos reservados.</div>
+  </footer>
 </body>
 </html>
