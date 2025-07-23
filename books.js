@@ -239,7 +239,7 @@ window.booksData = [
   },
   {
     id: 30,
-    cover: "'https://images.tcdn.com.br/img/img_prod/1042630/o_visconde_que_me_amava_os_bridgertons_vol_2_177385_1_4c0c710d98776e81d9c65e9568513362.jpg'",
+    cover: "https://images.tcdn.com.br/img/img_prod/1042630/o_visconde_que_me_amava_os_bridgertons_vol_2_177385_1_4c0c710d98776e81d9c65e9568513362.jpg",
     title: "O Visconde que me Amava",
     author: "Julia Quinn",
     category: "Romance",
