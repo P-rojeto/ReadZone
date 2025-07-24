@@ -141,6 +141,8 @@ function renderCategoryList() {
   });
 }
 
+{}
+
 // --- Filtros e render da grid ---
 function getFilteredBooks() {
   let filteredBooks = window.booksData;
