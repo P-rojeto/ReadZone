@@ -1,54 +1,53 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="login.css">
-  <title>ReadZone Registro</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="login.css" />
+  <title>Cadastro - ReadZone</title>
 </head>
 <body>
   <main class="container">
-    <form>
-      <h1>Registro ReadZone</h1>
+    <form id="formRegistro">
+      <h1>Cadastro ReadZone</h1>
       <div class="input-box">
-        <input placeholder="Usuário" type="text" required>
-        <i class="bx bxs-user"></i>
+        <input type="text" placeholder="Nome de usuário" required />
       </div>
       <div class="input-box">
-        <input placeholder="E-mail" type="email" required>
-        <i class="bx bxs-envelope"></i>
+        <input type="email" placeholder="E-mail" required />
       </div>
       <div class="input-box">
-        <input placeholder="Senha" type="password" required>
-        <i class="bx bxs-lock-alt"></i>
+        <input type="password" placeholder="Senha" required />
       </div>
-      <div class="input-box">
-        <input placeholder="Confirmar senha" type="password" required>
-        <i class="bx bxs-lock"></i>
-      </div>
-      <button type="submit" class="register">Registrar</button>
+      <button type="submit" class="login">Cadastrar</button>
       <div class="register-link">
-        <p>Já possui uma conta? <a href="login.html">Login</a></p>
+        <p>Já tem conta? <a href="login.html">Entrar</a></p>
       </div>
     </form>
   </main>
   <script>
-    document.querySelector('form').addEventListener('submit', function(e) {
+    document.getElementById('formRegistro').addEventListener('submit', async function (e) {
       e.preventDefault();
-      const usuario = document.querySelector('input[placeholder="Usuário"]').value;
-      const email = document.querySelector('input[placeholder="E-mail"]').value;
-      const senha = document.querySelector('input[placeholder="Senha"]').value;
-      const confirmar = document.querySelector('input[placeholder="Confirmar senha"]').value;
-
-      if (senha !== confirmar) {
-        alert('As senhas não coincidem!');
-        return;
+      const inputs = document.querySelectorAll('.input-box input');
+      const usuario = inputs[0].value;
+      const email = inputs[1].value;
+      const senha = inputs[2].value;
+      try {
+        const resposta = await fetch('http://localhost:3000/registro', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ usuario, email, senha })
+        });
+        const dados = await resposta.json();
+        if (resposta.ok) {
+          alert(dados.mensagem);
+          window.location.href = 'login.html';
+        } else {
+          alert(dados.erro);
+        }
+      } catch {
+        alert('Erro ao conectar com o servidor.');
       }
-
-      localStorage.setItem('readzone_user', JSON.stringify({ usuario, email, senha }));
-      alert('Conta criada com sucesso! Faça login.');
-      window.location.href = 'login.html';
     });
   </script>
 </body>

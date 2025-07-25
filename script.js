@@ -1,3 +1,5 @@
+const userRoutes = require('./controllers/routes/user');
+app.use('/', userRoutes); // ou app.use('/api', userRoutes);
 const BOOKS_PER_PAGE = 12;
 
 const booksGrid = document.getElementById('books-grid');
@@ -140,6 +142,8 @@ function renderCategoryList() {
     });
   });
 }
+
+{}
 
 // --- Filtros e render da grid ---
 function getFilteredBooks() {
