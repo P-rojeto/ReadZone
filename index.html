@@ -23,7 +23,6 @@
         <a href="#" class="nav-link active" id="nav-inicio">Início</a>
         <a href="#" class="nav-link" id="nav-livros">Livros</a>
         <a href="#" class="nav-link" id="nav-autores">Autores</a>
-        <a href="#" class="nav-link" id="nav-contato">Contato</a>
        </nav>
       <div class="header-actions">
         <button class="icon-btn" id="fav-btn" title="Favoritos"><span id="fav-count">❤️</span></button>
@@ -48,6 +47,7 @@
       profileBtn.title = 'Login';
       profileBtn.onclick = function() {
         window.location.href = '/registro e login/login.html';
+        
       };
     }
   }
@@ -66,6 +66,22 @@
   };
 });
       </script>
+      <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const banner = document.getElementById('cookie-banner');
+    const accepted = localStorage.getItem('readzone_cookie_consent');
+
+    if (!accepted) {
+      banner.style.display = 'block';
+    }
+
+    document.getElementById('accept-cookies').addEventListener('click', () => {
+      localStorage.setItem('readzone_cookie_consent', 'true');
+      banner.style.display = 'none';
+    });
+  });
+</script>
+
     </div>
     <div class="search-bar-wrap">
       <input type="text" class="search-bar" id="header-search" placeholder="Buscar por título, autor ou categoria..." autocomplete="off"/>
@@ -151,6 +167,7 @@
         <ul>
           <li><a href="/termosdeuso.html">Termos de uso</a></li>
           <li><a href="/politicaprivacidade.html">Política de privacidade</a></li>
+          <li><a href="/faq.html">FAQ de perguntas</a></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -166,5 +183,10 @@
   <script src="https://unpkg.com/scrollreveal"></script>
   <script src="books.js"></script>
   <script src="script.js"></script>  
+  <div id="cookie-banner" style="position: fixed; bottom: 0; width: 100%; background-color: #222; color: #fff; padding: 1rem; text-align: center; display: none; z-index: 999;">
+  <span>Este site usa cookies para melhorar sua experiência. <a href="/politicaprivacidade.html" style="color: #d6b138;">Leia mais</a>.</span>
+  <button id="accept-cookies" style="margin-left: 15px; padding: 0.5rem 1rem; background: #d6b138; color: #000; border: none; border-radius: 5px;">Aceitar</button>
+</div>
+
 </body>
 </html>

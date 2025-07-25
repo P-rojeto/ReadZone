@@ -1,9 +1,9 @@
 {
   "name": "readzone-backend",
   "version": "1.0.0",
-  "main": "server.js",
+  "main": "controllers/server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node controllers/server.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
