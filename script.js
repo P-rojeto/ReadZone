@@ -1,5 +1,3 @@
-const userRoutes = require('./controllers/routes/user');
-app.use('/', userRoutes); // ou app.use('/api', userRoutes);
 const BOOKS_PER_PAGE = 12;
 
 const booksGrid = document.getElementById('books-grid');
@@ -17,7 +15,21 @@ const closeAuthorsSlideout = document.getElementById('close-authors-slideout');
 const categoryList = document.getElementById('category-list');
 const ratingStars = document.querySelectorAll('#rating-filter span');
 const clearRating = document.getElementById('clear-rating');
+const pagination = document.getElementById('pagination');
+const favModal = document.getElementById('fav-modal');
+const favBooksList = document.getElementById('fav-books-list');
+const closeFavModal = document.getElementById('close-fav-modal');
+const sectionTitle = document.getElementById('section-title');
+const profileBtn = document.getElementById('profile-btn');
+const profileDropdown = document.getElementById('profile-dropdown');
+const logoutBtn = document.getElementById('logout-btn');
 
+let selectedAuthor = null;
+let selectedCategory = null;
+let selectedRating = null;
+let searchTerm = "";
+let showingAllBooks = true;
+let currentPage = 1;
 
 function salvarUsuario(usuario, email, senha) {
   localStorage.setItem('readzone_user', JSON.stringify({ usuario, email, senha }));
@@ -46,45 +58,22 @@ function logoutUsuario() {
   window.location.href = '/registroelogin/login.html';
 }
 
-const pagination = document.getElementById('pagination');
-const favModal = document.getElementById('fav-modal');
-const favBooksList = document.getElementById('fav-books-list');
-const closeFavModal = document.getElementById('close-fav-modal');
-const sectionTitle = document.getElementById('section-title');
-const profileBtn = document.getElementById('profile-btn');
-const profileModal = document.getElementById('profile-modal');
-const closeProfileModal = document.getElementById('close-profile-modal');
-
-profileBtn.addEventListener('click', () => {
-  profileModal.classList.add('open');
-  document.body.style.overflow = 'hidden';
+logoutBtn?.addEventListener('click', logoutUsuario);
+profileBtn?.addEventListener('click', (e) => {
+  e.stopPropagation();
+  const isVisible = profileDropdown.style.display === 'block';
+  profileDropdown.style.display = isVisible ? 'none' : 'block';
 });
-closeProfileModal.addEventListener('click', () => {
-  profileModal.classList.remove('open');
-  document.body.style.overflow = '';
+document.addEventListener('click', () => {
+  profileDropdown.style.display = 'none';
 });
 
-profileBtn.addEventListener('click', () => {
-  window.location.href = '/registroelogin/login.html';
-});
-profileModal.addEventListener('click', (e) => {
-  if (e.target === profileModal) {
-    profileModal.classList.remove('open');
-    document.body.style.overflow = '';
-  }
-});
-let selectedAuthor = null;
-let selectedCategory = null;
-let selectedRating = null;
-let searchTerm = "";
-let showingAllBooks = true;
-let currentPage = 1;
-
-// --- Favoritos ---
 function getFavs() {
   try {
     return JSON.parse(localStorage.getItem('readzone_favs') || '[]');
-  } catch { return []; }
+  } catch {
+    return [];
+  }
 }
 function setFavs(favs) {
   localStorage.setItem('readzone_favs', JSON.stringify(favs));
@@ -98,7 +87,6 @@ function updateFavCount() {
   favCount.classList.toggle('has-favs', favs.length > 0);
 }
 
-// --- Autores (Slideout) ---
 function renderAuthorsSlideout() {
   const authors = Array.from(new Set(window.booksData.map(b => b.author))).sort();
   let ul = document.createElement('ul');
@@ -122,10 +110,9 @@ function renderAuthorsSlideout() {
   });
 }
 
-// --- Categorias (Sidebar) ---
 function renderCategoryList() {
   const cats = Array.from(new Set(window.booksData.map(b => b.category))).sort();
-  categoryList.innerHTML = `<li><label class="${selectedCategory === null?'selected-category':''}"><input type="radio" name="category" value="" ${selectedCategory===null?'checked':''}>Todas</label></li>`;
+  categoryList.innerHTML = `<li><label class="${selectedCategory === null ? 'selected-category' : ''}"><input type="radio" name="category" value="" ${selectedCategory === null ? 'checked' : ''}>Todas</label></li>`;
   cats.forEach(cat => {
     const li = document.createElement("li");
     li.innerHTML = `<label class="${selectedCategory === cat ? "selected-category" : ""}">
@@ -143,21 +130,12 @@ function renderCategoryList() {
   });
 }
 
-{}
-
-// --- Filtros e render da grid ---
 function getFilteredBooks() {
   let filteredBooks = window.booksData;
 
-  if (selectedAuthor) {
-    filteredBooks = filteredBooks.filter(book => book.author === selectedAuthor);
-  }
-  if (selectedCategory) {
-    filteredBooks = filteredBooks.filter(book => book.category === selectedCategory);
-  }
-  if (selectedRating) {
-    filteredBooks = filteredBooks.filter(book => book.stars >= selectedRating);
-  }
+  if (selectedAuthor) filteredBooks = filteredBooks.filter(book => book.author === selectedAuthor);
+  if (selectedCategory) filteredBooks = filteredBooks.filter(book => book.category === selectedCategory);
+  if (selectedRating) filteredBooks = filteredBooks.filter(book => book.stars >= selectedRating);
   if (searchTerm) {
     const term = searchTerm.trim().toLowerCase();
     filteredBooks = filteredBooks.filter(book =>
@@ -167,29 +145,17 @@ function getFilteredBooks() {
     );
   }
   switch (sortSelect.value) {
-    case "title-asc":
-      filteredBooks = filteredBooks.sort((a, b) => a.title.localeCompare(b.title));
-      break;
-    case "title-desc":
-      filteredBooks = filteredBooks.sort((a, b) => b.title.localeCompare(a.title));
-      break;
-    case "author-asc":
-      filteredBooks = filteredBooks.sort((a, b) => a.author.localeCompare(b.author));
-      break;
-    case "author-desc":
-      filteredBooks = filteredBooks.sort((a, b) => b.author.localeCompare(a.author));
-      break;
-    case "stars-desc":
-      filteredBooks = filteredBooks.sort((a, b) => b.stars - a.stars);
-      break;
-    case "stars-asc":
-      filteredBooks = filteredBooks.sort((a, b) => a.stars - b.stars);
-      break;
-    default:
-      filteredBooks = filteredBooks.sort((a, b) => a.id - b.id);
+    case "title-asc": return filteredBooks.sort((a, b) => a.title.localeCompare(b.title));
+    case "title-desc": return filteredBooks.sort((a, b) => b.title.localeCompare(a.title));
+    case "author-asc": return filteredBooks.sort((a, b) => a.author.localeCompare(b.author));
+    case "author-desc": return filteredBooks.sort((a, b) => b.author.localeCompare(a.author));
+    case "stars-desc": return filteredBooks.sort((a, b) => b.stars - a.stars);
+    case "stars-asc": return filteredBooks.sort((a, b) => a.stars - b.stars);
+    default: return filteredBooks.sort((a, b) => a.id - b.id);
   }
-  return filteredBooks;
-}const categoryFolderMap = {
+}
+
+const categoryFolderMap = {
   autoajuda: 'autoajuda',
   aventura: 'aventura',
   biografia: 'biografia',
@@ -200,17 +166,14 @@ function getFilteredBooks() {
 
 function renderBooks() {
   booksGrid.innerHTML = '';
-  let filteredBooks = getFilteredBooks();
-  let totalBooks = filteredBooks.length;
-  let totalPages = Math.max(1, Math.ceil(totalBooks / BOOKS_PER_PAGE));
+  const filteredBooks = getFilteredBooks();
+  const totalBooks = filteredBooks.length;
+  const totalPages = Math.max(1, Math.ceil(totalBooks / BOOKS_PER_PAGE));
 
-  // Paginação
-  let pageBooks = filteredBooks;
-  if (showingAllBooks) {
-    const start = (currentPage - 1) * BOOKS_PER_PAGE;
-    const end = start + BOOKS_PER_PAGE;
-    pageBooks = filteredBooks.slice(start, end);
-  }
+  const start = (currentPage - 1) * BOOKS_PER_PAGE;
+  const end = start + BOOKS_PER_PAGE;
+  const pageBooks = filteredBooks.slice(start, end);
+
   sectionTitle.textContent = selectedAuthor
     ? `Livros de ${selectedAuthor}`
     : (selectedCategory ? `Livros de ${selectedCategory}` : (searchTerm ? `Resultado da busca` : `Livros em Destaque`));
@@ -230,35 +193,32 @@ function renderBooks() {
       <div class="book-author">${book.author}</div>
       <div class="book-category">${book.category}</div>
       <div class="book-stars">${'★'.repeat(book.stars)}${'☆'.repeat(5 - book.stars)}</div>
-      <button class="add-cart-btn${isFav(book.id)?' favorited':''}" tabindex="0" data-book-id="${book.id}">
-        ${isFav(book.id)?'Favoritado':'Adicionar aos favoritos'}
+      <button class="add-cart-btn${isFav(book.id) ? ' favorited' : ''}" tabindex="0" data-book-id="${book.id}">
+        ${isFav(book.id) ? 'Favoritado' : 'Adicionar aos favoritos'}
       </button>
     `;
     booksGrid.appendChild(card);
   });
 
-  // Evento de clique na capa do livro, com tratamento de acentos e sem espaços:
   booksGrid.querySelectorAll('.book-cover').forEach(img => {
-    img.addEventListener('click', function() {
+    img.addEventListener('click', function () {
       const id = Number(this.getAttribute('data-book-id'));
       let targetBook = window.booksData.find(b => b.id === id);
       if (!targetBook) return;
       let category = targetBook.category.toLowerCase().replace(/\s+/g, '');
-let folder = categoryFolderMap[category];
-let fileName = targetBook.title
-  .normalize('NFD').replace(/[\u0300-\u036f]/g, '') // remove acentos
-  .toLowerCase().replace(/\s+/g, '') + '.html';
+      let folder = categoryFolderMap[category];
+      let fileName = targetBook.title
+        .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+        .toLowerCase().replace(/\s+/g, '') + '.html';
 
-if (folder) {
-  window.location.href = `/pastasdecategorias/${folder}/${fileName}`;
-} else {
-  console.error('Categoria não encontrada no mapa:', category);
-}
+      if (folder) {
+        window.location.href = `/pastasdecategorias/${folder}/${fileName}`;
+      }
     });
   });
 
   booksGrid.querySelectorAll('.add-cart-btn').forEach(btn => {
-    btn.addEventListener('click', function() {
+    btn.addEventListener('click', function () {
       const id = Number(this.getAttribute('data-book-id'));
       if (!isFav(id)) {
         setFavs([...getFavs(), id]);
@@ -271,7 +231,6 @@ if (folder) {
   });
 
   renderPagination(totalPages);
-
   if (window.ScrollReveal) {
     ScrollReveal().reveal('.book-card', {
       duration: 500,
@@ -283,9 +242,11 @@ if (folder) {
     });
   }
 }
+
 function renderPagination(totalPages) {
   pagination.innerHTML = "";
   if (totalPages <= 1) return;
+
   let prevBtn = document.createElement("button");
   prevBtn.innerHTML = "&#8592;";
   prevBtn.disabled = currentPage === 1;
@@ -312,7 +273,6 @@ function renderPagination(totalPages) {
   pagination.appendChild(nextBtn);
 }
 
-// --- Avaliação (estrelas) ---
 ratingStars.forEach((star, idx) => {
   star.addEventListener('click', () => {
     selectedRating = 5 - idx;
@@ -330,7 +290,6 @@ clearRating.addEventListener('click', () => {
   renderBooks();
 });
 
-// --- Navegação e eventos globais ---
 navLivros.addEventListener('click', (e) => {
   e.preventDefault();
   showingAllBooks = true;
@@ -371,7 +330,6 @@ authorSlideout.addEventListener('click', (e) => {
   if (e.target === authorSlideout) authorSlideout.classList.remove('open');
 });
 
-// Busca instantânea
 function doSearch() {
   searchTerm = searchBox.value;
   selectedAuthor = null;
@@ -383,16 +341,28 @@ function doSearch() {
   navLivros.classList.add('active');
   navInicio.classList.remove('active');
 }
-searchBox.addEventListener('keyup', function(e) {
+searchBox.addEventListener('keyup', function (e) {
   if (e.key === "Enter") doSearch();
 });
 searchBox.addEventListener('input', doSearch);
 searchBtn.addEventListener('click', doSearch);
-
-// Ordenação
 sortSelect.addEventListener('change', () => { currentPage = 1; renderBooks(); });
 
-// Modal de favoritos
+favBtn.addEventListener('click', () => {
+  renderFavModal();
+  favModal.classList.add('open');
+  document.body.style.overflow = 'hidden';
+});
+closeFavModal.addEventListener('click', () => {
+  favModal.classList.remove('open');
+  document.body.style.overflow = '';
+});
+favModal.addEventListener('click', (e) => {
+  if (e.target === favModal) {
+    favModal.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+});
 function renderFavModal() {
   favBooksList.innerHTML = "";
   const favs = getFavs();
@@ -414,7 +384,7 @@ function renderFavModal() {
     favBooksList.appendChild(div);
   });
   favBooksList.querySelectorAll('.fav-remove-btn').forEach(btn => {
-    btn.addEventListener('click', function() {
+    btn.addEventListener('click', function () {
       const id = Number(this.getAttribute('data-book-id'));
       setFavs(getFavs().filter(fid => fid !== id));
       updateFavCount();
@@ -423,24 +393,8 @@ function renderFavModal() {
     });
   });
 }
-favBtn.addEventListener('click', () => {
-  renderFavModal();
-  favModal.classList.add('open');
-  document.body.style.overflow = 'hidden';
-});
-closeFavModal.addEventListener('click', () => {
-  favModal.classList.remove('open');
-  document.body.style.overflow = '';
-});
-favModal.addEventListener('click', (e) => {
-  if (e.target === favModal) {
-    favModal.classList.remove('open');
-    document.body.style.overflow = '';
-  }
-});
 
-// Inicialização
-window.onload = function() {
+window.onload = function () {
   showingAllBooks = true;
   currentPage = 1;
   navInicio.classList.add('active');
