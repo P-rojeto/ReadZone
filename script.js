@@ -1,3 +1,4 @@
+
 const BOOKS_PER_PAGE = 12;
 
 const booksGrid = document.getElementById('books-grid');
@@ -24,41 +25,19 @@ const profileBtn = document.getElementById('profile-btn');
 const profileDropdown = document.getElementById('profile-dropdown');
 const logoutBtn = document.getElementById('logout-btn');
 
+let booksData = [];
 let selectedAuthor = null;
 let selectedCategory = null;
 let selectedRating = null;
 let searchTerm = "";
-let showingAllBooks = true;
 let currentPage = 1;
 
-function salvarUsuario(usuario, email, senha) {
-  localStorage.setItem('readzone_user', JSON.stringify({ usuario, email, senha }));
-}
-
-const logged = localStorage.getItem('readzone_logged');
-const user = localStorage.getItem('readzone_logged_user');
-
-function loginUsuario() {
-  const email = document.getElementById('login-email').value;
-  const senha = document.getElementById('login-senha').value;
-  const userData = JSON.parse(localStorage.getItem('readzone_user'));
-
-  if (userData && userData.email === email && userData.senha === senha) {
-    localStorage.setItem('readzone_logged', 'true');
-    localStorage.setItem('readzone_logged_user', userData.usuario);
-    window.location.href = '../index.html';
-  } else {
-    alert('Usuário ou senha inválidos!');
-  }
-}
-
-function logoutUsuario() {
+// Login
+logoutBtn?.addEventListener('click', () => {
   localStorage.removeItem('readzone_logged');
   localStorage.removeItem('readzone_logged_user');
   window.location.href = '/registroelogin/login.html';
-}
-
-logoutBtn?.addEventListener('click', logoutUsuario);
+});
 profileBtn?.addEventListener('click', (e) => {
   e.stopPropagation();
   const isVisible = profileDropdown.style.display === 'block';
@@ -68,6 +47,7 @@ document.addEventListener('click', () => {
   profileDropdown.style.display = 'none';
 });
 
+// Favoritos
 function getFavs() {
   try {
     return JSON.parse(localStorage.getItem('readzone_favs') || '[]');
@@ -87,19 +67,55 @@ function updateFavCount() {
   favCount.classList.toggle('has-favs', favs.length > 0);
 }
 
+// Conexão com o backend
+async function carregarLivrosDoBackend() {
+  try {
+    const response = await fetch('http://localhost:3000/livros');
+    if (!response.ok) throw new Error('Erro ao buscar');
+    const livros = await response.json();
+    booksData = livros.map((livro, index) => ({ id: livro.id || index + 1, ...livro }));
+    renderCategoryList();
+    renderAuthorsSlideout();
+    renderBooks();
+    updateFavCount();
+  } catch (error) {
+    console.error('Erro ao carregar livros do backend:', error);
+    booksGrid.innerHTML = '<p style="color:red;">Erro ao carregar livros.</p>';
+  }
+}
+
+function renderCategoryList() {
+  const categorias = [...new Set(booksData.map(b => b.category))].sort();
+  categoryList.innerHTML = `<li><label class="${!selectedCategory ? 'selected-category' : ''}">
+    <input type="radio" name="category" value="" ${!selectedCategory ? 'checked' : ''}>Todas</label></li>`;
+  categorias.forEach(cat => {
+    const li = document.createElement("li");
+    li.innerHTML = `<label class="${selectedCategory === cat ? 'selected-category' : ''}">
+      <input type="radio" name="category" value="${cat}" ${selectedCategory === cat ? 'checked' : ''}>${cat}</label>`;
+    categoryList.appendChild(li);
+  });
+  categoryList.querySelectorAll('input[name="category"]').forEach(rb => {
+    rb.addEventListener('change', () => {
+      selectedCategory = rb.value || null;
+      currentPage = 1;
+      renderCategoryList();
+      renderBooks();
+    });
+  });
+}
+
 function renderAuthorsSlideout() {
-  const authors = Array.from(new Set(window.booksData.map(b => b.author))).sort();
-  let ul = document.createElement('ul');
+  const authors = [...new Set(booksData.map(b => b.author))].sort();
+  let ul = document.createElement("ul");
   authors.forEach(author => {
-    let li = document.createElement('li');
-    li.innerHTML = `<label class="${selectedAuthor === author ? "selected-author" : ""}">
-      <input type="radio" name="author" value="${author}" ${selectedAuthor === author ? "checked" : ""}>${author}
-    </label>`;
+    let li = document.createElement("li");
+    li.innerHTML = `<label class="${selectedAuthor === author ? 'selected-author' : ''}">
+      <input type="radio" name="author" value="${author}" ${selectedAuthor === author ? 'checked' : ''}>${author}</label>`;
     ul.appendChild(li);
   });
-  authorListWrap.innerHTML = '';
+  authorListWrap.innerHTML = "";
   authorListWrap.appendChild(ul);
-  authorListWrap.querySelectorAll('input[type="radio"]').forEach(rb => {
+  authorListWrap.querySelectorAll('input[name="author"]').forEach(rb => {
     rb.addEventListener('change', () => {
       selectedAuthor = rb.checked ? rb.value : null;
       currentPage = 1;
@@ -110,282 +126,173 @@ function renderAuthorsSlideout() {
   });
 }
 
-function renderCategoryList() {
-  const cats = Array.from(new Set(window.booksData.map(b => b.category))).sort();
-  categoryList.innerHTML = `<li><label class="${selectedCategory === null ? 'selected-category' : ''}"><input type="radio" name="category" value="" ${selectedCategory === null ? 'checked' : ''}>Todas</label></li>`;
-  cats.forEach(cat => {
-    const li = document.createElement("li");
-    li.innerHTML = `<label class="${selectedCategory === cat ? "selected-category" : ""}">
-      <input type="radio" name="category" value="${cat}" ${selectedCategory === cat ? "checked" : ""}>${cat}
-    </label>`;
-    categoryList.appendChild(li);
-  });
-  categoryList.querySelectorAll('input[type="radio"]').forEach(rb => {
-    rb.addEventListener('change', () => {
-      selectedCategory = rb.value || null;
-      currentPage = 1;
-      renderCategoryList();
-      renderBooks();
-    });
-  });
-}
-
 function getFilteredBooks() {
-  let filteredBooks = window.booksData;
-
-  if (selectedAuthor) filteredBooks = filteredBooks.filter(book => book.author === selectedAuthor);
-  if (selectedCategory) filteredBooks = filteredBooks.filter(book => book.category === selectedCategory);
-  if (selectedRating) filteredBooks = filteredBooks.filter(book => book.stars >= selectedRating);
+  let filtered = [...booksData];
+  if (selectedAuthor) filtered = filtered.filter(b => b.author === selectedAuthor);
+  if (selectedCategory) filtered = filtered.filter(b => b.category === selectedCategory);
+  if (selectedRating) filtered = filtered.filter(b => b.stars >= selectedRating);
   if (searchTerm) {
-    const term = searchTerm.trim().toLowerCase();
-    filteredBooks = filteredBooks.filter(book =>
-      book.title.toLowerCase().includes(term) ||
-      book.author.toLowerCase().includes(term) ||
-      (book.category && book.category.toLowerCase().includes(term))
+    const term = searchTerm.toLowerCase();
+    filtered = filtered.filter(b =>
+      b.title.toLowerCase().includes(term) ||
+      b.author.toLowerCase().includes(term) ||
+      (b.category && b.category.toLowerCase().includes(term))
     );
   }
-  switch (sortSelect.value) {
-    case "title-asc": return filteredBooks.sort((a, b) => a.title.localeCompare(b.title));
-    case "title-desc": return filteredBooks.sort((a, b) => b.title.localeCompare(a.title));
-    case "author-asc": return filteredBooks.sort((a, b) => a.author.localeCompare(b.author));
-    case "author-desc": return filteredBooks.sort((a, b) => b.author.localeCompare(a.author));
-    case "stars-desc": return filteredBooks.sort((a, b) => b.stars - a.stars);
-    case "stars-asc": return filteredBooks.sort((a, b) => a.stars - b.stars);
-    default: return filteredBooks.sort((a, b) => a.id - b.id);
-  }
+  return filtered;
 }
 
-const categoryFolderMap = {
-  autoajuda: 'autoajuda',
-  aventura: 'aventura',
-  biografia: 'biografia',
-  contos: 'contos',
-  drama: 'drama',
-  romance: 'romance'
-};
-
 function renderBooks() {
-  booksGrid.innerHTML = '';
-  const filteredBooks = getFilteredBooks();
-  const totalBooks = filteredBooks.length;
-  const totalPages = Math.max(1, Math.ceil(totalBooks / BOOKS_PER_PAGE));
-
+  const filtered = getFilteredBooks();
+  const totalPages = Math.ceil(filtered.length / BOOKS_PER_PAGE);
   const start = (currentPage - 1) * BOOKS_PER_PAGE;
   const end = start + BOOKS_PER_PAGE;
-  const pageBooks = filteredBooks.slice(start, end);
+  const pageBooks = filtered.slice(start, end);
 
-  sectionTitle.textContent = selectedAuthor
-    ? `Livros de ${selectedAuthor}`
-    : (selectedCategory ? `Livros de ${selectedCategory}` : (searchTerm ? `Resultado da busca` : `Livros em Destaque`));
+  booksGrid.innerHTML = '';
+  sectionTitle.textContent = selectedAuthor ? `Livros de ${selectedAuthor}` :
+    selectedCategory ? `Livros de ${selectedCategory}` :
+    searchTerm ? `Resultado da busca` : `Livros em Destaque`;
 
   if (pageBooks.length === 0) {
-    booksGrid.innerHTML = '<div style="grid-column: 1/-1; color: var(--orange); text-align:center; font-size:1.15em; margin-top:30px;">Nenhum livro encontrado.</div>';
-    pagination.innerHTML = "";
+    booksGrid.innerHTML = '<div style="color:red;text-align:center;">Nenhum livro encontrado.</div>';
+    pagination.innerHTML = '';
     return;
   }
 
-  pageBooks.forEach((book) => {
-    const card = document.createElement('div');
-    card.className = 'book-card';
+  pageBooks.forEach(book => {
+    const card = document.createElement("div");
+    card.className = "book-card";
     card.innerHTML = `
-      <img src="${book.cover}" alt="Capa de ${book.title}" class="book-cover" data-book-id="${book.id}"/>
+      <img src="${book.cover}" class="book-cover" alt="${book.title}"/>
       <div class="book-title">${book.title}</div>
       <div class="book-author">${book.author}</div>
       <div class="book-category">${book.category}</div>
       <div class="book-stars">${'★'.repeat(book.stars)}${'☆'.repeat(5 - book.stars)}</div>
-      <button class="add-cart-btn${isFav(book.id) ? ' favorited' : ''}" tabindex="0" data-book-id="${book.id}">
+      <button class="add-cart-btn ${isFav(book.id) ? 'favorited' : ''}" data-book-id="${book.id}">
         ${isFav(book.id) ? 'Favoritado' : 'Adicionar aos favoritos'}
-      </button>
-    `;
+      </button>`;
     booksGrid.appendChild(card);
   });
 
-  booksGrid.querySelectorAll('.book-cover').forEach(img => {
-    img.addEventListener('click', function () {
-      const id = Number(this.getAttribute('data-book-id'));
-      let targetBook = window.booksData.find(b => b.id === id);
-      if (!targetBook) return;
-      let category = targetBook.category.toLowerCase().replace(/\s+/g, '');
-      let folder = categoryFolderMap[category];
-      let fileName = targetBook.title
-        .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-        .toLowerCase().replace(/\s+/g, '') + '.html';
-
-      if (folder) {
-        window.location.href = `/pastasdecategorias/${folder}/${fileName}`;
-      }
-    });
-  });
-
-  booksGrid.querySelectorAll('.add-cart-btn').forEach(btn => {
-    btn.addEventListener('click', function () {
-      const id = Number(this.getAttribute('data-book-id'));
-      if (!isFav(id)) {
-        setFavs([...getFavs(), id]);
-        updateFavCount();
-        this.textContent = 'Favoritado';
-        this.classList.add('favorited');
-        this.blur();
-      }
-    });
-  });
-
   renderPagination(totalPages);
-  if (window.ScrollReveal) {
-    ScrollReveal().reveal('.book-card', {
-      duration: 500,
-      distance: '24px',
-      easing: 'cubic-bezier(.5,0,0,1)',
-      interval: 55,
-      origin: 'bottom',
-      reset: false
-    });
-  }
+  setupBookEvents();
 }
 
 function renderPagination(totalPages) {
-  pagination.innerHTML = "";
+  pagination.innerHTML = '';
   if (totalPages <= 1) return;
-
-  let prevBtn = document.createElement("button");
-  prevBtn.innerHTML = "&#8592;";
-  prevBtn.disabled = currentPage === 1;
-  prevBtn.onclick = () => { currentPage--; renderBooks(); };
-  pagination.appendChild(prevBtn);
-
-  let start = Math.max(1, currentPage - 2);
-  let end = Math.min(totalPages, currentPage + 2);
-  if (currentPage <= 3) end = Math.min(totalPages, 5);
-  if (currentPage >= totalPages - 2) start = Math.max(1, totalPages - 4);
-
-  for (let i = start; i <= end; i++) {
-    let btn = document.createElement("button");
+  for (let i = 1; i <= totalPages; i++) {
+    const btn = document.createElement("button");
     btn.textContent = i;
     if (i === currentPage) btn.classList.add("active");
-    btn.onclick = () => { currentPage = i; renderBooks(); };
+    btn.onclick = () => {
+      currentPage = i;
+      renderBooks();
+    };
     pagination.appendChild(btn);
   }
-
-  let nextBtn = document.createElement("button");
-  nextBtn.innerHTML = "&#8594;";
-  nextBtn.disabled = currentPage === totalPages;
-  nextBtn.onclick = () => { currentPage++; renderBooks(); };
-  pagination.appendChild(nextBtn);
 }
 
+function setupBookEvents() {
+  booksGrid.querySelectorAll(".add-cart-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const id = Number(btn.getAttribute("data-book-id"));
+      if (!isFav(id)) {
+        setFavs([...getFavs(), id]);
+        updateFavCount();
+        btn.textContent = "Favoritado";
+        btn.classList.add("favorited");
+      }
+    });
+  });
+}
+
+searchBox.addEventListener("input", () => {
+  searchTerm = searchBox.value;
+  currentPage = 1;
+  renderBooks();
+});
+searchBtn.addEventListener("click", () => {
+  searchTerm = searchBox.value;
+  currentPage = 1;
+  renderBooks();
+});
 ratingStars.forEach((star, idx) => {
-  star.addEventListener('click', () => {
+  star.addEventListener("click", () => {
     selectedRating = 5 - idx;
     currentPage = 1;
-    ratingStars.forEach((s, i) => {
-      s.classList.toggle("selected-star", i >= 5 - selectedRating);
-    });
     renderBooks();
   });
 });
-clearRating.addEventListener('click', () => {
+clearRating.addEventListener("click", () => {
   selectedRating = null;
   currentPage = 1;
-  ratingStars.forEach(s => s.classList.remove("selected-star"));
   renderBooks();
 });
-
-navLivros.addEventListener('click', (e) => {
-  e.preventDefault();
-  showingAllBooks = true;
+navLivros.addEventListener("click", () => {
+  selectedAuthor = null;
+  selectedCategory = null;
+  selectedRating = null;
   searchTerm = "";
-  searchBox.value = "";
+  currentPage = 1;
+  renderBooks();
+});
+navInicio.addEventListener("click", () => {
   selectedAuthor = null;
   selectedCategory = null;
   selectedRating = null;
-  currentPage = 1;
-  renderCategoryList();
-  renderBooks();
-  navLivros.classList.add('active');
-  navInicio.classList.remove('active');
-});
-navInicio.addEventListener('click', (e) => {
-  e.preventDefault();
-  showingAllBooks = true;
   searchTerm = "";
-  searchBox.value = "";
-  selectedAuthor = null;
-  selectedCategory = null;
-  selectedRating = null;
   currentPage = 1;
-  renderCategoryList();
   renderBooks();
-  navInicio.classList.add('active');
-  navLivros.classList.remove('active');
 });
-navAutores.addEventListener('click', (e) => {
-  e.preventDefault();
-  authorSlideout.classList.add('open');
-  renderAuthorsSlideout();
+navAutores.addEventListener("click", () => {
+  authorSlideout.classList.add("open");
 });
-closeAuthorsSlideout.addEventListener('click', () => {
-  authorSlideout.classList.remove('open');
+closeAuthorsSlideout.addEventListener("click", () => {
+  authorSlideout.classList.remove("open");
 });
-authorSlideout.addEventListener('click', (e) => {
-  if (e.target === authorSlideout) authorSlideout.classList.remove('open');
+authorSlideout.addEventListener("click", (e) => {
+  if (e.target === authorSlideout) authorSlideout.classList.remove("open");
 });
-
-function doSearch() {
-  searchTerm = searchBox.value;
-  selectedAuthor = null;
-  selectedCategory = null;
-  selectedRating = null;
-  currentPage = 1;
-  renderCategoryList();
-  renderBooks();
-  navLivros.classList.add('active');
-  navInicio.classList.remove('active');
-}
-searchBox.addEventListener('keyup', function (e) {
-  if (e.key === "Enter") doSearch();
-});
-searchBox.addEventListener('input', doSearch);
-searchBtn.addEventListener('click', doSearch);
-sortSelect.addEventListener('change', () => { currentPage = 1; renderBooks(); });
-
-favBtn.addEventListener('click', () => {
+favBtn.addEventListener("click", () => {
+  favModal.classList.add("open");
   renderFavModal();
-  favModal.classList.add('open');
-  document.body.style.overflow = 'hidden';
+  document.body.style.overflow = "hidden";
 });
-closeFavModal.addEventListener('click', () => {
-  favModal.classList.remove('open');
-  document.body.style.overflow = '';
+closeFavModal.addEventListener("click", () => {
+  favModal.classList.remove("open");
+  document.body.style.overflow = "";
 });
-favModal.addEventListener('click', (e) => {
+favModal.addEventListener("click", (e) => {
   if (e.target === favModal) {
-    favModal.classList.remove('open');
-    document.body.style.overflow = '';
+    favModal.classList.remove("open");
+    document.body.style.overflow = "";
   }
 });
 function renderFavModal() {
   favBooksList.innerHTML = "";
   const favs = getFavs();
   if (favs.length === 0) {
-    favBooksList.innerHTML = '<div class="empty-msg">Nenhum favorito ainda.</div>';
+    favBooksList.innerHTML = "<p>Nenhum favorito ainda.</p>";
     return;
   }
   favs.forEach(id => {
-    const book = window.booksData.find(b => b.id === id);
+    const book = booksData.find(b => b.id === id);
     if (!book) return;
-    const div = document.createElement('div');
-    div.className = 'fav-book-card';
+    const div = document.createElement("div");
+    div.className = "fav-book-card";
     div.innerHTML = `
-      <img src="${book.cover}" class="fav-book-cover" alt="Capa de ${book.title}">
-      <span class="fav-book-title">${book.title}</span>
-      <span class="fav-book-author">${book.author}</span>
+      <img src="${book.cover}" alt="${book.title}">
+      <span>${book.title}</span>
+      <span>${book.author}</span>
       <button class="fav-remove-btn" data-book-id="${book.id}">Remover</button>
     `;
     favBooksList.appendChild(div);
   });
-  favBooksList.querySelectorAll('.fav-remove-btn').forEach(btn => {
-    btn.addEventListener('click', function () {
-      const id = Number(this.getAttribute('data-book-id'));
+  favBooksList.querySelectorAll(".fav-remove-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const id = Number(btn.getAttribute("data-book-id"));
       setFavs(getFavs().filter(fid => fid !== id));
       updateFavCount();
       renderFavModal();
@@ -394,13 +301,6 @@ function renderFavModal() {
   });
 }
 
-window.onload = function () {
-  showingAllBooks = true;
-  currentPage = 1;
-  navInicio.classList.add('active');
-  navLivros.classList.remove('active');
-  renderCategoryList();
-  renderAuthorsSlideout();
-  renderBooks();
-  updateFavCount();
+window.onload = () => {
+  carregarLivrosDoBackend();
 };

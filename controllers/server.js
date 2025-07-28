@@ -4,6 +4,7 @@ const cors = require('cors');
 require('dotenv').config();
 
 const userRoutes = require('./routes/user');
+const Livro = require('./controllers/models/modelsLivro'); // ✅ Importação do modelo de livros
 
 const app = express();
 
@@ -19,10 +20,33 @@ mongoose.connect(process.env.MONGO_URI, {
 .then(() => console.log('✅ MongoDB conectado com sucesso'))
 .catch(err => console.error('❌ Erro ao conectar no MongoDB:', err));
 
-// Rotas
+// Rotas de usuários
 app.use('/api', userRoutes);
 
-// Porta
+// ROTA: Listar livros
+app.get('/livros', async (req, res) => {
+  try {
+    const livros = await Livro.find();
+    res.json(livros);
+  } catch (err) {
+    console.error('Erro no GET /livros:', err);
+    res.status(500).json({ erro: 'Erro ao buscar livros' });
+  }
+});
+
+// ROTA: Cadastrar novo livro
+app.post('/livros', async (req, res) => {
+  try {
+    const novoLivro = new Livro(req.body);
+    await novoLivro.save();
+    res.status(201).json({ mensagem: 'Livro cadastrado com sucesso!' });
+  } catch (err) {
+    console.error('Erro ao cadastrar livro:', err);
+    res.status(500).json({ erro: 'Erro ao cadastrar livro' });
+  }
+});
+
+// Início do servidor
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`🚀 Servidor rodando em http://localhost:${PORT}`);
