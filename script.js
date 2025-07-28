@@ -1,4 +1,3 @@
-
 const BOOKS_PER_PAGE = 12;
 
 const booksGrid = document.getElementById('books-grid');
@@ -73,7 +72,14 @@ async function carregarLivrosDoBackend() {
     const response = await fetch('http://localhost:3000/livros');
     if (!response.ok) throw new Error('Erro ao buscar');
     const livros = await response.json();
-    booksData = livros.map((livro, index) => ({ id: livro.id || index + 1, ...livro }));
+    booksData = livros.map((livro, index) => ({
+      id: index + 1,
+      title: livro.titulo,
+      author: livro.autor,
+      cover: livro.imagem,
+      category: livro.categoria,
+      stars: Math.floor(Math.random() * 3) + 3
+    }));
     renderCategoryList();
     renderAuthorsSlideout();
     renderBooks();
@@ -83,7 +89,6 @@ async function carregarLivrosDoBackend() {
     booksGrid.innerHTML = '<p style="color:red;">Erro ao carregar livros.</p>';
   }
 }
-
 function renderCategoryList() {
   const categorias = [...new Set(booksData.map(b => b.category))].sort();
   categoryList.innerHTML = `<li><label class="${!selectedCategory ? 'selected-category' : ''}">

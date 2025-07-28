@@ -4,8 +4,8 @@ const cors = require('cors');
 require('dotenv').config();
 
 const userRoutes = require('./routes/user');
-const Livro = require('./controllers/models/modelsLivro'); // ✅ Importação do modelo de livros
-
+const Usuario = require('./models/modelsUsuario');
+const Livro = require('./models/modelsLivro'); 
 const app = express();
 
 // Middlewares
