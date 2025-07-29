@@ -6,6 +6,7 @@ const livros = [
   {
     titulo: "Vencendo o Passado",
     autor: "Zíbia Gasparetto",
+    
     preco: 0,
     imagem: "https://carrefourbr.vtexassets.com/arquivos/ids/97103001/fdae3d8b4aab40d68744e9027b655cf5.jpg?v=638096993985070000",
     descricao: "",
