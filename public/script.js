@@ -1,3 +1,5 @@
+// script.js (versão atualizada ReadZone)
+
 const BOOKS_PER_PAGE = 12;
 
 const booksGrid = document.getElementById('books-grid');
@@ -31,12 +33,7 @@ let selectedRating = null;
 let searchTerm = "";
 let currentPage = 1;
 
-// Login
-logoutBtn?.addEventListener('click', () => {
-  localStorage.removeItem('readzone_logged');
-  localStorage.removeItem('readzone_logged_user');
-  window.location.href = '/registroelogin/login.html';
-});
+// Autenticação e menu do perfil
 profileBtn?.addEventListener('click', (e) => {
   e.stopPropagation();
   const isVisible = profileDropdown.style.display === 'block';
@@ -44,6 +41,11 @@ profileBtn?.addEventListener('click', (e) => {
 });
 document.addEventListener('click', () => {
   profileDropdown.style.display = 'none';
+});
+logoutBtn?.addEventListener('click', () => {
+  localStorage.removeItem('readzone_logged');
+  localStorage.removeItem('readzone_logged_user');
+  window.location.href = '/registroelogin/login.html';
 });
 
 // Favoritos
@@ -66,7 +68,7 @@ function updateFavCount() {
   favCount.classList.toggle('has-favs', favs.length > 0);
 }
 
-// Conexão com o backend
+// Carregar livros do backend
 async function carregarLivrosDoBackend() {
   try {
     const response = await fetch('http://localhost:3000/livros');
@@ -89,6 +91,8 @@ async function carregarLivrosDoBackend() {
     booksGrid.innerHTML = '<p style="color:red;">Erro ao carregar livros.</p>';
   }
 }
+
+// Filtros e renderização
 function renderCategoryList() {
   const categorias = [...new Set(booksData.map(b => b.category))].sort();
   categoryList.innerHTML = `<li><label class="${!selectedCategory ? 'selected-category' : ''}">
@@ -111,9 +115,9 @@ function renderCategoryList() {
 
 function renderAuthorsSlideout() {
   const authors = [...new Set(booksData.map(b => b.author))].sort();
-  let ul = document.createElement("ul");
+  const ul = document.createElement("ul");
   authors.forEach(author => {
-    let li = document.createElement("li");
+    const li = document.createElement("li");
     li.innerHTML = `<label class="${selectedAuthor === author ? 'selected-author' : ''}">
       <input type="radio" name="author" value="${author}" ${selectedAuthor === author ? 'checked' : ''}>${author}</label>`;
     ul.appendChild(li);
@@ -164,21 +168,32 @@ function renderBooks() {
     pagination.innerHTML = '';
     return;
   }
+pageBooks.forEach(book => {
+  const card = document.createElement("div");
+  card.className = "book-card";
 
-  pageBooks.forEach(book => {
-    const card = document.createElement("div");
-    card.className = "book-card";
-    card.innerHTML = `
+  // 🔧 Gerar o link com base no título e categoria
+  const tituloArquivo = book.title
+    .normalize("NFD").replace(/[\u0300-\u036f]/g, "") // remove acentos
+    .toLowerCase().replace(/\s+/g, '')               // remove espaços
+    .replace(/[^a-z0-9]/g, '');                      // remove caracteres especiais
+
+  const categoriaPasta = book.category?.toLowerCase();
+  const linkLivro = `/pastasdecategorias/${categoriaPasta}/${tituloArquivo}.html`;
+
+  card.innerHTML = `
+    <a href="${linkLivro}" style="text-decoration:none; color:inherit;">
       <img src="${book.cover}" class="book-cover" alt="${book.title}"/>
       <div class="book-title">${book.title}</div>
       <div class="book-author">${book.author}</div>
       <div class="book-category">${book.category}</div>
       <div class="book-stars">${'★'.repeat(book.stars)}${'☆'.repeat(5 - book.stars)}</div>
-      <button class="add-cart-btn ${isFav(book.id) ? 'favorited' : ''}" data-book-id="${book.id}">
-        ${isFav(book.id) ? 'Favoritado' : 'Adicionar aos favoritos'}
-      </button>`;
-    booksGrid.appendChild(card);
-  });
+    </a>
+    <button class="add-cart-btn ${isFav(book.id) ? 'favorited' : ''}" data-book-id="${book.id}">
+      ${isFav(book.id) ? 'Favoritado' : 'Adicionar aos favoritos'}
+    </button>`;
+  booksGrid.appendChild(card);
+});
 
   renderPagination(totalPages);
   setupBookEvents();
@@ -275,6 +290,7 @@ favModal.addEventListener("click", (e) => {
     document.body.style.overflow = "";
   }
 });
+
 function renderFavModal() {
   favBooksList.innerHTML = "";
   const favs = getFavs();
@@ -288,11 +304,12 @@ function renderFavModal() {
     const div = document.createElement("div");
     div.className = "fav-book-card";
     div.innerHTML = `
-      <img src="${book.cover}" alt="${book.title}">
-      <span>${book.title}</span>
-      <span>${book.author}</span>
-      <button class="fav-remove-btn" data-book-id="${book.id}">Remover</button>
-    `;
+<img src="${book.cover}" alt="${book.title}" style="width:80px; height:auto; margin-right:12px;">
+<div style="flex:1;">
+  <div style="font-weight:bold;">${book.title}</div>
+  <div style="color:#666; font-size:0.9em;">${book.author}</div>
+  <button class="fav-remove-btn" data-book-id="${book.id}" style="margin-top:6px;">Remover</button>
+</div>`;
     favBooksList.appendChild(div);
   });
   favBooksList.querySelectorAll(".fav-remove-btn").forEach(btn => {
