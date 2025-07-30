@@ -1,5 +1,3 @@
-// script.js (versão atualizada ReadZone)
-
 const BOOKS_PER_PAGE = 12;
 
 const booksGrid = document.getElementById('books-grid');
@@ -154,6 +152,8 @@ function getFilteredBooks() {
 function renderBooks() {
   const filtered = getFilteredBooks();
   const totalPages = Math.ceil(filtered.length / BOOKS_PER_PAGE);
+  if (currentPage > totalPages) currentPage = totalPages;
+
   const start = (currentPage - 1) * BOOKS_PER_PAGE;
   const end = start + BOOKS_PER_PAGE;
   const pageBooks = filtered.slice(start, end);
@@ -168,32 +168,44 @@ function renderBooks() {
     pagination.innerHTML = '';
     return;
   }
-pageBooks.forEach(book => {
-  const card = document.createElement("div");
-  card.className = "book-card";
 
-  // 🔧 Gerar o link com base no título e categoria
-  const tituloArquivo = book.title
-    .normalize("NFD").replace(/[\u0300-\u036f]/g, "") // remove acentos
-    .toLowerCase().replace(/\s+/g, '')               // remove espaços
-    .replace(/[^a-z0-9]/g, '');                      // remove caracteres especiais
+  pageBooks.forEach(book => {
+    const card = document.createElement("div");
+    card.className = "book-card";
 
-  const categoriaPasta = book.category?.toLowerCase();
-  const linkLivro = `/pastasdecategorias/${categoriaPasta}/${tituloArquivo}.html`;
+    const tituloArquivo = book.title
+      .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+      .toLowerCase().replace(/\s+/g, '')
+      .replace(/[^a-z0-9]/g, '');
 
-  card.innerHTML = `
-    <a href="${linkLivro}" style="text-decoration:none; color:inherit;">
-      <img src="${book.cover}" class="book-cover" alt="${book.title}"/>
-      <div class="book-title">${book.title}</div>
-      <div class="book-author">${book.author}</div>
-      <div class="book-category">${book.category}</div>
-      <div class="book-stars">${'★'.repeat(book.stars)}${'☆'.repeat(5 - book.stars)}</div>
-    </a>
-    <button class="add-cart-btn ${isFav(book.id) ? 'favorited' : ''}" data-book-id="${book.id}">
-      ${isFav(book.id) ? 'Favoritado' : 'Adicionar aos favoritos'}
-    </button>`;
-  booksGrid.appendChild(card);
-});
+    const categoriaPasta = book.category?.toLowerCase();
+    const linkLivro = `/pastasdecategorias/${categoriaPasta}/${tituloArquivo}.html`;
+
+    card.innerHTML = `
+      <a href="${linkLivro}" style="text-decoration:none; color:inherit;">
+        <img src="${book.cover}" class="book-cover" alt="${book.title}"/>
+        <div class="book-title">${book.title}</div>
+        <div class="book-author">${book.author}</div>
+        <div class="book-category">${book.category}</div>
+        <div class="book-stars">${'★'.repeat(book.stars)}${'☆'.repeat(5 - book.stars)}</div>
+      </a>
+      <button class="add-cart-btn ${isFav(book.id) ? 'favorited' : ''}" data-book-id="${book.id}">
+        ${isFav(book.id) ? 'Favoritado' : 'Adicionar aos favoritos'}
+      </button>`;
+    booksGrid.appendChild(card);
+  });
+
+  // Preenche linha com espaços invisíveis se necessário
+  const remainder = pageBooks.length % 4;
+  if (remainder !== 0) {
+    const missing = 4 - remainder;
+    for (let i = 0; i < missing; i++) {
+      const filler = document.createElement("div");
+      filler.className = "book-card";
+      filler.style.visibility = "hidden";
+      booksGrid.appendChild(filler);
+    }
+  }
 
   renderPagination(totalPages);
   setupBookEvents();
@@ -201,8 +213,14 @@ pageBooks.forEach(book => {
 
 function renderPagination(totalPages) {
   pagination.innerHTML = '';
-  if (totalPages <= 1) return;
+  const filtered = getFilteredBooks();
+  if (totalPages <= 1 || filtered.length === 0) return;
+
   for (let i = 1; i <= totalPages; i++) {
+    const start = (i - 1) * BOOKS_PER_PAGE;
+    const pageHasBooks = filtered.slice(start, start + BOOKS_PER_PAGE).length > 0;
+    if (!pageHasBooks) continue;
+
     const btn = document.createElement("button");
     btn.textContent = i;
     if (i === currentPage) btn.classList.add("active");
