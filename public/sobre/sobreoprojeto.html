@@ -1,182 +1,194 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Projeto ReadZone - Leitura para Todos</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Projeto ReadZone - Leitura para Todos</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      background-color: #f9fafc;
+      color: #d2a528;
+    }
 
-<style>
-  /* Reset básico */
-  * {
-    box-sizing: border-box;
-  }
+    /* Cabeçalho preto com logo e botão início */
+    .site-header {
+      background: #d2a528;
+      color: #ffffff;
+      padding: 16px 0;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    }
 
-  body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 0;
-    background-color: #f9fafc;
-    color: #1a1a1a;
-  }
+    .header-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
 
- header {
-  background-color: #d4af37;
-  padding: 12px 24px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
+    .logo-top {
+      height: 48px;
+      margin-right: 16px;
+    }
 
-.nav-left {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
+    .site-title {
+      font-size: 2rem;
+      font-weight: bold;
+      margin-right: auto;
+      margin-left: 8px;
+    }
 
-a.nav-link {
-  text-decoration: none;
-  font-weight: bold;
-  background-color: transparent; /* Sem caixa destacada */
-  color: white;
-  font-size: 1.1rem;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+      margin: 0;
+      padding: 0;
+    }
 
-a.nav-link:hover {
-  text-decoration: underline;
-}
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      padding: 6px 12px;
+      border-radius: 4px;
+      transition: background 0.2s;
+    }
 
-.logo {
-  height: 28px;
-  width: auto;
-}
+    nav a.active,
+    nav a:hover {
+      background: #ff9800;
+      color: #222;
+    }
 
-
-
-  main {
-    max-width: 1024px;
-    margin: 24px auto;
-    padding: 0 16px 48px;
-  }
-
-  main h2 {
-    color: #0b2240;
-    font-weight: 700;
-    font-size: 1.75rem;
-    margin-bottom: 20px;
-  }
-
-  section {
-    background-color: #fff;
-    padding: 20px 28px;
-    border-radius: 10px;
-    box-shadow: 0 1px 5px rgb(11 34 64 / 10%);
-    margin-bottom: 28px;
-  }
-
-  section h3 {
-    font-weight: 700;
-    font-size: 1.25rem;
-    color: #0b2240;
-    margin-bottom: 14px;
-    border-bottom: 2px solid #edb934;
-    display: inline-block;
-    padding-bottom: 4px;
-  }
-
-  p {
-    line-height: 1.6;
-    font-size: 1rem;
-    color: #3a3a3a;
-    margin-top: 6px;
-  }
-
-  /* Destaques para algumas palavras (cor dourada) */
-  .highlight {
-    color: #d2a528;
-    font-weight: 600;
-  }
-
-  /* Lista sem marcadores */
-  ul {
-    padding-left: 1.2rem;
-    color: #3a3a3a;
-  }
-
-  ul li {
-    margin-bottom: 8px;
-    font-size: 1rem;
-  }
-
-  /* Footer simples */
-  footer {
-    text-align: center;
-    padding: 16px 0;
-    color: #777;
-    font-size: 0.9rem;
-    background: #f6f8fa;
-    border-top: 1px solid #ddd;
-    margin-top: 40px;
-  }
-
-  /* Responsividade simples */
-  @media (max-width: 600px) {
+    /* Conteúdo principal */
     main {
-      margin: 12px;
-      padding: 0 12px 36px;
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 24px;
+      background: #fff;
+      border-radius: 10px;
+     color: #d2a528;
     }
-    header h1 {
-      font-size: 1.2rem;
+
+    h2 {
+      color: #0b2240;
+      font-weight: 700;
+      font-size: 1.8rem;
+      margin-bottom: 24px;
+      text-align: center;
     }
+
     section {
-      padding: 16px 20px;
+      margin-bottom: 28px;
     }
-  }
-</style>
+
+    section h3 {
+      font-weight: 700;
+      font-size: 1.25rem;
+      color: #0b2240;
+      margin-bottom: 8px;
+      border-bottom: 2px solid #edb934;
+      display: inline-block;
+      padding-bottom: 4px;
+    }
+
+    p {
+      line-height: 1.6;
+      font-size: 1rem;
+      color: #3a3a3a;
+      margin-top: 6px;
+    }
+
+    .highlight {
+      color: #d2a528;
+      font-weight: 600;
+    }
+
+    footer {
+      text-align: center;
+      padding: 16px 0;
+      color: #fff;
+      font-size: 0.9rem;
+      background: #d2a528;
+      margin-top: 40px;
+    }
+
+    .footer-logo-wrap {
+      vertical-align: middle;
+    }
+
+    .footer-logo {
+      height: 22px;
+      vertical-align: middle;
+      margin: 0 4px;
+    }
+
+    @media (max-width: 600px) {
+      main {
+        margin: 16px;
+        padding: 20px;
+      }
+
+      .site-title {
+        font-size: 1.3rem;
+      }
+
+      nav a {
+        font-size: 0.95rem;
+      }
+    }
+  </style>
 </head>
 <body>
-  
-  <header>
-    <a href="/index.html" class="nav-link active" id="nav-inicio">Início
-      <br>
-    <img class="logo" src="/imagens/símbolo.png" alt="Logo ReadZone"/>
-    </a>
-    <h1>ReadZone</h1>
-</header>
 
-<main>
-  <h2>Leitura para Todos – Website de Livros com Acesso Fácil e Organizado</h2>
+  <header class="site-header">
+    <div class="header-content">
+      <img src="/imagens/símbolo.png" alt="ReadZone Logo" class="logo-top" />
+      <span class="site-title">ReadZone</span>
+      <nav>
+        <ul>
+          <li><a href="/index.html">Início</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
-  <section>
-    <h3>Nome do Projeto</h3>
-    <p><span class="highlight">ReadZone</span></p>
-  </section>
+  <main>
+    <h2>Leitura para Todos – Website de Livros com Acesso Fácil e Organizado</h2>
 
-  <section>
-    <h3>Integrantes da Equipe</h3>
-    <p>Nicollas Anderson, Matheus Santiago e José Pedro</p>
-  </section>
+    <section>
+      <h3>Nome do Projeto</h3>
+      <p><span class="highlight">ReadZone</span></p>
+    </section>
 
-  <section>
-    <h3>Necessidade que Queremos Atender</h3>
-    <p>Queremos que as pessoas tenham acesso fácil e gratuito a e-books, para estudantes e leitores interessados em leituras.</p>
-  </section>
+    <section>
+      <h3>Integrantes da Equipe</h3>
+      <p>Nicollas Anderson, Matheus Santiago e José Pedro</p>
+    </section>
 
-  <section>
-    <h3>Por quê?</h3>
-    <p>Muitas pessoas querem ler mas não sabem onde encontrar livros gratuitamente e legalmente, na ReadZone os livros são organizados por ordem alfabética, gênero, autor e tipo que o faz ser um site leve e fácil de navegar.</p>
-  </section>
+    <section>
+      <h3>Necessidade que Queremos Atender</h3>
+      <p>Queremos que as pessoas tenham acesso fácil e gratuito a e-books, para estudantes e leitores interessados em leituras.</p>
+    </section>
 
-  <section>
-    <h3>Problema que Queremos Resolver</h3>
-    <p>A dificuldade em acessar livros digitais de forma organizada e intuitiva, especialmente para estudantes que precisam de conteúdo acadêmico, livros de literatura e materiais extras, mas encontram plataformas confusas, com publicidade exagerada ou sem um bom sistema de busca e filtro.</p>
-  </section>
-</main>
+    <section>
+      <h3>Por quê?</h3>
+      <p>Muitas pessoas querem ler mas não sabem onde encontrar livros gratuitamente e legalmente. Na ReadZone os livros são organizados por ordem alfabética, gênero, autor e tipo, o que o faz ser um site leve e fácil de navegar.</p>
+    </section>
 
-<footer>
-  &copy; 2025 ReadZone - Todos os direitos reservados
-</footer>
+    <section>
+      <h3>Problema que Queremos Resolver</h3>
+      <p>A dificuldade em acessar livros digitais de forma organizada e intuitiva, especialmente para estudantes que precisam de conteúdo acadêmico, livros de literatura e materiais extras, mas encontram plataformas confusas, com publicidade exagerada ou sem um bom sistema de busca e filtro.</p>
+    </section>
+  </main>
+
+  <footer>
+    © 2025 <span class="footer-logo-wrap"><img src="/imagens/símbolo.png" class="footer-logo" alt="Logo ReadZone"/></span> ReadZone. Todos os direitos reservados.
+  </footer>
 
 </body>
 </html>

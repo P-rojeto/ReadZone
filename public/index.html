@@ -27,6 +27,11 @@
       <div class="header-actions">
         <button class="icon-btn" id="fav-btn" title="Favoritos"><span id="fav-count">❤️</span></button>
         <button class="icon-btn" id="profile-btn" title="Login">👤</button>
+        <div id="profile-dropdown" class="dropdown-menu" style="display: none; position: absolute; right: 0; top: 100%; background: white; box-shadow: 0 2px 8px rgba(0,0,0,0.1); z-index: 1000; border-radius: 8px; overflow: hidden;">
+  <a href="#" id="logout-btn" style="display:block; padding: 10px 16px; text-decoration: none; color: #c00; font-weight: bold;">Logout</a>
+</div>
+
+
       </div>
       <script>
        window.addEventListener('DOMContentLoaded', function() {
@@ -46,8 +51,6 @@
       profileBtn.innerText = '👤';
       profileBtn.title = 'Login';
       profileBtn.onclick = function() {
-        window.location.href = '/registroelogin/login.html';
-        
       };
     }
   }

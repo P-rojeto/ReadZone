@@ -20,15 +20,35 @@
     }
 
     header {
-      background-color: var(--deep-blue);
+      background-color: #d2a528;
       color: white;
       padding: 24px;
       text-align: center;
+      position: relative;
     }
 
     header h1 {
       margin: 0;
       font-size: 2rem;
+    }
+
+    .inicio-btn {
+      position: absolute;
+      left: 24px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: white;
+      color: #d2a528;
+      padding: 6px 14px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 0.95rem;
+      transition: background 0.2s;
+    }
+
+    .inicio-btn:hover {
+      background: #fff5cc;
     }
 
     main {
@@ -70,9 +90,12 @@
 </head>
 <body>
 
-  <header>
-    <h1>Política de Privacidade - LGPD</h1>
-  </header>
+  <header style="background-color: #d2a528; color: white; padding: 24px; display: flex; align-items: center; justify-content: center; position: relative;">
+  <img src="/imagens/símbolo.png" alt="Logo ReadZone" style="height: 32px; position: absolute; left: 24px;">
+  <h1 style="margin: 0; font-size: 2rem;">Política de Privacidade - LGPD</h1>
+  <a href="/index.html" style="position: absolute; right: 24px; background: white; color: #d2a528; padding: 6px 14px; border-radius: 6px; text-decoration: none; font-weight: bold; font-size: 0.95rem;">Início</a>
+</header>
+
 
   <main>
     <section>

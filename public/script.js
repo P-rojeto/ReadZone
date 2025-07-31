@@ -32,15 +32,23 @@ let searchTerm = "";
 let currentPage = 1;
 
 // Autenticação e menu do perfil
+// Exibir/esconder menu suspenso do perfil
 profileBtn?.addEventListener('click', (e) => {
   e.stopPropagation();
   const isVisible = profileDropdown.style.display === 'block';
   profileDropdown.style.display = isVisible ? 'none' : 'block';
 });
-document.addEventListener('click', () => {
-  profileDropdown.style.display = 'none';
+
+// Evitar esconder se clicou dentro do menu
+document.addEventListener('click', (e) => {
+  if (!profileDropdown.contains(e.target) && e.target !== profileBtn) {
+    profileDropdown.style.display = 'none';
+  }
 });
-logoutBtn?.addEventListener('click', () => {
+
+// Logout apenas ao clicar no botão
+logoutBtn?.addEventListener('click', (e) => {
+  e.preventDefault();
   localStorage.removeItem('readzone_logged');
   localStorage.removeItem('readzone_logged_user');
   window.location.href = '/registroelogin/login.html';

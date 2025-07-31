@@ -58,33 +58,47 @@
         <!-- comentários aparecem aqui -->
       </div>
     </section>
+    <section id="comments-area" style="margin-top: 40px;">
+  <h2 style="color: #d6b138;">Comentários</h2>
+
+  <div id="comments-section" style="margin-top: 20px;"></div>
+
+  <textarea id="comment-input" placeholder="Escreva um comentário..." rows="4" style="width: 100%; margin-top: 20px; padding: 10px; border-radius: 8px; border: 1px solid #ccc;"></textarea>
+
+  <button id="submit-comment" style="margin-top: 10px; background-color: #d6b138; color: #000; padding: 8px 16px; border: none; border-radius: 6px; cursor: pointer;">
+    Comentar
+  </button>
+</section>
+
   </main>
   <footer class="vp-footer">
     <span>ReadZone &copy; 2025 • Todos os direitos reservados</span>
   </footer>
-  <script>
-    // Comentários em localStorage por livro
-    const bookKey = "comments_vencendoopassado";
-    function renderComments() {
-      const comments = JSON.parse(localStorage.getItem(bookKey) || "[]");
-      const list = document.getElementById("comments-list");
-      list.innerHTML = comments.length
-        ? comments.map(c => `<div class="vp-comment"><strong>${c.name}:</strong> <span>${c.text}</span></div>`).join("")
-        : "<div class='vp-comment-empty'>Nenhum comentário ainda.</div>";
+ <script>
+  const bookKey = "comments_umaterraprometida";
+
+  function renderComments() {
+    const comments = JSON.parse(localStorage.getItem(bookKey) || "[]");
+    const list = document.getElementById("comments-list");
+    list.innerHTML = comments.length
+      ? comments.map(c => `<div class="vp-comment"><strong>${c.name}:</strong> <span>${c.text}</span></div>`).join("")
+      : "<div class='vp-comment-empty'>Nenhum comentário ainda.</div>";
+  }
+
+  document.getElementById("comment-form").addEventListener("submit", function(e){
+    e.preventDefault();
+    const name = document.getElementById("comment-name").value.trim();
+    const text = document.getElementById("comment-text").value.trim();
+    if(name && text){
+      const prev = JSON.parse(localStorage.getItem(bookKey) || "[]");
+      prev.push({name, text});
+      localStorage.setItem(bookKey, JSON.stringify(prev));
+      this.reset();
+      renderComments();
     }
-    document.getElementById("comment-form").addEventListener("submit", function(e){
-      e.preventDefault();
-      const name = document.getElementById("comment-name").value.trim();
-      const text = document.getElementById("comment-text").value.trim();
-      if(name && text){
-        const prev = JSON.parse(localStorage.getItem(bookKey) || "[]");
-        prev.push({name, text});
-        localStorage.setItem(bookKey, JSON.stringify(prev));
-        this.reset();
-        renderComments();
-      }
-    });
-    renderComments();
-  </script>
+  });
+
+  renderComments();
+</script>
 </body>
 </html>

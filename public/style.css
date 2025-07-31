@@ -331,14 +331,21 @@ body {
   width: 100%;
   margin-bottom: 18px;
 }
-.book-card a {
+.book-card {
+  background: #fff;
+  border-radius: 13px;
+  box-shadow: 0 4px 16px #0001, 0 1.5px 0.5px #ffe06666;
+  padding: 14px 10px 34px 10px;
   display: flex;
+  width: 100%;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
-  width: 100%;
-  height: 100%;
-  text-align: center;
+  min-height: 320px;
+  position: relative;
+  color: var(--deep-blue);
+  border: 1.5px solid #ececec;
+  overflow: hidden;
+  transition: box-shadow 0.19s, border 0.18s, transform 0.16s;
 }
 
 .book-card:hover {
@@ -352,11 +359,14 @@ body {
   height: 158px;
   object-fit: cover;
   border-radius: 8px;
-  margin-bottom: 8px;
+  margin-bottom: 0px;
   background: var(--beige);
   border: 2px solid var(--gold);
   box-shadow: 0 2px 8px #0001;
   transition: transform 0.13s;
+  transition: transform 0.13s;
+  display: block;
+  margin: 0 auto 8px auto;
 }
 .book-card:hover .book-cover {
   transform: scale(1.04) rotate(-2deg);
@@ -659,7 +669,7 @@ body {
   color: #333;
   display: block;
   width: 100%;
-  text-align: left;
+  text-align: center;
   background: none;
   border: none;
   cursor: pointer;
