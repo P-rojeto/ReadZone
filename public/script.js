@@ -350,5 +350,29 @@ function renderFavModal() {
 }
 
 window.onload = () => {
-  carregarLivrosDoBackend();
+  carregarLivrosDoBackend().then(() => {
+    sortSelect.addEventListener('change', () => {
+      const sortOption = sortSelect.value;
+      booksData.sort((a, b) => {
+        switch (sortOption) {
+          case 'title-asc':
+            return a.title.localeCompare(b.title);
+          case 'title-desc':
+            return b.title.localeCompare(a.title);
+          case 'author-asc':
+            return a.author.localeCompare(b.author);
+          case 'author-desc':
+            return b.author.localeCompare(a.author);
+          case 'stars-desc':
+            return b.stars - a.stars;
+          case 'stars-asc':
+            return a.stars - b.stars;
+          default:
+            return 0;
+        }
+      });
+      currentPage = 1;
+      renderBooks();
+    });
+  });
 };
