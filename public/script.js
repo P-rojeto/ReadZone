@@ -31,8 +31,7 @@ let selectedRating = null;
 let searchTerm = "";
 let currentPage = 1;
 
-// Autenticação e menu do perfil
-// Exibir/esconder menu suspenso do perfil
+
 profileBtn?.addEventListener('click', (e) => {
   e.stopPropagation();
   const isVisible = profileDropdown.style.display === 'block';
